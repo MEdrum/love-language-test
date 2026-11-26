@@ -1,6 +1,6 @@
-import { Assessment } from './engine.js';
-import { deleteRecord, downloadRecord, exportRecord, rememberServerCopy, saveBank, savedBank, saveRecord, savedRecords, serverOrigin, serverResult, slugPattern } from './records.js';
-import { addSavedScoreRanges, reasons, summarize } from './quiz-run.js?v=9';
+import { Assessment } from './engine.js?v=10';
+import { deleteRecord, downloadRecord, exportRecord, rememberServerCopy, saveBank, savedBank, saveRecord, savedRecord, savedRecords, serverOrigin, serverResult, slugPattern } from './records.js?v=10';
+import { addSavedScoreRanges, reasons, summarize } from './quiz-run.js?v=10';
 
 const app = document.querySelector('#app');
 const modelNames = {
@@ -61,16 +61,145 @@ function persist(reason = record.summary?.reason ?? 'early') {
     return saveRecord(structuredClone(record)).catch(localError);
 }
 
+async function bankFor(version) {
+    if (bank?.schemaVersion === version) return bank;
+    const original = await savedBank(version).catch(() => null) ?? (bank ??= await fetchBank());
+    if (original.schemaVersion !== version) throw new Error('This session’s original question bank is unavailable.');
+    return original;
+}
+
+async function restoreSession(entry) {
+    const original = await bankFor(entry.snapshot.schemaVersion);
+    const snapshot = structuredClone(entry.snapshot);
+    const pending = snapshot.pending;
+    if (pending?.displayOrder) {
+        const question = original.questions.find(item => item.id === pending.questionId);
+        snapshot.pending = question ? {
+            done: false,
+            questionId: question.id,
+            prompt: question.prompt,
+            options: pending.displayOrder.map(id => ({ id, text: question.options.find(option => option.id === id).text }))
+        } : null;
+    }
+    return Assessment.restore(original, snapshot);
+}
+
+function modelPicker(selected) {
+    const fieldset = document.createElement('fieldset');
+    fieldset.append(element('legend', 'Choose one or more frameworks'));
+    for (const id of Object.keys(modelNames)) {
+        const label = element('label', '', 'model-choice');
+        const input = document.createElement('input');
+        input.type = 'checkbox';
+        input.name = 'model';
+        input.value = id;
+        input.checked = selected.includes(id);
+        const content = element('div');
+        content.append(document.createTextNode(modelNames[id]), element('span', modelDescriptions[id]));
+        label.append(input, content);
+        fieldset.append(label);
+    }
+    return fieldset;
+}
+
+function frameworkSettings(entry, onChanged) {
+    const details = element('details', '', 'session-settings');
+    const form = element('form');
+    const save = element('button', 'Apply frameworks');
+    save.type = 'submit';
+    const status = element('p', '', 'quiz-copy');
+    status.setAttribute('role', 'status');
+    form.append(modelPicker(entry.snapshot.models), save, status);
+    details.append(element('summary', 'Change frameworks'), form);
+    form.addEventListener('submit', async event => {
+        event.preventDefault();
+        const models = [...form.querySelectorAll('input:checked')].map(input => input.value);
+        if (!models.length) { status.textContent = 'Choose at least one framework.'; return; }
+        save.disabled = true;
+        try {
+            const restored = await restoreSession(entry);
+            const original = restored.bank;
+            if (record !== entry) return;
+            const snapshot = restored.snapshot();
+            const pending = original.questions.find(question => question.id === snapshot.pending?.questionId);
+            if (!pending || !models.some(model => pending.eligibility[model])) snapshot.pending = null;
+            snapshot.models = models;
+            session = Assessment.restore(original, snapshot);
+            await persist(entry.completedAt ? 'frameworks_changed' : 'early');
+            if (record === entry) onChanged();
+        } catch (error) {
+            status.textContent = error.message;
+        } finally {
+            save.disabled = false;
+        }
+    });
+    return details;
+}
+
+async function resume(entry, more = false) {
+    try {
+        const restored = await restoreSession(entry);
+        const skippedCap = restored.answers.length >= restored.config.maxQuestions;
+        if (more || skippedCap) {
+            restored.config.maxQuestions = Math.min(restored.bank.questions.length, restored.answers.length + 12);
+            restored.config.extend = true;
+        }
+        record = entry;
+        session = restored;
+        bank ??= restored.bank;
+        void saveBank(restored.bank).catch(localError);
+        record.completedAt = null;
+        history.replaceState(null, '', location.pathname);
+        showQuestion();
+    } catch (error) {
+        storageStatus.textContent = `This session couldn’t be resumed. ${error.message}`;
+    }
+}
+
+function sharedSessionForm() {
+    const form = element('form', '', 'server-form');
+    const link = field('Saved link or slug', 'text');
+    link.input.required = true;
+    const open = element('button', 'Open saved session');
+    open.type = 'submit';
+    const status = element('p', '', 'quiz-copy');
+    status.setAttribute('role', 'status');
+    form.append(link.label, open, status);
+    form.addEventListener('submit', event => {
+        event.preventDefault();
+        let slug = link.input.value.trim();
+        if (!isSlug(slug)) {
+            try {
+                const url = new URL(slug);
+                if (url.origin === serverOrigin) slug = url.pathname.match(/^\/r\/([^/]+)\/?$/)?.[1];
+                else if (url.origin === location.origin || url.origin === 'https://medrum.github.io') slug = url.searchParams.get('result');
+            } catch { slug = null; }
+        }
+        if (!isSlug(slug)) { status.textContent = 'Enter a saved result link or slug.'; return; }
+        location.search = new URLSearchParams({ result: slug });
+    });
+    return form;
+}
+
+function isSlug(value) {
+    return typeof value === 'string' && new RegExp(`^${slugPattern}$`).test(value);
+}
+
 function dateText(value) {
     return new Intl.DateTimeFormat(undefined, { dateStyle: 'medium', timeStyle: 'short' }).format(new Date(value));
 }
 
-function goHome() {
-    session = undefined;
-    record = undefined;
-    storageStatus.textContent = '';
-    showIntro();
-    document.querySelector('h1').focus();
+async function goHome() {
+    try {
+        bank ??= await fetchBank();
+        session = undefined;
+        record = undefined;
+        storageStatus.textContent = '';
+        showIntro();
+        document.querySelector('h1').focus();
+    } catch (error) {
+        storageStatus.textContent = error.message;
+    }
 }
 
 async function showSavedSessions(container) {
@@ -98,16 +227,7 @@ async function showSavedSessions(container) {
                 showResults(entry.summary.reason);
                 return;
             }
-            try {
-                const original = entry.snapshot.schemaVersion === bank.schemaVersion ? bank : await savedBank(entry.snapshot.schemaVersion);
-                if (!original) throw new Error('Question bank unavailable');
-                const restored = Assessment.restore(original, entry.snapshot);
-                record = entry;
-                session = restored;
-                showQuestion();
-            } catch {
-                storageStatus.textContent = 'This session couldn’t be resumed. Its JSON export is still available.';
-            }
+            await resume(entry);
         }), button('Export JSON', () => downloadRecord(exportRecord(entry))), button('Remove from browser', async () => {
             if (!window.confirm('Remove this session from this browser?')) return;
             try {
@@ -118,6 +238,11 @@ async function showSavedSessions(container) {
                 localError();
             }
         }));
+        if (entry.remote) {
+            const link = element('a', 'Server link');
+            link.href = `${serverOrigin}/r/${entry.remote.slug}`;
+            actions.append(link);
+        }
         item.append(actions);
         container.append(item);
     }
@@ -147,20 +272,7 @@ function showIntro() {
     intro.append(element('p', 'This quiz is for personal reflection. Sessions save in this browser as you go. Sharing a server copy is optional.', 'quiz-copy'));
     intro.append(element('p', 'Choose a short session for a first look, or an extended session for more comparisons. The results show how clearly each framework separates your top preferences.', 'quiz-copy'));
     const form = document.createElement('form');
-    const fieldset = document.createElement('fieldset');
-    fieldset.append(element('legend', 'Choose one or more frameworks'));
-    for (const id of Object.keys(modelNames)) {
-        const label = element('label', '', 'model-choice');
-        const input = document.createElement('input');
-        input.type = 'checkbox';
-        input.name = 'model';
-        input.value = id;
-        input.checked = id === 'classic5';
-        const content = element('div');
-        content.append(document.createTextNode(modelNames[id]), element('span', modelDescriptions[id]));
-        label.append(input, content);
-        fieldset.append(label);
-    }
+    const fieldset = modelPicker(['classic5']);
     const error = element('p', '', 'quiz-copy');
     error.setAttribute('role', 'alert');
     const submit = document.createElement('button');
@@ -194,7 +306,7 @@ function showIntro() {
     });
     intro.append(form);
     const saved = element('section', '', 'saved-sessions');
-    app.replaceChildren(intro, saved);
+    app.replaceChildren(intro, sharedSessionForm(), saved);
     void showSavedSessions(saved);
 }
 
@@ -239,7 +351,7 @@ function showQuestion() {
     }));
     actions.append(button('See results so far', () => showResults('early')));
     actions.append(suggestionLink(next.questionId));
-    app.replaceChildren(count, title, options, actions);
+    app.replaceChildren(count, title, options, actions, frameworkSettings(record, showQuestion));
     title.focus();
 }
 
@@ -324,6 +436,81 @@ function finish(reason) {
     showResults(reason);
 }
 
+function serverSettings(entry, title, onSaved, initialPassword = '') {
+    let passwordInMemory = initialPassword;
+    const details = element('details', '', 'session-settings');
+    details.append(element('summary', 'Edit server name, slug or password'));
+    const form = element('form', '', 'server-form');
+    const name = field('Server name', 'text', entry.name);
+    name.input.required = true;
+    name.input.maxLength = 80;
+    const slug = field('New link slug', 'text', entry.remote.slug);
+    slug.input.required = true;
+    slug.input.pattern = slugPattern;
+    slug.input.maxLength = 64;
+    slug.input.autocapitalize = 'none';
+    slug.input.spellcheck = false;
+    const current = field('Current password', 'password');
+    const next = field('New password', 'password');
+    current.input.maxLength = next.input.maxLength = 256;
+    const passwordAction = element('label', 'Password action', 'quiz-field');
+    const action = document.createElement('select');
+    for (const [value, text] of [['keep', 'Keep current setting'], ['change', 'Set a new password'], ['remove', 'Remove password']]) {
+        const option = element('option', text);
+        option.value = value;
+        action.append(option);
+    }
+    passwordAction.append(action);
+    const updatePasswordFields = () => {
+        current.label.hidden = !entry.remote.passwordProtected || Boolean(passwordInMemory);
+        current.input.required = !current.label.hidden;
+        next.label.hidden = action.value !== 'change';
+        next.input.required = !next.label.hidden;
+    };
+    updatePasswordFields();
+    action.addEventListener('change', updatePasswordFields);
+    const save = element('button', 'Save server settings');
+    save.type = 'submit';
+    const status = element('p', '', 'quiz-copy');
+    status.setAttribute('role', 'status');
+    form.append(name.label, slug.label, current.label, passwordAction, next.label, save, status);
+    details.append(form);
+    form.addEventListener('submit', async event => {
+        event.preventDefault();
+        save.disabled = true;
+        const changes = { name: name.input.value.trim(), slug: slug.input.value };
+        if (action.value !== 'keep') changes.newPassword = action.value === 'change' ? next.input.value : '';
+        try {
+            const response = await serverResult('PATCH', entry.remote.slug, passwordInMemory || current.input.value, changes);
+            const { name: savedName, ...remote } = response;
+            entry.remote = remote;
+            entry.name = savedName;
+            await rememberServerCopy(entry.id, remote, savedName).catch(localError);
+            const { searchParams } = new URL(location.href);
+            if (searchParams.has('result')) {
+                searchParams.set('result', remote.slug);
+                history.replaceState(null, '', `${location.pathname}?${searchParams}`);
+            }
+            passwordInMemory = changes.newPassword ?? passwordInMemory;
+            current.input.value = next.input.value = '';
+            action.value = 'keep';
+            updatePasswordFields();
+            title.textContent = `Results for ${savedName}`;
+            onSaved?.(remote, passwordInMemory);
+            status.textContent = 'Server settings saved.';
+        } catch (error) {
+            if (error.status === 401) {
+                passwordInMemory = '';
+                updatePasswordFields();
+            }
+            status.textContent = error.status ? error.message : 'Could not reach the result service.';
+        } finally {
+            save.disabled = false;
+        }
+    });
+    return details;
+}
+
 function serverSave(entry, title) {
     const details = element('details', '', 'server-copy');
     details.append(element('summary', 'Save a server copy'));
@@ -351,6 +538,17 @@ function serverSave(entry, title) {
         const link = element('a', 'Open the saved result');
         link.href = `${serverOrigin}/r/${entry.remote.slug}`;
         share.replaceChildren(link, document.createTextNode(` · Saved ${dateText(entry.remote.savedAt)}`));
+    }
+    function showSettings() {
+        details.querySelector('.session-settings')?.remove();
+        if (!entry.remote) return;
+        details.append(serverSettings(entry, title, remote => {
+            slug.input.value = remote.slug;
+            name.input.value = entry.name;
+            password.input.required = remote.passwordProtected;
+            password.label.firstChild.textContent = remote.passwordProtected ? 'Result password' : 'Password (optional)';
+            showLink();
+        }));
     }
     showLink();
     form.append(element('p', 'This sends your name, answers, and scores to the server. Anyone with the link can open the result unless you set a password. Results are stored unencrypted on the server.', 'quiz-copy'),
@@ -381,6 +579,7 @@ function serverSave(entry, title) {
             password.label.firstChild.textContent = entry.remote.passwordProtected ? 'Result password' : 'Password (optional)';
             title.textContent = `Results for ${entry.name}`;
             showLink();
+            showSettings();
             status.textContent = 'Saved to the server.';
         } catch (error) {
             status.textContent = error.status ? error.message : 'Could not reach the result service. Your browser copy is still available.';
@@ -389,6 +588,7 @@ function serverSave(entry, title) {
         }
     });
     details.append(form);
+    showSettings();
     return details;
 }
 
@@ -401,11 +601,12 @@ function showResults(reason) {
     content.push(...resultContent(summary));
     const actions = element('div', '', 'quiz-actions');
     if (reason === 'early') {
-        actions.append(button('Continue answering', showQuestion), button('Finish with these answers', () => finish('finished')));
+        actions.append(button('Continue answering', () => resume(entry)), button('Finish with these answers', () => finish('finished')));
     }
+    if (reason !== 'eligible_pool_exhausted') actions.append(button('Answer 12 more questions', () => resume(entry, true)));
     actions.append(button('Export JSON', () => downloadRecord(exportRecord(entry))), button('All sessions', goHome));
     const rename = element('form', '', 'server-form');
-    const name = field('Session name', 'text', entry.name);
+    const name = field('Session name in this browser', 'text', entry.name);
     name.input.maxLength = 80;
     const save = element('button', 'Save name');
     save.type = 'submit';
@@ -422,10 +623,38 @@ function showResults(reason) {
             localError();
         }
     });
-    content.push(actions, rename, serverSave(entry, title));
-    if (bank.conflictFollowUp) content.push(conflictFollowUp());
+    content.push(actions, frameworkSettings(entry, () => showResults(entry.summary.reason)), rename, serverSave(entry, title));
+    if (bank?.conflictFollowUp) content.push(conflictFollowUp());
     app.replaceChildren(...content);
     title.focus();
+}
+
+async function rememberSharedResult(result, remote) {
+    const local = await savedRecord(result.sessionId).catch(() => null);
+    const models = result.summary.models.map(model => model.id);
+    const entry = local && Date.parse(local.updatedAt) >= Date.parse(result.updatedAt) ? local : {
+        id: result.sessionId,
+        name: result.name,
+        createdAt: result.createdAt,
+        updatedAt: result.updatedAt,
+        completedAt: result.completedAt,
+        summary: result.summary,
+        snapshot: {
+            schemaVersion: result.bankVersion,
+            models,
+            config: {
+                maxQuestions: result.resume?.maxQuestions ?? Math.max(result.answers.length, models.length === 1 ? 24 : 30),
+                extend: result.resume?.extend ?? false
+            },
+            answers: result.answers.map(({ questionId, answer, displayOrder }) => ({ questionId, optionId: answer, displayOrder })),
+            pending: result.resume?.pending ?? null
+        }
+    };
+    if (!local || Date.parse(local.updatedAt) <= Date.parse(result.updatedAt)) entry.name = result.name;
+    entry.remote = remote;
+    delete entry.pendingSlug;
+    await saveRecord(structuredClone(entry)).catch(localError);
+    return entry;
 }
 
 function showSharedResult(slug) {
@@ -446,7 +675,7 @@ function showSharedResult(slug) {
     app.replaceChildren(title, status, form, content, home);
     async function load(value = '') {
         try {
-            const { result } = await serverResult('GET', slug, value);
+            const { result, ...remote } = await serverResult('GET', slug, value);
             await supplementSavedRanges(result, result.bankVersion, result.answers.map(answer => ({
                 questionId: answer.questionId, optionId: answer.answer
             })));
@@ -454,19 +683,36 @@ function showSharedResult(slug) {
             password.input.value = '';
             status.textContent = '';
             title.textContent = `Results for ${result.name}`;
+            const entry = await rememberSharedResult(result, remote);
+            record = entry;
+            session = undefined;
             const date = result.completedAt ? `Completed ${dateText(result.completedAt)}` : 'Saved before completion';
             const actions = element('div', '', 'quiz-actions');
-            actions.append(button('Export JSON', () => downloadRecord(result)), button('Delete server copy', async () => {
+            let passwordInMemory = value;
+            actions.append(button(entry.completedAt ? 'Answer 12 more questions' : 'Continue answering', () => resume(entry, Boolean(entry.completedAt))),
+                button('Export JSON', () => downloadRecord(exportRecord(entry))), button('Delete server copy', async () => {
                 if (!window.confirm('Delete this result from the server?')) return;
                 try {
-                    await serverResult('DELETE', slug, value);
+                    await serverResult('DELETE', entry.remote.slug, passwordInMemory);
+                    entry.remote = undefined;
+                    await rememberServerCopy(entry.id, undefined).catch(localError);
                     status.textContent = 'Server copy deleted.';
                     content.replaceChildren();
                 } catch (error) {
                     status.textContent = error.message;
                 }
             }));
-            content.replaceChildren(element('p', date, 'quiz-copy'), ...resultContent(result.summary), actions);
+            const copyLink = element('a', 'Open this server link');
+            copyLink.href = `${serverOrigin}/r/${entry.remote.slug}`;
+            const settings = serverSettings(entry, title, (updated, password) => {
+                passwordInMemory = password;
+                copyLink.href = `${serverOrigin}/r/${updated.slug}`;
+            }, value);
+            const frameworks = frameworkSettings(entry, () => {
+                history.replaceState(null, '', location.pathname);
+                showResults(entry.summary.reason);
+            });
+            content.replaceChildren(element('p', date, 'quiz-copy'), ...resultContent(result.summary), actions, copyLink, frameworks, settings);
             title.focus();
         } catch (error) {
             form.hidden = error.status !== 401;
@@ -481,7 +727,7 @@ function showSharedResult(slug) {
         await load(password.input.value);
         submit.disabled = false;
     });
-    if (new RegExp(`^${slugPattern}$`).test(slug)) void load();
+    if (isSlug(slug)) void load();
     else status.textContent = 'This result link is invalid.';
 }
 

@@ -152,11 +152,11 @@
     background: linear-gradient(currentColor, currentColor) center / 100% 1px no-repeat;
 }
 
-:is(.conflict-follow-up, .server-copy) {
+:is(.conflict-follow-up, .server-copy, .session-settings) {
     margin-top: 2rem;
 }
 
-:is(.conflict-follow-up, .server-copy) summary {
+:is(.conflict-follow-up, .server-copy, .session-settings) summary {
     padding-block: .35rem;
     color: var(--wine);
     font-weight: 650;
@@ -172,6 +172,10 @@
 
 .quiz-field :is(input, select) {
     min-width: 0;
+}
+
+.quiz-field[hidden] {
+    display: none;
 }
 
 .saved-sessions {

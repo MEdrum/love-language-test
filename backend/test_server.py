@@ -24,6 +24,8 @@ class ResultApiTests(unittest.TestCase):
                     "sessionId": str(uuid4()), "bankVersion": 8, "name": "API test",
                     "createdAt": "2026-01-01T10:00:00Z", "updatedAt": "2026-01-01T10:00:00Z", "completedAt": None,
                     "answers": [{"questionId": "example", "answer": "b", "displayOrder": ["b", "a"]}],
+                    "resume": {"maxQuestions": 24, "extend": False,
+                               "pending": {"questionId": "next", "displayOrder": ["b", "a"]}},
                     "summary": {"answered": 1, "asked": 1, "reason": "early", "models": [
                         {"id": "classic5", "covered": 2, "targetMet": False, "certainty": None,
                          "categories": [{"label": "Touch", "score": 70}, {"label": "Time", "score": 30}]}
@@ -43,15 +45,24 @@ class ResultApiTests(unittest.TestCase):
                     stored, password_hash = db.execute("SELECT payload, password_hash FROM results").fetchone()
                     self.assertEqual(json.loads(stored), updated)
                     self.assertNotEqual(password_hash, "mötley".encode())
+                changes = {"slug": "moved", "name": "Renamed", "newPassword": "replacement"}
+                self.assertEqual(self.request("PATCH", "example", changes)[0], 401)
+                status, metadata = self.request("PATCH", "example", changes, "mötley")
+                self.assertEqual(status, 200)
+                self.assertEqual(metadata["slug"], "moved")
+                self.assertEqual(self.request("GET", "example", password="mötley")[0], 404)
+                self.assertEqual(self.request("GET", "moved", password="mötley")[0], 401)
             finally:
                 self.stop_server()
             self.start_server()
             try:
-                status, shared = self.request("GET", "example", password="mötley")
+                status, shared = self.request("GET", "moved", password="replacement")
                 self.assertEqual(status, 200)
-                self.assertEqual(shared["result"], updated)
-                self.assertEqual(self.request("DELETE", "example", password="mötley")[0], 204)
-                self.assertEqual(self.request("GET", "example")[0], 404)
+                self.assertEqual(shared["result"], dict(updated, name="Renamed"))
+                self.assertEqual(self.request("PATCH", "moved", {"newPassword": ""}, "replacement")[0], 200)
+                self.assertEqual(self.request("GET", "moved")[0], 200)
+                self.assertEqual(self.request("DELETE", "moved")[0], 204)
+                self.assertEqual(self.request("GET", "moved")[0], 404)
                 self.assertEqual(self.request("PUT", "public-example", payload)[0], 201)
                 self.assertEqual(self.request("GET", "public-example")[0], 200)
                 self.assertEqual(self.request("DELETE", "public-example")[0], 204)

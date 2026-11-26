@@ -62,3 +62,12 @@ for (const model of summary.models.filter(model => model.covered)) {
 }
 assert.equal(addSavedScoreRanges(older, bank, [{ questionId: 'missing', optionId: 'a' }]), older);
 console.log('Score ranges are bounded and can be restored from old summaries');
+
+const confident = new Assessment(bank, ['classic5'], { targetPairwiseSD: 10, minComparisonsPerCategory: 1 });
+while (!(n = confident.next()).done) confident.answer(n.options[0].id);
+assert.equal(n.reason, 'precision_reached');
+confident.config.extend = true;
+confident.config.maxQuestions = confident.answers.length + 12;
+const extra = confident.next();
+assert(!extra.done && !confident.answers.some(answer => answer.questionId === extra.questionId));
+console.log('Explicit extensions continue beyond the precision target without repeating answers');

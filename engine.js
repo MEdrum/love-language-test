@@ -43,7 +43,7 @@ export function informationGain(q,state,config){if(!q.eligibility[state.model])r
 export class Assessment {
  constructor(bank,models=Object.keys(bank.models),overrides={}){validateBank(bank);if(!models.length||new Set(models).size!==models.length||models.some(m=>!Object.hasOwn(bank.models,m)))throw Error('Invalid models');this.bank=bank;this.models=[...models];this.config={...bank.config,...overrides};if(!['strict','strict-first','flexible'].includes(this.config.eligibility)||!(this.config.priorSD>0)||!(this.config.targetPairwiseSD>0)||!(this.config.maxQuestions>=1)||!(this.config.sharedGainRatio>=0&&this.config.sharedGainRatio<=1))throw Error('Invalid config');this.answers=[];this.pending=null;this.refresh();}
  refresh(){this.states=this.models.map(m=>fitModel(this.bank,m,this.answers,this.config));}
- next(){if(this.pending)return this.pending;const active=this.states.filter(s=>!s.complete);if(!active.length)return {done:true,reason:'precision_reached'};if(this.answers.length>=this.config.maxQuestions)return {done:true,reason:'question_limit'};
+ next(){if(this.pending)return this.pending;const active=this.states.filter(s=>this.config.extend||!s.complete);if(!active.length)return {done:true,reason:'precision_reached'};if(this.answers.length>=this.config.maxQuestions)return {done:true,reason:'question_limit'};
   const asked=new Set(this.answers.map(a=>a.questionId)),uses=new Map(),byId=new Map(this.bank.questions.map(q=>[q.id,q]));for(const a of this.answers)for(const o of byId.get(a.questionId).options)uses.set(o.gestureId,(uses.get(o.gestureId)||0)+1);
   const {initialMatchedQuestions = 0, unequalStrengthWeight = 1} = this.config;
   const openingComparisons = this.answers.filter(answer => answer.optionId !== 'skip').length < initialMatchedQuestions;
@@ -72,7 +72,7 @@ export class Assessment {
    }
   }
   if(!pick)return {done:true,reason:'eligible_pool_exhausted'};
-  if(pick.raw<this.config.minInformationGainBits&&!pick.needed)return {done:true,reason:'low_information_gain'};
+  if(!this.config.extend&&pick.raw<this.config.minInformationGainBits&&!pick.needed)return {done:true,reason:'low_information_gain'};
   const order=Math.random()<.5?['a','b']:['b','a'];this.pending={done:false,questionId:pick.q.id,prompt:pick.q.prompt,options:order.map(id=>{const o=pick.q.options.find(o=>o.id===id);return {id,text:o.text};}),selection:{shared:pick.shared,expectedInformationGain:pick.raw,activeModels:active.map(s=>s.model)}};return this.pending;
  }
  answer(optionId){if(!this.pending||!['a','b','skip'].includes(optionId))throw Error('No pending question or invalid option');this.answers.push({questionId:this.pending.questionId,optionId,displayOrder:this.pending.options.map(o=>o.id)});this.pending=null;this.refresh();}

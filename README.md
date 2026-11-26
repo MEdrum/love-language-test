@@ -4,6 +4,8 @@ This is an original, uncalibrated preference quiz, not a validated psychological
 
 The [quiz](https://medrum.github.io/love-language-test/) runs on GitHub Pages. Each question links to a public GitHub issue draft with its ID filled in. Sessions and their question bank revisions are stored in IndexedDB on this browser. The quiz sends a copy only when the visitor chooses **Save a server copy**. JSON exports include question IDs, canonical answers and the order in which the options appeared.
 
+Open a saved session from its link or paste its slug on the quiz homepage. An opened link is recorded in the browser's session list. A server save includes the current question and its display order so another browser can continue at the same point. Older copies can resume from their last saved answer when the original question bank is available. Changing frameworks reuses eligible answers. Choose **Answer 12 more questions** to continue beyond the previous stopping point.
+
 ## Files
 - `index.html`, `quiz.js` and `quiz.css`: the static quiz frontend. `style.css` and `theme.js` are copied from the portfolio so the quiz can run independently.
 - `questions.json`: The question bank, eligibility, category mappings and session lengths. Schema version 8 revises comparisons from feedback and keeps their IDs for issue links. The separate disagreement prompt is for reflection only.
@@ -63,6 +65,7 @@ The frontend runs on GitHub Pages. The API runs on the Pi at `https://lovelang.f
 |---|---|---|
 | PUT | `/api/v1/results/{slug}` | Create (201) or replace the same session (200) using the exported JSON schema. A taken slug or stale update returns 409. |
 | GET | `/api/v1/results/{slug}` | Read the saved result and metadata. |
+| PATCH | `/api/v1/results/{slug}` | Edit any of `name`, `slug`, or `newPassword` in place. An empty new password removes protection. Renaming releases the previous slug. |
 | DELETE | `/api/v1/results/{slug}` | Remove the server copy (204). |
 
 Use HTTPS Basic authentication with the username `result` and the chosen password. Supplying a password on creation protects future reads, updates and deletes. A password can also be added to an existing public copy by updating it. An unprotected result is accessible to anyone who knows its slug. The database stores result data in plaintext and stores passwords as salted scrypt hashes. The frontend keeps passwords in memory during requests and sends them over HTTPS.

@@ -6,6 +6,7 @@ export const reasons = {
     eligible_pool_exhausted: 'The quiz ran out of suitable comparisons for the selected frameworks.',
     low_information_gain: 'The remaining comparisons were estimated to add little information.',
     finished: 'You finished this session early.',
+    frameworks_changed: 'These estimates use your saved answers with the frameworks you just selected.',
     early: 'These estimates reflect your answers so far. You can come back to this session later.'
 };
 

@@ -17,7 +17,8 @@ SLUG = re.compile(r"[a-z0-9][a-z0-9-]{0,63}", re.ASCII)
 SESSION_ID = re.compile(r"[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}", re.ASCII)
 QUESTION_ID = re.compile(r"[A-Za-z0-9_\-]{1,160}", re.ASCII)
 RESULT_PATH = "/api/v1/results/"
-MAX_BYTES = 128 * 1024
+MAX_BYTES = 1024 * 1024
+MAX_ANSWERS = 2000
 
 
 class ApiError(Exception):
@@ -55,7 +56,7 @@ def valid_result(result):
             and type(result.get("bankVersion")) is int
             and valid_date(result.get("createdAt")) and valid_date(result.get("updatedAt"))
             and (result.get("completedAt") is None or valid_date(result["completedAt"]))
-            and isinstance(answers, list) and len(answers) <= 100
+            and isinstance(answers, list) and len(answers) <= MAX_ANSWERS
             and isinstance(summary, dict)):
         return False
     seen = set()
@@ -68,6 +69,20 @@ def valid_result(result):
         if answer.get("answer") not in ("a", "b", "skip") or answer.get("displayOrder") not in (["a", "b"], ["b", "a"]):
             return False
         seen.add(qid)
+    resume = result.get("resume")
+    if resume is not None:
+        if not (isinstance(resume, dict) and type(resume.get("maxQuestions")) is int
+                and max(1, len(answers)) <= resume["maxQuestions"] <= MAX_ANSWERS
+                and type(resume.get("extend")) is bool):
+            return False
+        pending = resume.get("pending")
+        if pending is not None:
+            if not isinstance(pending, dict):
+                return False
+            qid = pending.get("questionId")
+            if not (isinstance(qid, str) and QUESTION_ID.fullmatch(qid) and qid not in seen
+                    and pending.get("displayOrder") in (["a", "b"], ["b", "a"])):
+                return False
     models = summary.get("models")
     if not (summary.get("asked") == len(answers)
             and summary.get("answered") == sum(a["answer"] != "skip" for a in answers)
@@ -175,9 +190,32 @@ class ResultHandler(BaseHTTPRequestHandler):
             result = json.loads(self.rfile.read(size), parse_constant=lambda value: None)
         except (UnicodeError, ValueError, RecursionError):
             raise ApiError(400, "Invalid result JSON.") from None
-        if not valid_result(result):
-            raise ApiError(400, "The result is incomplete or invalid.")
         return result
+
+    def edit_result(self, db, row, changes):
+        if not isinstance(changes, dict) or not changes or changes.keys() - {"slug", "name", "newPassword"}:
+            raise ApiError(400, "Specify a slug, name, or new password.")
+        slug = changes.get("slug", row["slug"])
+        if not isinstance(slug, str) or not SLUG.fullmatch(slug):
+            raise ApiError(400, "Enter a valid slug.")
+        if slug != row["slug"] and db.execute("SELECT 1 FROM results WHERE slug = ?", (slug,)).fetchone():
+            raise ApiError(409, "This slug is already taken.")
+        result = json.loads(row["payload"])
+        name = changes.get("name", result["name"])
+        if not isinstance(name, str) or not 0 < len(name.strip()) <= 80:
+            raise ApiError(400, "Enter a name for the result.")
+        result["name"] = name.strip()
+        salt, hashed = row["password_salt"], row["password_hash"]
+        if "newPassword" in changes:
+            password = changes["newPassword"]
+            if not isinstance(password, str) or len(password) > 256:
+                raise ApiError(400, "Enter a valid new password.")
+            salt = secrets.token_bytes(16) if password else None
+            hashed = password_hash(password, salt) if password else None
+        saved_at = datetime.now(timezone.utc).isoformat()
+        db.execute("UPDATE results SET slug = ?, payload = ?, password_salt = ?, password_hash = ?, saved_at = ? WHERE slug = ?",
+                   (slug, json.dumps(result, allow_nan=False), salt, hashed, saved_at, row["slug"]))
+        return {"slug": slug, "savedAt": saved_at, "passwordProtected": hashed is not None, "name": result["name"]}
 
     def dispatch(self):
         slug = self.slug()
@@ -185,9 +223,11 @@ class ResultHandler(BaseHTTPRequestHandler):
         if origin and origin not in self.server.origins:
             raise ApiError(403, "This origin cannot access the result service.")
         password = self.password()
-        payload = self.read_payload() if self.command == "PUT" else None
+        payload = self.read_payload() if self.command in ("PUT", "PATCH") else None
+        if self.command == "PUT" and not valid_result(payload):
+            raise ApiError(400, "The result is incomplete or invalid.")
         with closing(self.server.connect()) as db, db:
-            if self.command in ("PUT", "DELETE"):
+            if self.command in ("PUT", "PATCH", "DELETE"):
                 db.execute("BEGIN IMMEDIATE")
             row = db.execute("SELECT * FROM results WHERE slug = ?", (slug,)).fetchone()
             if row and row["password_hash"] is not None:
@@ -212,6 +252,8 @@ class ResultHandler(BaseHTTPRequestHandler):
                 status = 200 if row else 201
             elif not row:
                 raise ApiError(404, "Result not found.")
+            elif self.command == "PATCH":
+                status, result = 200, self.edit_result(db, row, payload)
             elif self.command == "DELETE":
                 db.execute("DELETE FROM results WHERE slug = ?", (slug,))
                 status, result = 204, None
@@ -243,7 +285,7 @@ class ResultHandler(BaseHTTPRequestHandler):
             return
         self.send_response(204)
         self.send_header("Access-Control-Allow-Origin", origin)
-        self.send_header("Access-Control-Allow-Methods", "GET, PUT, DELETE, OPTIONS")
+        self.send_header("Access-Control-Allow-Methods", "GET, PUT, PATCH, DELETE, OPTIONS")
         self.send_header("Access-Control-Allow-Headers", "Authorization, Content-Type")
         self.send_header("Vary", "Origin")
         self.send_header("Content-Length", "0")
@@ -251,6 +293,7 @@ class ResultHandler(BaseHTTPRequestHandler):
 
     do_GET = handle_result
     do_PUT = handle_result
+    do_PATCH = handle_result
     do_DELETE = handle_result
 
     def setup(self):

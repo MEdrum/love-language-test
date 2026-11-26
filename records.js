@@ -24,15 +24,16 @@ export const saveBank = bank => storeOperation('banks', 'readwrite', store => st
 export const savedBank = version => storeOperation('banks', 'readonly', store => store.get(version));
 export const saveRecord = record => storeOperation('sessions', 'readwrite', store => store.put(record));
 export const savedRecords = () => storeOperation('sessions', 'readonly', store => store.getAll());
+export const savedRecord = id => storeOperation('sessions', 'readonly', store => store.get(id));
 export const deleteRecord = id => storeOperation('sessions', 'readwrite', store => store.delete(id));
 
-export const rememberServerCopy = (id, remote) => storeOperation('sessions', 'readwrite', store => {
+export const rememberServerCopy = (id, remote, name) => storeOperation('sessions', 'readwrite', store => {
     const request = store.get(id);
     request.onsuccess = () => {
         const entry = request.result;
         if (!entry) return;
         delete entry.pendingSlug;
-        store.put({ ...entry, remote });
+        store.put({ ...entry, remote, name: name ?? entry.name });
     };
     return request;
 });
@@ -45,6 +46,14 @@ export function exportRecord(record) {
         createdAt: record.createdAt,
         updatedAt: record.updatedAt,
         completedAt: record.completedAt,
+        resume: {
+            maxQuestions: record.snapshot.config.maxQuestions,
+            extend: Boolean(record.snapshot.config.extend),
+            pending: record.snapshot.pending ? {
+                questionId: record.snapshot.pending.questionId,
+                displayOrder: record.snapshot.pending.displayOrder ?? record.snapshot.pending.options.map(option => option.id)
+            } : null
+        },
         summary: record.summary,
         answers: record.snapshot.answers.map(({ questionId, optionId, displayOrder }) => ({
             questionId, answer: optionId, displayOrder
