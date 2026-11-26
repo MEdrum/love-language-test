@@ -255,7 +255,7 @@
 .chart-track {
     position: relative;
     display: block;
-    height: .85rem;
+    height: 1rem;
     border-radius: .2rem;
     background: var(--control);
 }
@@ -268,14 +268,15 @@
 .chart-fill {
     inset: auto auto 0 0;
     width: var(--score);
-    height: .42rem;
+    height: 100%;
     border-radius: .15rem;
     background: var(--category-color);
 }
 
 .chart-whisker {
-    inset: 0 var(--remainder) auto var(--low);
-    height: .4rem;
+    inset: 50% var(--remainder) auto var(--low);
+    height: .6rem;
+    transform: translateY(-50%);
     color: var(--ink);
     border-inline: 1px solid currentColor;
     background: linear-gradient(currentColor, currentColor) center / 100% 1px no-repeat;
@@ -320,14 +321,17 @@
 }
 
 .vertical-track .chart-fill {
+    left: 50%;
     width: 57%;
     height: var(--score);
+    transform: translateX(-50%);
 }
 
 .vertical-track .chart-whisker {
-    inset: var(--remainder) 6% var(--low) auto;
+    inset: var(--remainder) auto var(--low) 50%;
     width: 29%;
     height: auto;
+    transform: translateX(-50%);
     border-inline: 0;
     border-block: 1px solid currentColor;
     background-size: 1px 100%;
