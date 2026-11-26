@@ -106,10 +106,23 @@
 .result-label {
     display: flex;
     justify-content: space-between;
-    gap: 1rem;
+    gap: .5rem;
+}
+
+.result-values {
+    text-align: end;
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+}
+
+.score-range-label {
+    display: block;
+    color: var(--quiet);
+    font-size: .8rem;
 }
 
 .result-bar {
+    position: relative;
     height: .4rem;
     margin-top: .25rem;
     overflow: hidden;
@@ -117,10 +130,26 @@
     background: var(--control);
 }
 
-.result-bar span {
-    display: block;
-    height: 100%;
+.result-bar.has-range {
+    height: .95rem;
+}
+
+.score-fill {
+    position: absolute;
+    inset-block-end: 0;
+    inset-inline-start: 0;
+    height: .4rem;
+    border-radius: 1rem;
     background: var(--wine);
+}
+
+.score-range {
+    position: absolute;
+    inset-block-start: .09rem;
+    height: .36rem;
+    color: var(--quiet);
+    border-inline: 1px solid currentColor;
+    background: linear-gradient(currentColor, currentColor) center / 100% 1px no-repeat;
 }
 
 :is(.conflict-follow-up, .server-copy) {

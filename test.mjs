@@ -46,3 +46,19 @@ for (let index = 0; index < 20; index++) {
 const groupsShown = new Set(combined.answers.map(answer => byId.get(answer.questionId).coverageGroup));
 for (const group of ['sadness', 'stress', 'joy', ...financialGroups]) assert(groupsShown.has(group), group);
 console.log('Combined assessments sample the three emotional contexts and both financial offers');
+
+const { summarize, addSavedScoreRanges } = await import('./quiz-run.js');
+const summary = summarize(combined, 'early');
+for (const model of summary.models.filter(model => model.covered)) {
+  for (const { score, range: [low, high] } of model.categories) {
+    assert(0 <= low && low < score && score < high && high <= 100);
+  }
+}
+const older = structuredClone(summary);
+for (const model of older.models) for (const category of model.categories) delete category.range;
+const supplemented = addSavedScoreRanges(older, bank, combined.answers);
+for (const model of summary.models.filter(model => model.covered)) {
+  assert.deepEqual(supplemented.models.find(item => item.id === model.id).categories, model.categories);
+}
+assert.equal(addSavedScoreRanges(older, bank, [{ questionId: 'missing', optionId: 'a' }]), older);
+console.log('Score ranges are bounded and can be restored from old summaries');

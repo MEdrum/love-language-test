@@ -49,6 +49,8 @@ The default short quiz allows 24 questions for one framework and 30 for several.
 
 A framework reaches its full-profile precision target when the answered comparison graph is connected, every category has at least three appearances, and the largest posterior standard deviation of any category difference is at most 0.6. The separate top-two certainty is the normal posterior estimate that the highest scoring category outranks the runner-up, shown only when both have received evidence. It is a model estimate about those two categories. Softmax scores sum to 100 within a framework.
 
+Score bars show approximate 90% model ranges. The delta method propagates the fitted covariance through each category's log odds before converting the endpoints back to percentages. The ranges travel with saved summaries and exports. Older results can reconstruct ranges when the same question bank revision and original answers are available.
+
 Example override: `new Assessment(bank, ['modern7'], {targetPairwiseSD: 0.9, maxQuestions: 45})`. This trades precision for length and needs pilot evaluation.
 
 ## Tests

@@ -1,6 +1,6 @@
 import { Assessment } from './engine.js';
 import { deleteRecord, downloadRecord, exportRecord, rememberServerCopy, saveBank, savedBank, saveRecord, savedRecords, serverOrigin, serverResult, slugPattern } from './records.js';
-import { reasons, summarize } from './quiz-run.js';
+import { addSavedScoreRanges, reasons, summarize } from './quiz-run.js?v=9';
 
 const app = document.querySelector('#app');
 const modelNames = {
@@ -93,6 +93,8 @@ async function showSavedSessions(container) {
             if (entry.completedAt) {
                 session = undefined;
                 record = entry;
+                await supplementSavedRanges(entry, entry.snapshot.schemaVersion, entry.snapshot.answers);
+                if (record !== entry) return;
                 showResults(entry.summary.reason);
                 return;
             }
@@ -118,6 +120,24 @@ async function showSavedSessions(container) {
         }));
         item.append(actions);
         container.append(item);
+    }
+}
+
+async function fetchBank() {
+    const response = await fetch('./questions.json?v=8');
+    if (!response.ok) throw new Error('Question bank unavailable');
+    return response.json();
+}
+
+async function supplementSavedRanges(entry, version, answers) {
+    const needsRanges = entry.summary.models.some(model => model.covered && model.categories.some(category => !category.range));
+    if (!needsRanges) return;
+    try {
+        const original = bank?.schemaVersion === version ? bank : await savedBank(version).catch(() => null);
+        const fallback = original ?? await fetchBank();
+        if (fallback.schemaVersion === version) entry.summary = addSavedScoreRanges(entry.summary, fallback, answers);
+    } catch {
+        // Older results can still show their original scores without the bank used to calculate them.
     }
 }
 
@@ -249,6 +269,9 @@ function resultContent(summary) {
     const status = element('p', `${reasons[summary.reason] ?? reasons.early} ${summary.answered} answered, ${summary.asked - summary.answered} skipped.`, 'quiz-copy');
     const explanation = element('p', 'Scores show relative preferences within each framework. Certainty estimates how likely the leading category is to outrank the runner-up under the scoring model. The quiz is unvalidated.', 'quiz-copy');
     const content = [status, explanation];
+    if (summary.models.some(model => model.categories.some(category => category.range))) {
+        content.push(element('p', 'The filled bar shows the score. The line with end marks shows its approximate 90% range under the model.', 'quiz-copy'));
+    }
     for (const model of summary.models) {
         const section = element('section', '', 'result-model');
         section.append(element('h3', modelNames[model.id]));
@@ -264,15 +287,27 @@ function resultContent(summary) {
         }
         if (model.covered) {
             const list = element('ul', '', 'result-scores');
-            for (const { label, score } of model.categories) {
+            for (const { label, score, range } of model.categories) {
                 const item = document.createElement('li');
                 const resultLabel = element('div', '', 'result-label');
-                resultLabel.append(element('span', label), element('span', `${score.toFixed(1)}%`));
-                const bar = element('div', '', 'result-bar');
+                const values = element('div', `${score.toFixed(1)}%`, 'result-values');
+                resultLabel.append(element('span', label), values);
+                const validRange = Array.isArray(range) && range.length === 2 && range.every(Number.isFinite) &&
+                    range[0] >= 0 && range[0] <= range[1] && range[1] <= 100;
+                const bar = element('div', '', validRange ? 'result-bar has-range' : 'result-bar');
                 bar.setAttribute('aria-hidden', 'true');
-                const fill = document.createElement('span');
+                const fill = element('span', '', 'score-fill');
                 fill.style.width = `${score}%`;
                 bar.append(fill);
+                if (validRange) {
+                    const [low, high] = range;
+                    const endpoints = element('span', `90% range ${low.toFixed(1)}–${high.toFixed(1)}%`, 'score-range-label');
+                    const whisker = element('span', '', 'score-range');
+                    whisker.style.left = `${low}%`;
+                    whisker.style.right = `${100 - high}%`;
+                    values.append(endpoints);
+                    bar.append(whisker);
+                }
                 item.append(resultLabel, bar);
                 list.append(item);
             }
@@ -412,6 +447,9 @@ function showSharedResult(slug) {
     async function load(value = '') {
         try {
             const { result } = await serverResult('GET', slug, value);
+            await supplementSavedRanges(result, result.bankVersion, result.answers.map(answer => ({
+                questionId: answer.questionId, optionId: answer.answer
+            })));
             form.hidden = true;
             password.input.value = '';
             status.textContent = '';
@@ -456,9 +494,7 @@ try {
     if (sharedSlug !== null) {
         showSharedResult(sharedSlug);
     } else {
-        const response = await fetch('./questions.json?v=8');
-        if (!response.ok) throw new Error('Question bank unavailable');
-        bank = await response.json();
+        bank = await fetchBank();
         showIntro();
     }
 } catch (error) {
