@@ -63,7 +63,7 @@ export class Assessment {
   // Shared questions can otherwise crowd out facets that belong to just one framework.
   if (this.config.eligibility !== 'strict') {
    for (const {model, group, afterQuestions} of this.bank.coverageTargets ?? []) {
-    if (!active.some(state => state.model === model)) continue;
+    if (model && !active.some(state => state.model === model)) continue;
     const due = afterQuestions.filter(count => asked.size >= count).length;
     const shown = this.answers.filter(answer => byId.get(answer.questionId).coverageGroup === group).length;
     if (shown >= due) continue;

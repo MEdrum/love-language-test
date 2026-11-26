@@ -29,14 +29,20 @@ for (let index = 0; index < bank.config.initialMatchedQuestions + 1; index++) {
 }
 console.log('Opening comparisons remain matched after a skip');
 
-const nonGiftFinancial = bank.questions.filter(question => question.coverageGroup === 'non_gift_financial');
-assert(nonGiftFinancial.every(question => question.eligibility.modern7 && !question.eligibility.classic5 && !question.eligibility.research10));
-assert.deepEqual(new Set(nonGiftFinancial.flatMap(question => question.options.filter(option => option.categories.modern7 === 'FIN').map(option => option.strength))), new Set([-1, 0, 1]));
+const financialGroups = ['financial_personal_cost', 'financial_shared_outing'];
+for (const group of financialGroups) {
+  const comparisons = bank.questions.filter(question => question.coverageGroup === group);
+  assert(comparisons.every(question => question.eligibility.modern7 && !question.eligibility.classic5 && !question.eligibility.research10));
+  const levels = new Set(comparisons.flatMap(question => question.options
+    .filter(option => option.categories.modern7 === 'FIN').map(option => option.strength)));
+  assert.deepEqual(levels, new Set([-1, 0, 1]));
+}
+assert(bank.questions.every(question => !question.eligibility.modern7 || question.options.every(option => option.categories.research10 !== 'DIS')));
 const combined = new Assessment(bank);
-for (let index = 0; index < 17; index++) {
+for (let index = 0; index < 20; index++) {
   const next = combined.next();
   combined.answer(index % 2 === 0 ? 'a' : 'b');
 }
-const broaderFinancialCount = combined.answers.filter(answer => byId.get(answer.questionId).coverageGroup === 'non_gift_financial').length;
-assert(broaderFinancialCount >= 2);
-console.log('Combined assessments show financial generosity beyond gifts');
+const groupsShown = new Set(combined.answers.map(answer => byId.get(answer.questionId).coverageGroup));
+for (const group of ['sadness', 'stress', 'joy', ...financialGroups]) assert(groupsShown.has(group), group);
+console.log('Combined assessments sample the three emotional contexts and both financial offers');
