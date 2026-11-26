@@ -49,11 +49,11 @@ export class Assessment {
   const openingComparisons = this.answers.filter(answer => answer.optionId !== 'skip').length < initialMatchedQuestions;
   const candidates=[];for(const q of this.bank.questions){if(asked.has(q.id))continue;
    const strengthGap = Math.abs(q.options[0].strength - q.options[1].strength);
-   const relevant=active.filter(s=>q.eligibility[s.model]);if(!relevant.length)continue;let raw=0,needed=0;for(const s of relevant){raw+=informationGain(q,s,this.config);const {i,j}=item(q,s.model,s.categories,this.config.strengthCoefficient);needed+=+(s.exposure[i]<this.config.minComparisonsPerCategory)+ +(s.exposure[j]<this.config.minComparisonsPerCategory);}
+   const relevant=active.filter(s=>q.eligibility[s.model]);if(!relevant.length)continue;let raw=0,needed=0,unseen=0;for(const s of relevant){raw+=informationGain(q,s,this.config);const {i,j}=item(q,s.model,s.categories,this.config.strengthCoefficient);needed+=+(s.exposure[i]<this.config.minComparisonsPerCategory)+ +(s.exposure[j]<this.config.minComparisonsPerCategory);unseen+=+(s.exposure[i]===0)+ +(s.exposure[j]===0);}
    const repeats=q.options.reduce((sum,o)=>sum+(uses.get(o.gestureId)||0),0);
    // A slightly uneven comparison must offer more information to justify the mismatch.
    const balanceWeight = strengthGap === 0 ? 1 : unequalStrengthWeight;
-   const score=balanceWeight*(raw+.05*needed)/(1+this.config.diversityPenalty*repeats);candidates.push({q,raw,score,shared:relevant.length===active.length,needed,strengthGap});}
+   const score=balanceWeight*(raw+.05*needed+(this.config.unseenCategoryBonus??0)*unseen)/(1+this.config.diversityPenalty*repeats);candidates.push({q,raw,score,shared:relevant.length===active.length,needed,strengthGap});}
   const matched = openingComparisons ? candidates.filter(c => c.strengthGap === 0 && (this.config.eligibility !== 'strict' || c.shared)) : [];
   const pool = matched.length ? matched : candidates;
   const sort=(a,b)=>b.score-a.score||a.q.id.localeCompare(b.q.id);pool.sort(sort);const best=pool[0],shared=pool.find(c=>c.shared);let pick;

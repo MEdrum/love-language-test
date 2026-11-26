@@ -1,4 +1,6 @@
 import { Assessment } from './engine.js';
+import { deleteRecord, downloadRecord, exportRecord, rememberServerCopy, saveBank, savedBank, saveRecord, savedRecords, serverOrigin, serverResult, slugPattern } from './records.js';
+import { reasons, summarize } from './quiz-run.js';
 
 const app = document.querySelector('#app');
 const modelNames = {
@@ -13,6 +15,11 @@ const modelDescriptions = {
 };
 let bank;
 let session;
+let record;
+const storageStatus = document.createElement('p');
+storageStatus.className = 'quiz-copy storage-status';
+storageStatus.setAttribute('role', 'status');
+app.after(storageStatus);
 
 function element(tag, text, className) {
     const node = document.createElement(tag);
@@ -34,11 +41,91 @@ function heading(text) {
     return node;
 }
 
+function field(labelText, type, value = '') {
+    const label = element('label', labelText, 'quiz-field');
+    const input = document.createElement('input');
+    input.type = type;
+    input.value = value;
+    label.append(input);
+    return { label, input };
+}
+
+function localError() {
+    storageStatus.textContent = 'Browser storage is unavailable. You can still export your answers as JSON.';
+}
+
+function persist(reason = record.summary?.reason ?? 'early') {
+    record.snapshot = session.snapshot();
+    record.summary = summarize(session, reason);
+    record.updatedAt = new Date().toISOString();
+    return saveRecord(structuredClone(record)).catch(localError);
+}
+
+function dateText(value) {
+    return new Intl.DateTimeFormat(undefined, { dateStyle: 'medium', timeStyle: 'short' }).format(new Date(value));
+}
+
+function goHome() {
+    session = undefined;
+    record = undefined;
+    storageStatus.textContent = '';
+    showIntro();
+    document.querySelector('h1').focus();
+}
+
+async function showSavedSessions(container) {
+    let entries;
+    try {
+        entries = await savedRecords();
+    } catch {
+        localError();
+        return;
+    }
+    if (!entries.length) return;
+    container.replaceChildren(element('h2', 'Saved sessions'));
+    for (const entry of entries.sort((a, b) => b.updatedAt.localeCompare(a.updatedAt))) {
+        const item = element('article', '', 'saved-session');
+        item.append(element('h3', entry.name || 'Untitled session'));
+        const date = entry.completedAt ? `Completed ${dateText(entry.completedAt)}` : `In progress · ${dateText(entry.updatedAt)}`;
+        item.append(element('p', `${date} · ${entry.summary.answered} answered`, 'quiz-copy'));
+        const actions = element('div', '', 'quiz-actions');
+        actions.append(button(entry.completedAt ? 'View results' : 'Continue', async () => {
+            if (entry.completedAt) {
+                session = undefined;
+                record = entry;
+                showResults(entry.summary.reason);
+                return;
+            }
+            try {
+                const original = entry.snapshot.schemaVersion === bank.schemaVersion ? bank : await savedBank(entry.snapshot.schemaVersion);
+                if (!original) throw new Error('Question bank unavailable');
+                const restored = Assessment.restore(original, entry.snapshot);
+                record = entry;
+                session = restored;
+                showQuestion();
+            } catch {
+                storageStatus.textContent = 'This session couldn’t be resumed. Its JSON export is still available.';
+            }
+        }), button('Export JSON', () => downloadRecord(exportRecord(entry))), button('Remove from browser', async () => {
+            if (!window.confirm('Remove this session from this browser?')) return;
+            try {
+                await deleteRecord(entry.id);
+                showIntro();
+                document.querySelector('h1').focus();
+            } catch {
+                localError();
+            }
+        }));
+        item.append(actions);
+        container.append(item);
+    }
+}
+
 function showIntro() {
     const intro = element('div');
     intro.append(element('p', bank.instructions, 'quiz-copy'));
-    intro.append(element('p', 'This quiz is for personal reflection and has not been scientifically validated. Your answers stay in your browser and aren’t saved.', 'quiz-copy'));
-    intro.append(element('p', `The quiz adapts to your answers and can ask up to ${bank.config.maxQuestions} questions. You can see a preliminary result once you’ve answered a question.`, 'quiz-copy'));
+    intro.append(element('p', 'This quiz is for personal reflection. Sessions save in this browser as you go. Sharing a server copy is optional.', 'quiz-copy'));
+    intro.append(element('p', 'Choose a short session for a first look, or an extended session for more comparisons. The results show how clearly each framework separates your top preferences.', 'quiz-copy'));
     const form = document.createElement('form');
     const fieldset = document.createElement('fieldset');
     fieldset.append(element('legend', 'Choose one or more frameworks'));
@@ -60,7 +147,18 @@ function showIntro() {
     submit.type = 'submit';
     submit.className = 'primary';
     submit.textContent = 'Start the quiz';
-    form.append(fieldset, error, submit);
+    const lengthLabel = element('label', 'Session length', 'quiz-field');
+    const length = document.createElement('select');
+    for (const [key, title] of [['quick', 'Short'], ['extended', 'Extended']]) {
+        const limit = bank.lengths[key];
+        const option = element('option', `${title} (${limit.single} for one framework, ${limit.combined} for several)`);
+        option.value = key;
+        length.append(option);
+    }
+    lengthLabel.append(length);
+    const name = field('Session name (optional)', 'text');
+    name.input.maxLength = 80;
+    form.append(fieldset, lengthLabel, name.label, error, submit);
     form.addEventListener('submit', event => {
         event.preventDefault();
         const selected = [...form.querySelectorAll('input:checked')].map(input => input.value);
@@ -68,11 +166,16 @@ function showIntro() {
             error.textContent = 'Choose at least one framework to continue.';
             return;
         }
-        session = new Assessment(bank, selected);
+        const limits = bank.lengths[length.value];
+        session = new Assessment(bank, selected, { maxQuestions: selected.length === 1 ? limits.single : limits.combined });
+        record = { id: crypto.randomUUID(), name: name.input.value.trim(), createdAt: new Date().toISOString(), completedAt: null };
+        void saveBank(bank).catch(localError);
         showQuestion();
     });
     intro.append(form);
-    app.replaceChildren(intro);
+    const saved = element('section', '', 'saved-sessions');
+    app.replaceChildren(intro, saved);
+    void showSavedSessions(saved);
 }
 
 function suggestionLink(questionId) {
@@ -91,9 +194,10 @@ function suggestionLink(questionId) {
 function showQuestion() {
     const next = session.next();
     if (next.done) {
-        showResults(next.reason);
+        finish(next.reason);
         return;
     }
+    void persist('early');
     const count = element('p', `Question ${session.answers.length + 1} · ${session.answers.filter(answer => answer.optionId !== 'skip').length} answered`, 'question-count');
     const title = heading(next.prompt);
     const options = element('div', '', 'question-options');
@@ -113,9 +217,7 @@ function showQuestion() {
         session.answer('skip');
         showQuestion();
     }));
-    if (session.answers.some(answer => answer.optionId !== 'skip')) {
-        actions.append(button('See results so far', () => showResults('early')));
-    }
+    actions.append(button('See results so far', () => showResults('early')));
     actions.append(suggestionLink(next.questionId));
     app.replaceChildren(count, title, options, actions);
     title.focus();
@@ -143,55 +245,206 @@ function conflictFollowUp() {
     return details;
 }
 
-function showResults(reason) {
-    const results = session.results();
-    const title = heading('Your results');
-    const reasons = {
-        precision_reached: 'The assessment reached its internal stopping criterion.',
-        question_limit: 'The question limit was reached before every framework reached its stopping criterion.',
-        eligible_pool_exhausted: 'There are no more suitable questions for the selected frameworks.',
-        low_information_gain: 'The remaining questions were estimated to add little information.',
-        early: 'These are early estimates based on the answers so far.'
-    };
-    const status = element('p', `${reasons[reason]} ${results.answered} answered, ${results.asked - results.answered} skipped.`, 'quiz-copy');
-    const explanation = element('p', 'Scores show relative preferences within each framework. They are uncertain estimates, especially where scores are close, and are not probabilities, diagnoses, or measures of compatibility.', 'quiz-copy');
-    const content = [title, status, explanation];
-    for (const model of results.models) {
+function resultContent(summary) {
+    const status = element('p', `${reasons[summary.reason] ?? reasons.early} ${summary.answered} answered, ${summary.asked - summary.answered} skipped.`, 'quiz-copy');
+    const explanation = element('p', 'Scores show relative preferences within each framework. Certainty estimates how likely the leading category is to outrank the runner-up under the scoring model. The quiz is unvalidated.', 'quiz-copy');
+    const content = [status, explanation];
+    for (const model of summary.models) {
         const section = element('section', '', 'result-model');
-        section.append(element('h3', modelNames[model.model]));
-        section.append(element('p', model.complete ? 'The internal stopping criterion was reached.' : 'The internal stopping criterion was not reached, so this estimate is less certain.', 'quiz-copy'));
-        if (model.exposure.every(count => count === 0)) {
-            section.append(element('p', 'There are no answered questions for this framework yet.', 'quiz-copy'));
+        section.append(element('h3', modelNames[model.id]));
+        const coverage = `${model.covered} of ${model.categories.length} categories compared`;
+        const precision = model.targetMet ? 'Full-profile precision target reached' : 'Full profile remains uncertain';
+        section.append(element('p', `${coverage} · ${precision}`, 'quiz-copy'));
+        if (model.certainty) {
+            const { leading, runnerUp, probability } = model.certainty;
+            const percentage = probability >= .995 ? 'over 99%' : `${Math.round(probability * 100)}%`;
+            section.append(element('p', `Top-two certainty: ${percentage} chance that ${leading} outranks ${runnerUp}.`, 'quiz-copy'));
         } else {
+            section.append(element('p', 'Top-two certainty needs answers covering both leading categories.', 'quiz-copy'));
+        }
+        if (model.covered) {
             const list = element('ul', '', 'result-scores');
-            const entries = Object.entries(model.relativeScores).sort((a, b) => b[1] - a[1]);
-            for (const [id, score] of entries) {
+            for (const { label, score } of model.categories) {
                 const item = document.createElement('li');
-                const label = element('div', '', 'result-label');
-                label.append(element('span', bank.models[model.model].categories[id]), element('span', `${score.toFixed(1)}%`));
+                const resultLabel = element('div', '', 'result-label');
+                resultLabel.append(element('span', label), element('span', `${score.toFixed(1)}%`));
                 const bar = element('div', '', 'result-bar');
                 bar.setAttribute('aria-hidden', 'true');
                 const fill = document.createElement('span');
                 fill.style.width = `${score}%`;
                 bar.append(fill);
-                item.append(label, bar);
+                item.append(resultLabel, bar);
                 list.append(item);
             }
             section.append(list);
         }
         content.push(section);
     }
+    return content;
+}
+
+function finish(reason) {
+    record.completedAt ??= new Date().toISOString();
+    void persist(reason);
+    showResults(reason);
+}
+
+function serverSave(entry, title) {
+    const details = element('details', '', 'server-copy');
+    details.append(element('summary', 'Save a server copy'));
+    const form = element('form', '', 'server-form');
+    const name = field('Name', 'text', entry.name);
+    name.input.required = true;
+    name.input.maxLength = 80;
+    const slug = field('Link slug', 'text', entry.remote?.slug ?? entry.pendingSlug ?? entry.id);
+    slug.input.required = true;
+    slug.input.pattern = slugPattern;
+    slug.input.maxLength = 64;
+    slug.input.autocapitalize = 'none';
+    slug.input.spellcheck = false;
+    slug.input.readOnly = Boolean(entry.remote);
+    const password = field(entry.remote?.passwordProtected ? 'Result password' : 'Password (optional)', 'password');
+    password.input.maxLength = 256;
+    password.input.required = Boolean(entry.remote?.passwordProtected);
+    const submit = element('button', entry.remote ? 'Update server copy' : 'Save to server');
+    submit.type = 'submit';
+    const status = element('p', '', 'quiz-copy');
+    status.setAttribute('role', 'status');
+    const share = element('p');
+    function showLink() {
+        if (!entry.remote) return;
+        const link = element('a', 'Open the saved result');
+        link.href = `${serverOrigin}/r/${entry.remote.slug}`;
+        share.replaceChildren(link, document.createTextNode(` · Saved ${dateText(entry.remote.savedAt)}`));
+    }
+    showLink();
+    form.append(element('p', 'This sends your name, answers, and scores to the server. Anyone with the link can open the result unless you set a password. Results are stored unencrypted on the server.', 'quiz-copy'),
+        name.label, slug.label, password.label, submit, status, share);
+    form.addEventListener('submit', async event => {
+        event.preventDefault();
+        const nextName = name.input.value.trim();
+        if (!nextName) {
+            status.textContent = 'Enter a name for the result.';
+            name.input.focus();
+            return;
+        }
+        submit.disabled = true;
+        status.textContent = 'Saving to the server…';
+        entry.name = nextName;
+        entry.pendingSlug = slug.input.value;
+        entry.updatedAt = new Date().toISOString();
+        void saveRecord(structuredClone(entry)).catch(localError);
+        try {
+            entry.remote = await serverResult('PUT', slug.input.value, password.input.value, exportRecord(entry));
+            delete entry.pendingSlug;
+            await rememberServerCopy(entry.id, entry.remote).catch(localError);
+            if (record?.id === entry.id) record.remote = entry.remote;
+            slug.input.readOnly = true;
+            submit.textContent = 'Update server copy';
+            password.input.value = '';
+            password.input.required = entry.remote.passwordProtected;
+            password.label.firstChild.textContent = entry.remote.passwordProtected ? 'Result password' : 'Password (optional)';
+            title.textContent = `Results for ${entry.name}`;
+            showLink();
+            status.textContent = 'Saved to the server.';
+        } catch (error) {
+            status.textContent = error.status ? error.message : 'Could not reach the result service. Your browser copy is still available.';
+        } finally {
+            submit.disabled = false;
+        }
+    });
+    details.append(form);
+    return details;
+}
+
+function showResults(reason) {
+    const entry = record;
+    const summary = entry.summary;
+    const title = heading(entry.name ? `Results for ${entry.name}` : 'Your results');
+    const content = [title];
+    if (entry.completedAt) content.push(element('p', `Completed ${dateText(entry.completedAt)}`, 'quiz-copy'));
+    content.push(...resultContent(summary));
     const actions = element('div', '', 'quiz-actions');
-    if (reason === 'early') actions.append(button('Continue answering', showQuestion));
-    actions.append(button('Start over', () => {
-        session = undefined;
-        showIntro();
-        document.querySelector('h1').focus();
-    }));
-    content.push(actions);
+    if (reason === 'early') {
+        actions.append(button('Continue answering', showQuestion), button('Finish with these answers', () => finish('finished')));
+    }
+    actions.append(button('Export JSON', () => downloadRecord(exportRecord(entry))), button('All sessions', goHome));
+    const rename = element('form', '', 'server-form');
+    const name = field('Session name', 'text', entry.name);
+    name.input.maxLength = 80;
+    const save = element('button', 'Save name');
+    save.type = 'submit';
+    rename.append(name.label, save);
+    rename.addEventListener('submit', async event => {
+        event.preventDefault();
+        entry.name = name.input.value.trim();
+        entry.updatedAt = new Date().toISOString();
+        try {
+            await saveRecord(structuredClone(entry));
+            storageStatus.textContent = 'Name saved in this browser.';
+            if (record === entry) showResults(reason);
+        } catch {
+            localError();
+        }
+    });
+    content.push(actions, rename, serverSave(entry, title));
     if (bank.conflictFollowUp) content.push(conflictFollowUp());
     app.replaceChildren(...content);
     title.focus();
+}
+
+function showSharedResult(slug) {
+    const title = heading('Shared result');
+    const home = element('a', 'Go to the quiz');
+    home.href = location.pathname;
+    const form = element('form', '', 'server-form');
+    const password = field('Result password', 'password');
+    password.input.maxLength = 256;
+    password.input.required = true;
+    const submit = element('button', 'Open result');
+    submit.type = 'submit';
+    form.append(password.label, submit);
+    form.hidden = true;
+    const status = element('p', 'Loading the saved result…', 'quiz-copy');
+    status.setAttribute('role', 'status');
+    const content = element('div');
+    app.replaceChildren(title, status, form, content, home);
+    async function load(value = '') {
+        try {
+            const { result } = await serverResult('GET', slug, value);
+            form.hidden = true;
+            password.input.value = '';
+            status.textContent = '';
+            title.textContent = `Results for ${result.name}`;
+            const date = result.completedAt ? `Completed ${dateText(result.completedAt)}` : 'Saved before completion';
+            const actions = element('div', '', 'quiz-actions');
+            actions.append(button('Export JSON', () => downloadRecord(result)), button('Delete server copy', async () => {
+                if (!window.confirm('Delete this result from the server?')) return;
+                try {
+                    await serverResult('DELETE', slug, value);
+                    status.textContent = 'Server copy deleted.';
+                    content.replaceChildren();
+                } catch (error) {
+                    status.textContent = error.message;
+                }
+            }));
+            content.replaceChildren(element('p', date, 'quiz-copy'), ...resultContent(result.summary), actions);
+            title.focus();
+        } catch (error) {
+            form.hidden = error.status !== 401;
+            status.textContent = error.status === 401 ? (value ? 'That password did not open the result.' : 'This result is password protected.')
+                : error.status ? error.message : 'Could not reach the result service.';
+            if (!form.hidden) password.input.focus();
+        }
+    }
+    form.addEventListener('submit', async event => {
+        event.preventDefault();
+        submit.disabled = true;
+        await load(password.input.value);
+        submit.disabled = false;
+    });
+    if (new RegExp(`^${slugPattern}$`).test(slug)) void load();
+    else status.textContent = 'This result link is invalid.';
 }
 
 const loading = element('p', 'Loading the questions…');
@@ -199,10 +452,15 @@ loading.setAttribute('role', 'status');
 app.append(loading);
 
 try {
-    const response = await fetch('./questions.json');
-    if (!response.ok) throw new Error('Question bank unavailable');
-    bank = await response.json();
-    showIntro();
+    const sharedSlug = new URLSearchParams(location.search).get('result');
+    if (sharedSlug !== null) {
+        showSharedResult(sharedSlug);
+    } else {
+        const response = await fetch('./questions.json?v=8');
+        if (!response.ok) throw new Error('Question bank unavailable');
+        bank = await response.json();
+        showIntro();
+    }
 } catch (error) {
     console.error(error);
     loading.textContent = 'The questions could not be loaded. Please try again later.';

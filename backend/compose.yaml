@@ -1,0 +1,23 @@
+services:
+  api:
+    image: python:3.12-slim
+    command: ["python", "/app/server.py"]
+    environment:
+      BIND_HOST: 0.0.0.0
+      PORT: "8770"
+      RESULT_DB: /data/results.sqlite3
+    volumes:
+      - ./server.py:/app/server.py:ro
+      - results:/data
+    networks:
+      proxy:
+        aliases:
+          - lovelang-api
+    restart: unless-stopped
+
+volumes:
+  results:
+
+networks:
+  proxy:
+    external: true

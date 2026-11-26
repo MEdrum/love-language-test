@@ -2,11 +2,13 @@
 
 This is an original, uncalibrated preference quiz, not a validated psychological assessment or official questionnaire. Three frameworks: Chapman-inspired classic five, Truity-inspired seven, and Flicker et al.-inspired ten. Category mappings and intensity values are author estimates. The ten-category framework includes relationship behaviours that are not necessarily interchangeable affection preferences. Do not claim compatibility, diagnosis, or population percentiles.
 
-The [quiz](https://medrum.github.io/love-language-test/) runs on GitHub Pages. Each question links to a public GitHub issue draft with its question ID filled in. Sign in to GitHub to write and submit a suggestion. Quiz answers and scores stay in browser memory.
+The [quiz](https://medrum.github.io/love-language-test/) runs on GitHub Pages. Each question links to a public GitHub issue draft with its ID filled in. Sessions and their question bank revisions are stored in IndexedDB on this browser. The quiz sends a copy only when the visitor chooses **Save a server copy**. JSON exports include question IDs, canonical answers and the order in which the options appeared.
 
 ## Files
 - `index.html`, `quiz.js` and `quiz.css`: the static quiz frontend. `style.css` and `theme.js` are copied from the portfolio so the quiz can run independently.
-- `questions.json`: 1,646 comparisons from 226 authored gestures. Each scored question has two options, a context, explicit Boolean eligibility for each model, category mappings and an editorial strength tier (-1, 0, +1). Schema version 7 applies the reviewed gesture shortlist. Question IDs stay stable for feedback links. The separate disagreement prompt appears with the results and is handled entirely in the frontend.
+- `questions.json`: The question bank, eligibility, category mappings and session lengths. Schema version 8 revises comparisons from feedback and keeps their IDs for issue links. The separate disagreement prompt is for reflection only.
+- `records.js` and `quiz-run.js`: Browser session storage, JSON export, server requests and result summaries.
+- `backend/`: The optional standard-library Python result API, Docker Compose setup and Nginx routing for the Pi.
 - `engine.js`: dependency-free JavaScript assessment engine, compatible with browser ES modules and modern Node.
 - `test.mjs`: Node assertion tests for bank coverage, model updates, sessions, skips, undo and restoration. Run `node test.mjs`.
 
@@ -40,15 +42,28 @@ The default selector samples the new sadness, stress and joy contexts by questio
 ## Scoring and selection
 For each model separately, x is +1 for option A category, -1 for B category. z=x·theta+beta*(strengthA-strengthB), p=sigmoid(z). The live bank sets beta to zero. Editorial strength tiers guide which gestures are paired and leave score updates to the visitor's choices. MAP minimizes sum(softplus(z)-y*z)+||theta||²/(2*priorSD²), y=1 or 0. Gaussian prior avoids infinite estimates, centers scores. Stable Newton optimization with line search. Laplace covariance is inverse Hessian at MAP. The common shift in theta is not identifiable from answers; comparisons and softmax are invariant to that shift.
 
-Information gain approximation in bits: 0.5*log2(1+p*(1-p)*x^T covariance x). This is a local Gaussian/Fisher (D-optimal) approximation, not exact BALD. Sum across eligible unfinished models as multi-objective utility; not independent bits in a single answer. Add 0.05 per eligible category appearance below minimum coverage and divide by 1+diversityPenalty*prior gesture appearances. The quiz picks from matched-strength comparisons for the first 12 answered questions whenever eligible matched candidates exist. After that, a one-step difference is allowed, with its selection score multiplied by 0.75 so it must offer enough information or coverage to compete with a matched pair. These are editorial defaults. Matching strength tags does not establish that two gestures feel equally meaningful to everyone.
+Information gain approximation in bits: 0.5*log2(1+p*(1-p)*x^T covariance x). This is a local Gaussian/Fisher (D-optimal) approximation, not exact BALD. Sum across eligible unfinished models as multi-objective utility; not independent bits in a single answer. Add 0.05 per eligible category appearance below minimum coverage and divide by 1+diversityPenalty*prior gesture appearances. The quiz picks from matched-strength comparisons for the first six answered questions whenever eligible matched candidates exist. After that, a one-step difference is allowed, with its selection score multiplied by 0.75 so it must offer enough information or coverage to compete with a matched pair. These are editorial defaults. Matching strength tags does not establish that two gestures feel equally meaningful to everyone.
 
-## Stopping
-A model completes only when its answered comparison graph is connected, every category has >= minComparisonsPerCategory appearances, and maximum posterior SD of all pairwise differences <= targetPairwiseSD. Default 0.6 is intentionally conservative and NOT equivalent to 95% accuracy. Global maxQuestions=80. Also stop on eligible pool exhaustion or low remaining gain (unless selected comparison addresses coverage). Return explicit reasons: precision_reached, question_limit, eligible_pool_exhausted, low_information_gain. Results for unfinished models remain marked uncertain; never label a capped test complete. Use `next().reason` for the UI. An optional practical-equivalence interpretation can be computed from posterior differences and SDs, but is not implemented as a stopping rule. Softmax results sum to 100 within each model, not comparable absolute needs or probabilities of being a type.
+## Stopping and certainty
+The default short quiz allows 24 questions for one framework and 30 for several. Extended mode allows 48 or 60. Earlier completion is available from the preliminary results. Selection gives extra weight to categories with no answers. Opening comparisons favor matched strengths for the first six answered questions.
+
+A framework reaches its full-profile precision target when the answered comparison graph is connected, every category has at least three appearances, and the largest posterior standard deviation of any category difference is at most 0.6. The separate top-two certainty is the normal posterior estimate that the highest scoring category outranks the runner-up, shown only when both have received evidence. It is a model estimate about those two categories. Softmax scores sum to 100 within a framework.
 
 Example override: `new Assessment(bank, ['modern7'], {targetPairwiseSD: 0.9, maxQuestions: 45})`. This trades precision for length and needs pilot evaluation.
 
-## Tested behaviour
-Every model covers every unordered category pair (10, 21 and 45), even using only matched-strength comparisons. The Node suite runs all seven framework selections and checks balanced openings, context coverage, skips, undo and restoration. With scripted answers favoring the higher editorial tier and alternating on ties, the classic framework hit its internal precision target at 48 questions. The other selections hit the 80-question limit. These simulations check engine behavior under scripted responses.
+## Tests
+Run `node test.mjs` for category pairs, all seven framework combinations, balanced openings, context coverage, skips, undo and restore. Run `python3 -m unittest discover -s backend` for password handling, CRUD, conflicts and persistence across restarts.
+
+## Result API
+The frontend runs on GitHub Pages. The API runs on the Pi at `https://lovelang.fabianflow.de/api/v1`. Compose uses a persistent SQLite volume and the existing Docker `proxy` network. The Nginx configuration proxies the API and makes `/r/{slug}` open the shared result viewer. The Cloudflare Tunnel routes the hostname to Nginx.
+
+| Method | Path | Behavior |
+|---|---|---|
+| PUT | `/api/v1/results/{slug}` | Create (201) or replace the same session (200) using the exported JSON schema. A taken slug or stale update returns 409. |
+| GET | `/api/v1/results/{slug}` | Read the saved result and metadata. |
+| DELETE | `/api/v1/results/{slug}` | Remove the server copy (204). |
+
+Use HTTPS Basic authentication with the username `result` and the chosen password. Supplying a password on creation protects future reads, updates and deletes. A password can also be added to an existing public copy by updating it. An unprotected result is accessible to anyone who knows its slug. The database stores result data in plaintext and stores passwords as salted scrypt hashes. The frontend keeps passwords in memory during requests and sends them over HTTPS.
 
 ## Content review and future calibration
 Comparisons pair context-compatible gestures and apply model tags. Structural validation is automated, but each generated comparison has not received independent human review. Review semantics, overlapping categories, consent/accessibility, cultural/context effects, and differences in gesture intensity before production. The scored accountability comparisons cover everyday compromises at equal strength. The optional disagreement follow-up is a personal reflection question with no scoring. Some mappings are necessarily approximate; general quality time intentionally has no automatic mapping to activity or the expanded model. The expanded model categories are research-inspired, not a reproduction of the original scale. Preserve null mappings instead of forcing categories.
