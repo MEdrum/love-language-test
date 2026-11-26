@@ -346,10 +346,13 @@ function showIntro() {
     void showSavedSessions(savedList);
 }
 
-function suggestionLink(questionId) {
+function suggestionLink(questionId, prompt, options) {
     const suggestionUrl = new URL('https://github.com/MEdrum/love-language-test/issues/new');
+    const choices = options.map((option, index) => `- ${String.fromCharCode(65 + index)}. ${option}`);
     suggestionUrl.searchParams.set('title', `Question suggestion: ${questionId}`);
-    suggestionUrl.searchParams.set('body', `Question ID: ${questionId}\n\nWhat would you change about this question?\n\n`);
+    suggestionUrl.searchParams.set('body', [
+        `Question ID: ${questionId}`, '', prompt, '', ...choices, '', 'What would you change about this question?', '', ''
+    ].join('\n'));
     const suggest = element('a', 'Suggest a change', 'suggest-change');
     suggest.href = suggestionUrl.href;
     suggest.target = '_blank';
@@ -406,7 +409,7 @@ function showQuestion(focusFormat = false) {
     back.disabled = !session.answers.length;
     actions.append(back, button('Skip', () => respond('skip')));
     actions.append(button('See results so far', () => showResults('early')));
-    actions.append(suggestionLink(next.questionId));
+    actions.append(suggestionLink(next.questionId, next.prompt, next.options.map(option => option.text)));
     const format = sessionAnswerFormat(record, () => showQuestion(true));
     app.replaceChildren(count, title, format, options, actions, frameworkSettings(record, showQuestion));
     (focusFormat ? format.querySelector('select') : title).focus();
@@ -429,7 +432,7 @@ function conflictFollowUp() {
         element('summary', 'Reflect on disagreements'),
         element('p', 'An optional question for personal reflection, separate from your quiz scores.', 'quiz-copy'),
         choices,
-        suggestionLink(id)
+        suggestionLink(id, prompt, options)
     );
     return details;
 }
