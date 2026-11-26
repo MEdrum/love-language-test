@@ -237,7 +237,7 @@ async function showSavedSessions(container) {
         return;
     }
     if (!entries.length) return;
-    container.replaceChildren(element('h2', 'Saved sessions'));
+    container.replaceChildren();
     for (const entry of entries.sort((a, b) => b.updatedAt.localeCompare(a.updatedAt))) {
         const item = element('article', '', 'saved-session');
         item.append(element('h3', entry.name || 'Untitled session'));
@@ -296,9 +296,9 @@ function showIntro() {
     const intro = element('div');
     intro.append(element('p', bank.instructions, 'quiz-copy'));
     intro.append(element('p', 'This quiz is for personal reflection. Sessions save in this browser as you go. Sharing a server copy is optional.', 'quiz-copy'));
-    intro.append(element('p', 'Choose a short session for a first look, or an extended session for more comparisons. The results show how clearly each framework separates your top preferences.', 'quiz-copy'));
     const form = document.createElement('form');
-    const fieldset = modelPicker(['classic5']);
+    const settings = element('details', '', 'session-settings');
+    const fieldset = modelPicker(Object.keys(bank.models));
     const error = element('p', '', 'quiz-copy');
     error.setAttribute('role', 'alert');
     const submit = document.createElement('button');
@@ -317,12 +317,15 @@ function showIntro() {
     const format = answerFormat('binary');
     const name = field('Session name (optional)', 'text');
     name.input.maxLength = 80;
-    form.append(fieldset, lengthLabel, format.label, name.label, error, submit);
+    settings.append(element('summary', 'Settings'), fieldset, lengthLabel, error);
+    form.append(format.label, name.label, submit, settings);
     form.addEventListener('submit', event => {
         event.preventDefault();
         const selected = [...form.querySelectorAll('input:checked')].map(input => input.value);
         if (!selected.length) {
+            settings.open = true;
             error.textContent = 'Choose at least one framework to continue.';
+            fieldset.querySelector('input').focus();
             return;
         }
         const limits = bank.lengths[length.value];
@@ -334,8 +337,13 @@ function showIntro() {
     });
     intro.append(form);
     const saved = element('section', '', 'saved-sessions');
-    app.replaceChildren(intro, sharedSessionForm(), saved);
-    void showSavedSessions(saved);
+    const savedHeading = element('h2', 'Saved sessions');
+    savedHeading.id = 'saved-sessions-heading';
+    saved.setAttribute('aria-labelledby', savedHeading.id);
+    const savedList = document.createElement('div');
+    saved.append(savedHeading, sharedSessionForm(), savedList);
+    app.replaceChildren(intro, saved);
+    void showSavedSessions(savedList);
 }
 
 function suggestionLink(questionId) {
