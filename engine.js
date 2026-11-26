@@ -60,6 +60,17 @@ export class Assessment {
   if(this.config.eligibility==='strict')pick=shared;
   else if(this.config.eligibility==='strict-first')pick=shared&&shared.score>=this.config.sharedGainRatio*(best?.score??0)?shared:best;
   else pick=best;
+  // Shared questions can otherwise crowd out facets that belong to just one framework.
+  if (this.config.eligibility !== 'strict') {
+   for (const {model, group, afterQuestions} of this.bank.coverageTargets ?? []) {
+    if (!active.some(state => state.model === model)) continue;
+    const due = afterQuestions.filter(count => asked.size >= count).length;
+    const shown = this.answers.filter(answer => byId.get(answer.questionId).coverageGroup === group).length;
+    if (shown >= due) continue;
+    const coveragePick = pool.find(candidate => candidate.q.coverageGroup === group);
+    if (coveragePick) { pick = coveragePick; break; }
+   }
+  }
   if(!pick)return {done:true,reason:'eligible_pool_exhausted'};
   if(pick.raw<this.config.minInformationGainBits&&!pick.needed)return {done:true,reason:'low_information_gain'};
   const order=Math.random()<.5?['a','b']:['b','a'];this.pending={done:false,questionId:pick.q.id,prompt:pick.q.prompt,options:order.map(id=>{const o=pick.q.options.find(o=>o.id===id);return {id,text:o.text};}),selection:{shared:pick.shared,expectedInformationGain:pick.raw,activeModels:active.map(s=>s.model)}};return this.pending;

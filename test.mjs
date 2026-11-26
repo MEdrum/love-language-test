@@ -28,3 +28,15 @@ for (let index = 0; index < bank.config.initialMatchedQuestions + 1; index++) {
   balanced.answer(index === 0 ? 'skip' : next.options[0].id);
 }
 console.log('Opening comparisons remain matched after a skip');
+
+const nonGiftFinancial = bank.questions.filter(question => question.coverageGroup === 'non_gift_financial');
+assert(nonGiftFinancial.every(question => question.eligibility.modern7 && !question.eligibility.classic5 && !question.eligibility.research10));
+assert.deepEqual(new Set(nonGiftFinancial.flatMap(question => question.options.filter(option => option.categories.modern7 === 'FIN').map(option => option.strength))), new Set([-1, 0, 1]));
+const combined = new Assessment(bank);
+for (let index = 0; index < 17; index++) {
+  const next = combined.next();
+  combined.answer(index % 2 === 0 ? 'a' : 'b');
+}
+const broaderFinancialCount = combined.answers.filter(answer => byId.get(answer.questionId).coverageGroup === 'non_gift_financial').length;
+assert(broaderFinancialCount >= 2);
+console.log('Combined assessments show financial generosity beyond gifts');

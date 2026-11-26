@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 4,
+  "schemaVersion": 5,
   "locale": "en",
   "calibrationStatus": "uncalibrated_author_estimates",
   "instructions": "Imagine a caring partner. Assume each gesture is welcome and possible. Choose what would make you feel more loved. Skip if neither option fits.",
@@ -52,6 +52,16 @@
     "initialMatchedQuestions": 12,
     "unequalStrengthWeight": 0.75
   },
+  "coverageTargets": [
+    {
+      "model": "modern7",
+      "group": "non_gift_financial",
+      "afterQuestions": [
+        8,
+        16
+      ]
+    }
+  ],
   "questions": [
     {
       "id": "everyday_WA_1__everyday_QT_1",
@@ -55540,6 +55550,1931 @@
           }
         }
       ]
+    },
+    {
+      "id": "everyday_FIN_coffee__everyday_ACT_new0",
+      "context": "everyday",
+      "prompt": "On an ordinary day, which gesture would make you feel more loved?",
+      "eligibility": {
+        "classic5": false,
+        "modern7": true,
+        "research10": false
+      },
+      "options": [
+        {
+          "id": "a",
+          "gestureId": "everyday_FIN_coffee",
+          "text": "They treat you to a coffee when you’re out together.",
+          "strength": -1,
+          "categories": {
+            "classic5": null,
+            "modern7": "FIN",
+            "research10": null
+          }
+        },
+        {
+          "id": "b",
+          "gestureId": "everyday_ACT_new0",
+          "text": "They join you for a short game.",
+          "strength": -1,
+          "categories": {
+            "classic5": "QT",
+            "modern7": "ACT",
+            "research10": null
+          }
+        }
+      ],
+      "coverageGroup": "non_gift_financial"
+    },
+    {
+      "id": "everyday_FIN_coffee__everyday_AS_0",
+      "context": "everyday",
+      "prompt": "On an ordinary day, which gesture would make you feel more loved?",
+      "eligibility": {
+        "classic5": false,
+        "modern7": true,
+        "research10": false
+      },
+      "options": [
+        {
+          "id": "a",
+          "gestureId": "everyday_FIN_coffee",
+          "text": "They treat you to a coffee when you’re out together.",
+          "strength": -1,
+          "categories": {
+            "classic5": null,
+            "modern7": "FIN",
+            "research10": null
+          }
+        },
+        {
+          "id": "b",
+          "gestureId": "everyday_AS_0",
+          "text": "They take the recycling out for you.",
+          "strength": -1,
+          "categories": {
+            "classic5": "AS",
+            "modern7": "PRA",
+            "research10": "AOS"
+          }
+        }
+      ],
+      "coverageGroup": "non_gift_financial"
+    },
+    {
+      "id": "everyday_FIN_coffee__everyday_DIS_new0",
+      "context": "everyday",
+      "prompt": "On an ordinary day, which gesture would make you feel more loved?",
+      "eligibility": {
+        "classic5": false,
+        "modern7": true,
+        "research10": false
+      },
+      "options": [
+        {
+          "id": "a",
+          "gestureId": "everyday_FIN_coffee",
+          "text": "They treat you to a coffee when you’re out together.",
+          "strength": -1,
+          "categories": {
+            "classic5": null,
+            "modern7": "FIN",
+            "research10": null
+          }
+        },
+        {
+          "id": "b",
+          "gestureId": "everyday_DIS_new0",
+          "text": "They share a small personal thought with you.",
+          "strength": -1,
+          "categories": {
+            "classic5": null,
+            "modern7": "EMO",
+            "research10": "DIS"
+          }
+        }
+      ],
+      "coverageGroup": "non_gift_financial"
+    },
+    {
+      "id": "everyday_FIN_coffee__everyday_INT_new0",
+      "context": "everyday",
+      "prompt": "On an ordinary day, which gesture would make you feel more loved?",
+      "eligibility": {
+        "classic5": false,
+        "modern7": true,
+        "research10": false
+      },
+      "options": [
+        {
+          "id": "a",
+          "gestureId": "everyday_FIN_coffee",
+          "text": "They treat you to a coffee when you’re out together.",
+          "strength": -1,
+          "categories": {
+            "classic5": null,
+            "modern7": "FIN",
+            "research10": null
+          }
+        },
+        {
+          "id": "b",
+          "gestureId": "everyday_INT_new0",
+          "text": "They ask what you think about an interesting idea.",
+          "strength": -1,
+          "categories": {
+            "classic5": "QT",
+            "modern7": "INT",
+            "research10": null
+          }
+        }
+      ],
+      "coverageGroup": "non_gift_financial"
+    },
+    {
+      "id": "everyday_FIN_coffee__everyday_PT_0",
+      "context": "everyday",
+      "prompt": "On an ordinary day, which gesture would make you feel more loved?",
+      "eligibility": {
+        "classic5": false,
+        "modern7": true,
+        "research10": false
+      },
+      "options": [
+        {
+          "id": "a",
+          "gestureId": "everyday_FIN_coffee",
+          "text": "They treat you to a coffee when you’re out together.",
+          "strength": -1,
+          "categories": {
+            "classic5": null,
+            "modern7": "FIN",
+            "research10": null
+          }
+        },
+        {
+          "id": "b",
+          "gestureId": "everyday_PT_0",
+          "text": "They gently squeeze your hand.",
+          "strength": -1,
+          "categories": {
+            "classic5": "PT",
+            "modern7": "PHY",
+            "research10": "PI"
+          }
+        }
+      ],
+      "coverageGroup": "non_gift_financial"
+    },
+    {
+      "id": "everyday_FIN_coffee__everyday_WA_0",
+      "context": "everyday",
+      "prompt": "On an ordinary day, which gesture would make you feel more loved?",
+      "eligibility": {
+        "classic5": false,
+        "modern7": true,
+        "research10": false
+      },
+      "options": [
+        {
+          "id": "a",
+          "gestureId": "everyday_FIN_coffee",
+          "text": "They treat you to a coffee when you’re out together.",
+          "strength": -1,
+          "categories": {
+            "classic5": null,
+            "modern7": "FIN",
+            "research10": null
+          }
+        },
+        {
+          "id": "b",
+          "gestureId": "everyday_WA_0",
+          "text": "They say something kind about you.",
+          "strength": -1,
+          "categories": {
+            "classic5": "WA",
+            "modern7": "APP",
+            "research10": "VA"
+          }
+        }
+      ],
+      "coverageGroup": "non_gift_financial"
+    },
+    {
+      "id": "celebration_FIN_dessert__celebration_ACT_new0",
+      "context": "celebration",
+      "prompt": "You’ve just finished a project you worked hard on. Which gesture would mean more to you?",
+      "eligibility": {
+        "classic5": false,
+        "modern7": true,
+        "research10": false
+      },
+      "options": [
+        {
+          "id": "a",
+          "gestureId": "celebration_FIN_dessert",
+          "text": "They pick up the bill for dessert to celebrate with you.",
+          "strength": -1,
+          "categories": {
+            "classic5": null,
+            "modern7": "FIN",
+            "research10": null
+          }
+        },
+        {
+          "id": "b",
+          "gestureId": "celebration_ACT_new0",
+          "text": "They join you for a short walk to celebrate.",
+          "strength": -1,
+          "categories": {
+            "classic5": "QT",
+            "modern7": "ACT",
+            "research10": null
+          }
+        }
+      ],
+      "coverageGroup": "non_gift_financial"
+    },
+    {
+      "id": "celebration_FIN_dessert__celebration_AS_0",
+      "context": "celebration",
+      "prompt": "You’ve just finished a project you worked hard on. Which gesture would mean more to you?",
+      "eligibility": {
+        "classic5": false,
+        "modern7": true,
+        "research10": false
+      },
+      "options": [
+        {
+          "id": "a",
+          "gestureId": "celebration_FIN_dessert",
+          "text": "They pick up the bill for dessert to celebrate with you.",
+          "strength": -1,
+          "categories": {
+            "classic5": null,
+            "modern7": "FIN",
+            "research10": null
+          }
+        },
+        {
+          "id": "b",
+          "gestureId": "celebration_AS_0",
+          "text": "They clear the table after you celebrate.",
+          "strength": -1,
+          "categories": {
+            "classic5": "AS",
+            "modern7": "PRA",
+            "research10": "AOS"
+          }
+        }
+      ],
+      "coverageGroup": "non_gift_financial"
+    },
+    {
+      "id": "celebration_FIN_dessert__celebration_INT_new0",
+      "context": "celebration",
+      "prompt": "You’ve just finished a project you worked hard on. Which gesture would mean more to you?",
+      "eligibility": {
+        "classic5": false,
+        "modern7": true,
+        "research10": false
+      },
+      "options": [
+        {
+          "id": "a",
+          "gestureId": "celebration_FIN_dessert",
+          "text": "They pick up the bill for dessert to celebrate with you.",
+          "strength": -1,
+          "categories": {
+            "classic5": null,
+            "modern7": "FIN",
+            "research10": null
+          }
+        },
+        {
+          "id": "b",
+          "gestureId": "celebration_INT_new0",
+          "text": "They ask about an interesting detail of your achievement.",
+          "strength": -1,
+          "categories": {
+            "classic5": "QT",
+            "modern7": "INT",
+            "research10": null
+          }
+        }
+      ],
+      "coverageGroup": "non_gift_financial"
+    },
+    {
+      "id": "celebration_FIN_dessert__celebration_PT_0",
+      "context": "celebration",
+      "prompt": "You’ve just finished a project you worked hard on. Which gesture would mean more to you?",
+      "eligibility": {
+        "classic5": false,
+        "modern7": true,
+        "research10": false
+      },
+      "options": [
+        {
+          "id": "a",
+          "gestureId": "celebration_FIN_dessert",
+          "text": "They pick up the bill for dessert to celebrate with you.",
+          "strength": -1,
+          "categories": {
+            "classic5": null,
+            "modern7": "FIN",
+            "research10": null
+          }
+        },
+        {
+          "id": "b",
+          "gestureId": "celebration_PT_0",
+          "text": "They put an arm around your shoulders.",
+          "strength": -1,
+          "categories": {
+            "classic5": "PT",
+            "modern7": "PHY",
+            "research10": "PI"
+          }
+        }
+      ],
+      "coverageGroup": "non_gift_financial"
+    },
+    {
+      "id": "celebration_FIN_dessert__celebration_WA_0",
+      "context": "celebration",
+      "prompt": "You’ve just finished a project you worked hard on. Which gesture would mean more to you?",
+      "eligibility": {
+        "classic5": false,
+        "modern7": true,
+        "research10": false
+      },
+      "options": [
+        {
+          "id": "a",
+          "gestureId": "celebration_FIN_dessert",
+          "text": "They pick up the bill for dessert to celebrate with you.",
+          "strength": -1,
+          "categories": {
+            "classic5": null,
+            "modern7": "FIN",
+            "research10": null
+          }
+        },
+        {
+          "id": "b",
+          "gestureId": "celebration_WA_0",
+          "text": "They say well done.",
+          "strength": -1,
+          "categories": {
+            "classic5": "WA",
+            "modern7": "APP",
+            "research10": "VA"
+          }
+        }
+      ],
+      "coverageGroup": "non_gift_financial"
+    },
+    {
+      "id": "low_stress_FIN_delivery_fee__low_stress_ACT_new0",
+      "context": "low_stress",
+      "prompt": "After a slightly tiring day, which gesture would mean more to you?",
+      "eligibility": {
+        "classic5": false,
+        "modern7": true,
+        "research10": false
+      },
+      "options": [
+        {
+          "id": "a",
+          "gestureId": "low_stress_FIN_delivery_fee",
+          "text": "They cover the delivery fee so you can order dinner and rest.",
+          "strength": -1,
+          "categories": {
+            "classic5": null,
+            "modern7": "FIN",
+            "research10": null
+          }
+        },
+        {
+          "id": "b",
+          "gestureId": "low_stress_ACT_new0",
+          "text": "They join you for a short walk to help you unwind.",
+          "strength": -1,
+          "categories": {
+            "classic5": "QT",
+            "modern7": "ACT",
+            "research10": null
+          }
+        }
+      ],
+      "coverageGroup": "non_gift_financial"
+    },
+    {
+      "id": "low_stress_FIN_delivery_fee__low_stress_AS_0",
+      "context": "low_stress",
+      "prompt": "After a slightly tiring day, which gesture would mean more to you?",
+      "eligibility": {
+        "classic5": false,
+        "modern7": true,
+        "research10": false
+      },
+      "options": [
+        {
+          "id": "a",
+          "gestureId": "low_stress_FIN_delivery_fee",
+          "text": "They cover the delivery fee so you can order dinner and rest.",
+          "strength": -1,
+          "categories": {
+            "classic5": null,
+            "modern7": "FIN",
+            "research10": null
+          }
+        },
+        {
+          "id": "b",
+          "gestureId": "low_stress_AS_0",
+          "text": "They take out the rubbish so you can put your feet up.",
+          "strength": -1,
+          "categories": {
+            "classic5": "AS",
+            "modern7": "PRA",
+            "research10": "AOS"
+          }
+        }
+      ],
+      "coverageGroup": "non_gift_financial"
+    },
+    {
+      "id": "low_stress_FIN_delivery_fee__low_stress_PT_0",
+      "context": "low_stress",
+      "prompt": "After a slightly tiring day, which gesture would mean more to you?",
+      "eligibility": {
+        "classic5": false,
+        "modern7": true,
+        "research10": false
+      },
+      "options": [
+        {
+          "id": "a",
+          "gestureId": "low_stress_FIN_delivery_fee",
+          "text": "They cover the delivery fee so you can order dinner and rest.",
+          "strength": -1,
+          "categories": {
+            "classic5": null,
+            "modern7": "FIN",
+            "research10": null
+          }
+        },
+        {
+          "id": "b",
+          "gestureId": "low_stress_PT_0",
+          "text": "They gently rub your back.",
+          "strength": -1,
+          "categories": {
+            "classic5": "PT",
+            "modern7": "PHY",
+            "research10": "PI"
+          }
+        }
+      ],
+      "coverageGroup": "non_gift_financial"
+    },
+    {
+      "id": "low_stress_FIN_delivery_fee__low_stress_SDT_new0",
+      "context": "low_stress",
+      "prompt": "After a slightly tiring day, which gesture would mean more to you?",
+      "eligibility": {
+        "classic5": false,
+        "modern7": true,
+        "research10": false
+      },
+      "options": [
+        {
+          "id": "a",
+          "gestureId": "low_stress_FIN_delivery_fee",
+          "text": "They cover the delivery fee so you can order dinner and rest.",
+          "strength": -1,
+          "categories": {
+            "classic5": null,
+            "modern7": "FIN",
+            "research10": null
+          }
+        },
+        {
+          "id": "b",
+          "gestureId": "low_stress_SDT_new0",
+          "text": "They acknowledge that your day has been tiring.",
+          "strength": -1,
+          "categories": {
+            "classic5": null,
+            "modern7": "EMO",
+            "research10": "SDT"
+          }
+        }
+      ],
+      "coverageGroup": "non_gift_financial"
+    },
+    {
+      "id": "low_stress_FIN_delivery_fee__low_stress_WA_0",
+      "context": "low_stress",
+      "prompt": "After a slightly tiring day, which gesture would mean more to you?",
+      "eligibility": {
+        "classic5": false,
+        "modern7": true,
+        "research10": false
+      },
+      "options": [
+        {
+          "id": "a",
+          "gestureId": "low_stress_FIN_delivery_fee",
+          "text": "They cover the delivery fee so you can order dinner and rest.",
+          "strength": -1,
+          "categories": {
+            "classic5": null,
+            "modern7": "FIN",
+            "research10": null
+          }
+        },
+        {
+          "id": "b",
+          "gestureId": "low_stress_WA_0",
+          "text": "They offer a few reassuring words.",
+          "strength": -1,
+          "categories": {
+            "classic5": null,
+            "modern7": "EMO",
+            "research10": "SDT"
+          }
+        }
+      ],
+      "coverageGroup": "non_gift_financial"
+    },
+    {
+      "id": "everyday_FIN_ride__everyday_ACT_new1",
+      "context": "everyday",
+      "prompt": "On an ordinary day, which gesture would make you feel more loved?",
+      "eligibility": {
+        "classic5": false,
+        "modern7": true,
+        "research10": false
+      },
+      "options": [
+        {
+          "id": "a",
+          "gestureId": "everyday_FIN_ride",
+          "text": "When your usual ride falls through, they offer to pay for a ride home.",
+          "strength": 0,
+          "categories": {
+            "classic5": null,
+            "modern7": "FIN",
+            "research10": null
+          }
+        },
+        {
+          "id": "b",
+          "gestureId": "everyday_ACT_new1",
+          "text": "They make time for a hobby you both enjoy.",
+          "strength": 0,
+          "categories": {
+            "classic5": "QT",
+            "modern7": "ACT",
+            "research10": null
+          }
+        }
+      ],
+      "coverageGroup": "non_gift_financial"
+    },
+    {
+      "id": "everyday_FIN_ride__everyday_AS_1",
+      "context": "everyday",
+      "prompt": "On an ordinary day, which gesture would make you feel more loved?",
+      "eligibility": {
+        "classic5": false,
+        "modern7": true,
+        "research10": false
+      },
+      "options": [
+        {
+          "id": "a",
+          "gestureId": "everyday_FIN_ride",
+          "text": "When your usual ride falls through, they offer to pay for a ride home.",
+          "strength": 0,
+          "categories": {
+            "classic5": null,
+            "modern7": "FIN",
+            "research10": null
+          }
+        },
+        {
+          "id": "b",
+          "gestureId": "everyday_AS_1",
+          "text": "They fold the laundry so you have a little more time to yourself.",
+          "strength": 0,
+          "categories": {
+            "classic5": "AS",
+            "modern7": "PRA",
+            "research10": "AOS"
+          }
+        }
+      ],
+      "coverageGroup": "non_gift_financial"
+    },
+    {
+      "id": "everyday_FIN_ride__everyday_DIS_new1",
+      "context": "everyday",
+      "prompt": "On an ordinary day, which gesture would make you feel more loved?",
+      "eligibility": {
+        "classic5": false,
+        "modern7": true,
+        "research10": false
+      },
+      "options": [
+        {
+          "id": "a",
+          "gestureId": "everyday_FIN_ride",
+          "text": "When your usual ride falls through, they offer to pay for a ride home.",
+          "strength": 0,
+          "categories": {
+            "classic5": null,
+            "modern7": "FIN",
+            "research10": null
+          }
+        },
+        {
+          "id": "b",
+          "gestureId": "everyday_DIS_new1",
+          "text": "They open up about something emotionally meaningful to them.",
+          "strength": 0,
+          "categories": {
+            "classic5": null,
+            "modern7": "EMO",
+            "research10": "DIS"
+          }
+        }
+      ],
+      "coverageGroup": "non_gift_financial"
+    },
+    {
+      "id": "everyday_FIN_ride__everyday_INT_new1",
+      "context": "everyday",
+      "prompt": "On an ordinary day, which gesture would make you feel more loved?",
+      "eligibility": {
+        "classic5": false,
+        "modern7": true,
+        "research10": false
+      },
+      "options": [
+        {
+          "id": "a",
+          "gestureId": "everyday_FIN_ride",
+          "text": "When your usual ride falls through, they offer to pay for a ride home.",
+          "strength": 0,
+          "categories": {
+            "classic5": null,
+            "modern7": "FIN",
+            "research10": null
+          }
+        },
+        {
+          "id": "b",
+          "gestureId": "everyday_INT_new1",
+          "text": "They exchange perspectives with you on a topic you find fascinating.",
+          "strength": 0,
+          "categories": {
+            "classic5": "QT",
+            "modern7": "INT",
+            "research10": null
+          }
+        }
+      ],
+      "coverageGroup": "non_gift_financial"
+    },
+    {
+      "id": "everyday_FIN_ride__everyday_PT_1",
+      "context": "everyday",
+      "prompt": "On an ordinary day, which gesture would make you feel more loved?",
+      "eligibility": {
+        "classic5": false,
+        "modern7": true,
+        "research10": false
+      },
+      "options": [
+        {
+          "id": "a",
+          "gestureId": "everyday_FIN_ride",
+          "text": "When your usual ride falls through, they offer to pay for a ride home.",
+          "strength": 0,
+          "categories": {
+            "classic5": null,
+            "modern7": "FIN",
+            "research10": null
+          }
+        },
+        {
+          "id": "b",
+          "gestureId": "everyday_PT_1",
+          "text": "They give you a warm hug.",
+          "strength": 0,
+          "categories": {
+            "classic5": "PT",
+            "modern7": "PHY",
+            "research10": "PI"
+          }
+        }
+      ],
+      "coverageGroup": "non_gift_financial"
+    },
+    {
+      "id": "everyday_FIN_ride__everyday_WA_1",
+      "context": "everyday",
+      "prompt": "On an ordinary day, which gesture would make you feel more loved?",
+      "eligibility": {
+        "classic5": false,
+        "modern7": true,
+        "research10": false
+      },
+      "options": [
+        {
+          "id": "a",
+          "gestureId": "everyday_FIN_ride",
+          "text": "When your usual ride falls through, they offer to pay for a ride home.",
+          "strength": 0,
+          "categories": {
+            "classic5": null,
+            "modern7": "FIN",
+            "research10": null
+          }
+        },
+        {
+          "id": "b",
+          "gestureId": "everyday_WA_1",
+          "text": "They tell you a specific thing they appreciate about you.",
+          "strength": 0,
+          "categories": {
+            "classic5": "WA",
+            "modern7": "APP",
+            "research10": "VA"
+          }
+        }
+      ],
+      "coverageGroup": "non_gift_financial"
+    },
+    {
+      "id": "quiet_day_FIN_film__quiet_day_AS_1",
+      "context": "quiet_day",
+      "prompt": "You are enjoying a relaxed day. Which gesture would you prefer?",
+      "eligibility": {
+        "classic5": false,
+        "modern7": true,
+        "research10": false
+      },
+      "options": [
+        {
+          "id": "a",
+          "gestureId": "quiet_day_FIN_film",
+          "text": "They offer to pay for your ticket to a film you’ve been wanting to see.",
+          "strength": 0,
+          "categories": {
+            "classic5": null,
+            "modern7": "FIN",
+            "research10": null
+          }
+        },
+        {
+          "id": "b",
+          "gestureId": "quiet_day_AS_1",
+          "text": "They take care of the laundry so you can carry on with what you’re doing.",
+          "strength": 0,
+          "categories": {
+            "classic5": "AS",
+            "modern7": "PRA",
+            "research10": "AOS"
+          }
+        }
+      ],
+      "coverageGroup": "non_gift_financial"
+    },
+    {
+      "id": "quiet_day_FIN_film__quiet_day_DIS_new1",
+      "context": "quiet_day",
+      "prompt": "You are enjoying a relaxed day. Which gesture would you prefer?",
+      "eligibility": {
+        "classic5": false,
+        "modern7": true,
+        "research10": false
+      },
+      "options": [
+        {
+          "id": "a",
+          "gestureId": "quiet_day_FIN_film",
+          "text": "They offer to pay for your ticket to a film you’ve been wanting to see.",
+          "strength": 0,
+          "categories": {
+            "classic5": null,
+            "modern7": "FIN",
+            "research10": null
+          }
+        },
+        {
+          "id": "b",
+          "gestureId": "quiet_day_DIS_new1",
+          "text": "They share a personal hope they have not mentioned before.",
+          "strength": 0,
+          "categories": {
+            "classic5": null,
+            "modern7": "EMO",
+            "research10": "DIS"
+          }
+        }
+      ],
+      "coverageGroup": "non_gift_financial"
+    },
+    {
+      "id": "quiet_day_FIN_film__quiet_day_INT_new1",
+      "context": "quiet_day",
+      "prompt": "You are enjoying a relaxed day. Which gesture would you prefer?",
+      "eligibility": {
+        "classic5": false,
+        "modern7": true,
+        "research10": false
+      },
+      "options": [
+        {
+          "id": "a",
+          "gestureId": "quiet_day_FIN_film",
+          "text": "They offer to pay for your ticket to a film you’ve been wanting to see.",
+          "strength": 0,
+          "categories": {
+            "classic5": null,
+            "modern7": "FIN",
+            "research10": null
+          }
+        },
+        {
+          "id": "b",
+          "gestureId": "quiet_day_INT_new1",
+          "text": "They discuss a book or idea you find interesting.",
+          "strength": 0,
+          "categories": {
+            "classic5": "QT",
+            "modern7": "INT",
+            "research10": null
+          }
+        }
+      ],
+      "coverageGroup": "non_gift_financial"
+    },
+    {
+      "id": "quiet_day_FIN_film__quiet_day_PT_1",
+      "context": "quiet_day",
+      "prompt": "You are enjoying a relaxed day. Which gesture would you prefer?",
+      "eligibility": {
+        "classic5": false,
+        "modern7": true,
+        "research10": false
+      },
+      "options": [
+        {
+          "id": "a",
+          "gestureId": "quiet_day_FIN_film",
+          "text": "They offer to pay for your ticket to a film you’ve been wanting to see.",
+          "strength": 0,
+          "categories": {
+            "classic5": null,
+            "modern7": "FIN",
+            "research10": null
+          }
+        },
+        {
+          "id": "b",
+          "gestureId": "quiet_day_PT_1",
+          "text": "They lean gently against you as you sit together.",
+          "strength": 0,
+          "categories": {
+            "classic5": "PT",
+            "modern7": "PHY",
+            "research10": "PI"
+          }
+        }
+      ],
+      "coverageGroup": "non_gift_financial"
+    },
+    {
+      "id": "quiet_day_FIN_film__quiet_day_QT_1",
+      "context": "quiet_day",
+      "prompt": "You are enjoying a relaxed day. Which gesture would you prefer?",
+      "eligibility": {
+        "classic5": false,
+        "modern7": true,
+        "research10": false
+      },
+      "options": [
+        {
+          "id": "a",
+          "gestureId": "quiet_day_FIN_film",
+          "text": "They offer to pay for your ticket to a film you’ve been wanting to see.",
+          "strength": 0,
+          "categories": {
+            "classic5": null,
+            "modern7": "FIN",
+            "research10": null
+          }
+        },
+        {
+          "id": "b",
+          "gestureId": "quiet_day_QT_1",
+          "text": "They spend part of the afternoon enjoying a shared hobby with you.",
+          "strength": 0,
+          "categories": {
+            "classic5": "QT",
+            "modern7": "ACT",
+            "research10": null
+          }
+        }
+      ],
+      "coverageGroup": "non_gift_financial"
+    },
+    {
+      "id": "quiet_day_FIN_film__quiet_day_WA_1",
+      "context": "quiet_day",
+      "prompt": "You are enjoying a relaxed day. Which gesture would you prefer?",
+      "eligibility": {
+        "classic5": false,
+        "modern7": true,
+        "research10": false
+      },
+      "options": [
+        {
+          "id": "a",
+          "gestureId": "quiet_day_FIN_film",
+          "text": "They offer to pay for your ticket to a film you’ve been wanting to see.",
+          "strength": 0,
+          "categories": {
+            "classic5": null,
+            "modern7": "FIN",
+            "research10": null
+          }
+        },
+        {
+          "id": "b",
+          "gestureId": "quiet_day_WA_1",
+          "text": "They express appreciation for a particular quality of yours.",
+          "strength": 0,
+          "categories": {
+            "classic5": "WA",
+            "modern7": "APP",
+            "research10": "VA"
+          }
+        }
+      ],
+      "coverageGroup": "non_gift_financial"
+    },
+    {
+      "id": "preferences_FIN_shared_budget__preferences_ACT_new1",
+      "context": "preferences",
+      "prompt": "Which gesture would make you feel more loved?",
+      "eligibility": {
+        "classic5": false,
+        "modern7": true,
+        "research10": false
+      },
+      "options": [
+        {
+          "id": "a",
+          "gestureId": "preferences_FIN_shared_budget",
+          "text": "When you plan a shared budget, they suggest setting aside some money for something you enjoy.",
+          "strength": 0,
+          "categories": {
+            "classic5": null,
+            "modern7": "FIN",
+            "research10": null
+          }
+        },
+        {
+          "id": "b",
+          "gestureId": "preferences_ACT_new1",
+          "text": "They make time for an activity you both enjoy.",
+          "strength": 0,
+          "categories": {
+            "classic5": "QT",
+            "modern7": "ACT",
+            "research10": null
+          }
+        }
+      ],
+      "coverageGroup": "non_gift_financial"
+    },
+    {
+      "id": "preferences_FIN_shared_budget__preferences_AS_new1",
+      "context": "preferences",
+      "prompt": "Which gesture would make you feel more loved?",
+      "eligibility": {
+        "classic5": false,
+        "modern7": true,
+        "research10": false
+      },
+      "options": [
+        {
+          "id": "a",
+          "gestureId": "preferences_FIN_shared_budget",
+          "text": "When you plan a shared budget, they suggest setting aside some money for something you enjoy.",
+          "strength": 0,
+          "categories": {
+            "classic5": null,
+            "modern7": "FIN",
+            "research10": null
+          }
+        },
+        {
+          "id": "b",
+          "gestureId": "preferences_AS_new1",
+          "text": "They hang up the laundry so you can take a break.",
+          "strength": 0,
+          "categories": {
+            "classic5": "AS",
+            "modern7": "PRA",
+            "research10": "AOS"
+          }
+        }
+      ],
+      "coverageGroup": "non_gift_financial"
+    },
+    {
+      "id": "preferences_FIN_shared_budget__preferences_DIS_new1",
+      "context": "preferences",
+      "prompt": "Which gesture would make you feel more loved?",
+      "eligibility": {
+        "classic5": false,
+        "modern7": true,
+        "research10": false
+      },
+      "options": [
+        {
+          "id": "a",
+          "gestureId": "preferences_FIN_shared_budget",
+          "text": "When you plan a shared budget, they suggest setting aside some money for something you enjoy.",
+          "strength": 0,
+          "categories": {
+            "classic5": null,
+            "modern7": "FIN",
+            "research10": null
+          }
+        },
+        {
+          "id": "b",
+          "gestureId": "preferences_DIS_new1",
+          "text": "They tell you about a feeling they have been reflecting on.",
+          "strength": 0,
+          "categories": {
+            "classic5": null,
+            "modern7": "EMO",
+            "research10": "DIS"
+          }
+        }
+      ],
+      "coverageGroup": "non_gift_financial"
+    },
+    {
+      "id": "preferences_FIN_shared_budget__preferences_INT_new1",
+      "context": "preferences",
+      "prompt": "Which gesture would make you feel more loved?",
+      "eligibility": {
+        "classic5": false,
+        "modern7": true,
+        "research10": false
+      },
+      "options": [
+        {
+          "id": "a",
+          "gestureId": "preferences_FIN_shared_budget",
+          "text": "When you plan a shared budget, they suggest setting aside some money for something you enjoy.",
+          "strength": 0,
+          "categories": {
+            "classic5": null,
+            "modern7": "FIN",
+            "research10": null
+          }
+        },
+        {
+          "id": "b",
+          "gestureId": "preferences_INT_new1",
+          "text": "They exchange ideas with you about a fascinating topic.",
+          "strength": 0,
+          "categories": {
+            "classic5": "QT",
+            "modern7": "INT",
+            "research10": null
+          }
+        }
+      ],
+      "coverageGroup": "non_gift_financial"
+    },
+    {
+      "id": "preferences_FIN_shared_budget__preferences_PT_new1",
+      "context": "preferences",
+      "prompt": "Which gesture would make you feel more loved?",
+      "eligibility": {
+        "classic5": false,
+        "modern7": true,
+        "research10": false
+      },
+      "options": [
+        {
+          "id": "a",
+          "gestureId": "preferences_FIN_shared_budget",
+          "text": "When you plan a shared budget, they suggest setting aside some money for something you enjoy.",
+          "strength": 0,
+          "categories": {
+            "classic5": null,
+            "modern7": "FIN",
+            "research10": null
+          }
+        },
+        {
+          "id": "b",
+          "gestureId": "preferences_PT_new1",
+          "text": "They gently run their fingers through your hair.",
+          "strength": 0,
+          "categories": {
+            "classic5": "PT",
+            "modern7": "PHY",
+            "research10": "PI"
+          }
+        }
+      ],
+      "coverageGroup": "non_gift_financial"
+    },
+    {
+      "id": "preferences_FIN_shared_budget__preferences_SDT_new1",
+      "context": "preferences",
+      "prompt": "Which gesture would make you feel more loved?",
+      "eligibility": {
+        "classic5": false,
+        "modern7": true,
+        "research10": false
+      },
+      "options": [
+        {
+          "id": "a",
+          "gestureId": "preferences_FIN_shared_budget",
+          "text": "When you plan a shared budget, they suggest setting aside some money for something you enjoy.",
+          "strength": 0,
+          "categories": {
+            "classic5": null,
+            "modern7": "FIN",
+            "research10": null
+          }
+        },
+        {
+          "id": "b",
+          "gestureId": "preferences_SDT_new1",
+          "text": "They make time to understand your feelings when you have a difficult day.",
+          "strength": 0,
+          "categories": {
+            "classic5": null,
+            "modern7": "EMO",
+            "research10": "SDT"
+          }
+        }
+      ],
+      "coverageGroup": "non_gift_financial"
+    },
+    {
+      "id": "preferences_FIN_shared_budget__preferences_WA_new1",
+      "context": "preferences",
+      "prompt": "Which gesture would make you feel more loved?",
+      "eligibility": {
+        "classic5": false,
+        "modern7": true,
+        "research10": false
+      },
+      "options": [
+        {
+          "id": "a",
+          "gestureId": "preferences_FIN_shared_budget",
+          "text": "When you plan a shared budget, they suggest setting aside some money for something you enjoy.",
+          "strength": 0,
+          "categories": {
+            "classic5": null,
+            "modern7": "FIN",
+            "research10": null
+          }
+        },
+        {
+          "id": "b",
+          "gestureId": "preferences_WA_new1",
+          "text": "They tell you a particular quality they admire.",
+          "strength": 0,
+          "categories": {
+            "classic5": "WA",
+            "modern7": "APP",
+            "research10": "VA"
+          }
+        }
+      ],
+      "coverageGroup": "non_gift_financial"
+    },
+    {
+      "id": "celebration_FIN_entry_fee__celebration_ACT_new2",
+      "context": "celebration",
+      "prompt": "You’ve just finished a project you worked hard on. Which gesture would mean more to you?",
+      "eligibility": {
+        "classic5": false,
+        "modern7": true,
+        "research10": false
+      },
+      "options": [
+        {
+          "id": "a",
+          "gestureId": "celebration_FIN_entry_fee",
+          "text": "They offer to cover the entry fee so you can show your finished project at a local event.",
+          "strength": 1,
+          "categories": {
+            "classic5": null,
+            "modern7": "FIN",
+            "research10": null
+          }
+        },
+        {
+          "id": "b",
+          "gestureId": "celebration_ACT_new2",
+          "text": "They plan an afternoon out doing something you both love.",
+          "strength": 1,
+          "categories": {
+            "classic5": "QT",
+            "modern7": "ACT",
+            "research10": null
+          }
+        }
+      ],
+      "coverageGroup": "non_gift_financial"
+    },
+    {
+      "id": "celebration_FIN_entry_fee__celebration_AS_2",
+      "context": "celebration",
+      "prompt": "You’ve just finished a project you worked hard on. Which gesture would mean more to you?",
+      "eligibility": {
+        "classic5": false,
+        "modern7": true,
+        "research10": false
+      },
+      "options": [
+        {
+          "id": "a",
+          "gestureId": "celebration_FIN_entry_fee",
+          "text": "They offer to cover the entry fee so you can show your finished project at a local event.",
+          "strength": 1,
+          "categories": {
+            "classic5": null,
+            "modern7": "FIN",
+            "research10": null
+          }
+        },
+        {
+          "id": "b",
+          "gestureId": "celebration_AS_2",
+          "text": "They cook dinner so you can spend the evening celebrating.",
+          "strength": 1,
+          "categories": {
+            "classic5": "AS",
+            "modern7": "PRA",
+            "research10": "AOS"
+          }
+        }
+      ],
+      "coverageGroup": "non_gift_financial"
+    },
+    {
+      "id": "celebration_FIN_entry_fee__celebration_INT_new2",
+      "context": "celebration",
+      "prompt": "You’ve just finished a project you worked hard on. Which gesture would mean more to you?",
+      "eligibility": {
+        "classic5": false,
+        "modern7": true,
+        "research10": false
+      },
+      "options": [
+        {
+          "id": "a",
+          "gestureId": "celebration_FIN_entry_fee",
+          "text": "They offer to cover the entry fee so you can show your finished project at a local event.",
+          "strength": 1,
+          "categories": {
+            "classic5": null,
+            "modern7": "FIN",
+            "research10": null
+          }
+        },
+        {
+          "id": "b",
+          "gestureId": "celebration_INT_new2",
+          "text": "They explore the ideas behind your achievement with you in a stimulating conversation.",
+          "strength": 1,
+          "categories": {
+            "classic5": "QT",
+            "modern7": "INT",
+            "research10": null
+          }
+        }
+      ],
+      "coverageGroup": "non_gift_financial"
+    },
+    {
+      "id": "celebration_FIN_entry_fee__celebration_PT_2",
+      "context": "celebration",
+      "prompt": "You’ve just finished a project you worked hard on. Which gesture would mean more to you?",
+      "eligibility": {
+        "classic5": false,
+        "modern7": true,
+        "research10": false
+      },
+      "options": [
+        {
+          "id": "a",
+          "gestureId": "celebration_FIN_entry_fee",
+          "text": "They offer to cover the entry fee so you can show your finished project at a local event.",
+          "strength": 1,
+          "categories": {
+            "classic5": null,
+            "modern7": "FIN",
+            "research10": null
+          }
+        },
+        {
+          "id": "b",
+          "gestureId": "celebration_PT_2",
+          "text": "They pull you into a long, joyful embrace and hold you close.",
+          "strength": 1,
+          "categories": {
+            "classic5": "PT",
+            "modern7": "PHY",
+            "research10": "PI"
+          }
+        }
+      ],
+      "coverageGroup": "non_gift_financial"
+    },
+    {
+      "id": "celebration_FIN_entry_fee__celebration_QT_2",
+      "context": "celebration",
+      "prompt": "You’ve just finished a project you worked hard on. Which gesture would mean more to you?",
+      "eligibility": {
+        "classic5": false,
+        "modern7": true,
+        "research10": false
+      },
+      "options": [
+        {
+          "id": "a",
+          "gestureId": "celebration_FIN_entry_fee",
+          "text": "They offer to cover the entry fee so you can show your finished project at a local event.",
+          "strength": 1,
+          "categories": {
+            "classic5": null,
+            "modern7": "FIN",
+            "research10": null
+          }
+        },
+        {
+          "id": "b",
+          "gestureId": "celebration_QT_2",
+          "text": "They dedicate an afternoon to celebrating with you, doing something you enjoy together.",
+          "strength": 1,
+          "categories": {
+            "classic5": "QT",
+            "modern7": "ACT",
+            "research10": null
+          }
+        }
+      ],
+      "coverageGroup": "non_gift_financial"
+    },
+    {
+      "id": "celebration_FIN_entry_fee__celebration_WA_2",
+      "context": "celebration",
+      "prompt": "You’ve just finished a project you worked hard on. Which gesture would mean more to you?",
+      "eligibility": {
+        "classic5": false,
+        "modern7": true,
+        "research10": false
+      },
+      "options": [
+        {
+          "id": "a",
+          "gestureId": "celebration_FIN_entry_fee",
+          "text": "They offer to cover the entry fee so you can show your finished project at a local event.",
+          "strength": 1,
+          "categories": {
+            "classic5": null,
+            "modern7": "FIN",
+            "research10": null
+          }
+        },
+        {
+          "id": "b",
+          "gestureId": "celebration_WA_2",
+          "text": "They tell you how much it means to them to see you stick with something you care about.",
+          "strength": 1,
+          "categories": {
+            "classic5": "WA",
+            "modern7": "APP",
+            "research10": "VA"
+          }
+        }
+      ],
+      "coverageGroup": "non_gift_financial"
+    },
+    {
+      "id": "preferences_FIN_bike_repair__preferences_ACT_new2",
+      "context": "preferences",
+      "prompt": "Which gesture would make you feel more loved?",
+      "eligibility": {
+        "classic5": false,
+        "modern7": true,
+        "research10": false
+      },
+      "options": [
+        {
+          "id": "a",
+          "gestureId": "preferences_FIN_bike_repair",
+          "text": "They offer to help pay for a repair to the bike you rely on to get around.",
+          "strength": 1,
+          "categories": {
+            "classic5": null,
+            "modern7": "FIN",
+            "research10": null
+          }
+        },
+        {
+          "id": "b",
+          "gestureId": "preferences_ACT_new2",
+          "text": "They arrange an afternoon of shared activities.",
+          "strength": 1,
+          "categories": {
+            "classic5": "QT",
+            "modern7": "ACT",
+            "research10": null
+          }
+        }
+      ],
+      "coverageGroup": "non_gift_financial"
+    },
+    {
+      "id": "preferences_FIN_bike_repair__preferences_AS_new2",
+      "context": "preferences",
+      "prompt": "Which gesture would make you feel more loved?",
+      "eligibility": {
+        "classic5": false,
+        "modern7": true,
+        "research10": false
+      },
+      "options": [
+        {
+          "id": "a",
+          "gestureId": "preferences_FIN_bike_repair",
+          "text": "They offer to help pay for a repair to the bike you rely on to get around.",
+          "strength": 1,
+          "categories": {
+            "classic5": null,
+            "modern7": "FIN",
+            "research10": null
+          }
+        },
+        {
+          "id": "b",
+          "gestureId": "preferences_AS_new2",
+          "text": "They make dinner so you can relax.",
+          "strength": 1,
+          "categories": {
+            "classic5": "AS",
+            "modern7": "PRA",
+            "research10": "AOS"
+          }
+        }
+      ],
+      "coverageGroup": "non_gift_financial"
+    },
+    {
+      "id": "preferences_FIN_bike_repair__preferences_DIS_new2",
+      "context": "preferences",
+      "prompt": "Which gesture would make you feel more loved?",
+      "eligibility": {
+        "classic5": false,
+        "modern7": true,
+        "research10": false
+      },
+      "options": [
+        {
+          "id": "a",
+          "gestureId": "preferences_FIN_bike_repair",
+          "text": "They offer to help pay for a repair to the bike you rely on to get around.",
+          "strength": 1,
+          "categories": {
+            "classic5": null,
+            "modern7": "FIN",
+            "research10": null
+          }
+        },
+        {
+          "id": "b",
+          "gestureId": "preferences_DIS_new2",
+          "text": "They open up about a deeply personal experience.",
+          "strength": 1,
+          "categories": {
+            "classic5": null,
+            "modern7": "EMO",
+            "research10": "DIS"
+          }
+        }
+      ],
+      "coverageGroup": "non_gift_financial"
+    },
+    {
+      "id": "preferences_FIN_bike_repair__preferences_INT_new2",
+      "context": "preferences",
+      "prompt": "Which gesture would make you feel more loved?",
+      "eligibility": {
+        "classic5": false,
+        "modern7": true,
+        "research10": false
+      },
+      "options": [
+        {
+          "id": "a",
+          "gestureId": "preferences_FIN_bike_repair",
+          "text": "They offer to help pay for a repair to the bike you rely on to get around.",
+          "strength": 1,
+          "categories": {
+            "classic5": null,
+            "modern7": "FIN",
+            "research10": null
+          }
+        },
+        {
+          "id": "b",
+          "gestureId": "preferences_INT_new2",
+          "text": "They explore a complex idea with you in depth.",
+          "strength": 1,
+          "categories": {
+            "classic5": "QT",
+            "modern7": "INT",
+            "research10": null
+          }
+        }
+      ],
+      "coverageGroup": "non_gift_financial"
+    },
+    {
+      "id": "preferences_FIN_bike_repair__preferences_PT_new2",
+      "context": "preferences",
+      "prompt": "Which gesture would make you feel more loved?",
+      "eligibility": {
+        "classic5": false,
+        "modern7": true,
+        "research10": false
+      },
+      "options": [
+        {
+          "id": "a",
+          "gestureId": "preferences_FIN_bike_repair",
+          "text": "They offer to help pay for a repair to the bike you rely on to get around.",
+          "strength": 1,
+          "categories": {
+            "classic5": null,
+            "modern7": "FIN",
+            "research10": null
+          }
+        },
+        {
+          "id": "b",
+          "gestureId": "preferences_PT_new2",
+          "text": "They share a long, comfortable cuddle with you.",
+          "strength": 1,
+          "categories": {
+            "classic5": "PT",
+            "modern7": "PHY",
+            "research10": "PI"
+          }
+        }
+      ],
+      "coverageGroup": "non_gift_financial"
+    },
+    {
+      "id": "preferences_FIN_bike_repair__preferences_SDT_new2",
+      "context": "preferences",
+      "prompt": "Which gesture would make you feel more loved?",
+      "eligibility": {
+        "classic5": false,
+        "modern7": true,
+        "research10": false
+      },
+      "options": [
+        {
+          "id": "a",
+          "gestureId": "preferences_FIN_bike_repair",
+          "text": "They offer to help pay for a repair to the bike you rely on to get around.",
+          "strength": 1,
+          "categories": {
+            "classic5": null,
+            "modern7": "FIN",
+            "research10": null
+          }
+        },
+        {
+          "id": "b",
+          "gestureId": "preferences_SDT_new2",
+          "text": "They offer sustained empathetic support when you go through a difficult period.",
+          "strength": 1,
+          "categories": {
+            "classic5": null,
+            "modern7": "EMO",
+            "research10": "SDT"
+          }
+        }
+      ],
+      "coverageGroup": "non_gift_financial"
+    },
+    {
+      "id": "preferences_FIN_bike_repair__preferences_WA_new2",
+      "context": "preferences",
+      "prompt": "Which gesture would make you feel more loved?",
+      "eligibility": {
+        "classic5": false,
+        "modern7": true,
+        "research10": false
+      },
+      "options": [
+        {
+          "id": "a",
+          "gestureId": "preferences_FIN_bike_repair",
+          "text": "They offer to help pay for a repair to the bike you rely on to get around.",
+          "strength": 1,
+          "categories": {
+            "classic5": null,
+            "modern7": "FIN",
+            "research10": null
+          }
+        },
+        {
+          "id": "b",
+          "gestureId": "preferences_WA_new2",
+          "text": "They explain in heartfelt detail what they value about you.",
+          "strength": 1,
+          "categories": {
+            "classic5": "WA",
+            "modern7": "APP",
+            "research10": "VA"
+          }
+        }
+      ],
+      "coverageGroup": "non_gift_financial"
+    },
+    {
+      "id": "preferences_FIN_groceries__preferences_ACT_new2",
+      "context": "preferences",
+      "prompt": "Which gesture would make you feel more loved?",
+      "eligibility": {
+        "classic5": false,
+        "modern7": true,
+        "research10": false
+      },
+      "options": [
+        {
+          "id": "a",
+          "gestureId": "preferences_FIN_groceries",
+          "text": "They offer to cover your share of the groceries while you wait for a late paycheck.",
+          "strength": 1,
+          "categories": {
+            "classic5": null,
+            "modern7": "FIN",
+            "research10": null
+          }
+        },
+        {
+          "id": "b",
+          "gestureId": "preferences_ACT_new2",
+          "text": "They arrange an afternoon of shared activities.",
+          "strength": 1,
+          "categories": {
+            "classic5": "QT",
+            "modern7": "ACT",
+            "research10": null
+          }
+        }
+      ],
+      "coverageGroup": "non_gift_financial"
+    },
+    {
+      "id": "preferences_FIN_groceries__preferences_AS_new2",
+      "context": "preferences",
+      "prompt": "Which gesture would make you feel more loved?",
+      "eligibility": {
+        "classic5": false,
+        "modern7": true,
+        "research10": false
+      },
+      "options": [
+        {
+          "id": "a",
+          "gestureId": "preferences_FIN_groceries",
+          "text": "They offer to cover your share of the groceries while you wait for a late paycheck.",
+          "strength": 1,
+          "categories": {
+            "classic5": null,
+            "modern7": "FIN",
+            "research10": null
+          }
+        },
+        {
+          "id": "b",
+          "gestureId": "preferences_AS_new2",
+          "text": "They make dinner so you can relax.",
+          "strength": 1,
+          "categories": {
+            "classic5": "AS",
+            "modern7": "PRA",
+            "research10": "AOS"
+          }
+        }
+      ],
+      "coverageGroup": "non_gift_financial"
+    },
+    {
+      "id": "preferences_FIN_groceries__preferences_DIS_new2",
+      "context": "preferences",
+      "prompt": "Which gesture would make you feel more loved?",
+      "eligibility": {
+        "classic5": false,
+        "modern7": true,
+        "research10": false
+      },
+      "options": [
+        {
+          "id": "a",
+          "gestureId": "preferences_FIN_groceries",
+          "text": "They offer to cover your share of the groceries while you wait for a late paycheck.",
+          "strength": 1,
+          "categories": {
+            "classic5": null,
+            "modern7": "FIN",
+            "research10": null
+          }
+        },
+        {
+          "id": "b",
+          "gestureId": "preferences_DIS_new2",
+          "text": "They open up about a deeply personal experience.",
+          "strength": 1,
+          "categories": {
+            "classic5": null,
+            "modern7": "EMO",
+            "research10": "DIS"
+          }
+        }
+      ],
+      "coverageGroup": "non_gift_financial"
+    },
+    {
+      "id": "preferences_FIN_groceries__preferences_INT_new2",
+      "context": "preferences",
+      "prompt": "Which gesture would make you feel more loved?",
+      "eligibility": {
+        "classic5": false,
+        "modern7": true,
+        "research10": false
+      },
+      "options": [
+        {
+          "id": "a",
+          "gestureId": "preferences_FIN_groceries",
+          "text": "They offer to cover your share of the groceries while you wait for a late paycheck.",
+          "strength": 1,
+          "categories": {
+            "classic5": null,
+            "modern7": "FIN",
+            "research10": null
+          }
+        },
+        {
+          "id": "b",
+          "gestureId": "preferences_INT_new2",
+          "text": "They explore a complex idea with you in depth.",
+          "strength": 1,
+          "categories": {
+            "classic5": "QT",
+            "modern7": "INT",
+            "research10": null
+          }
+        }
+      ],
+      "coverageGroup": "non_gift_financial"
+    },
+    {
+      "id": "preferences_FIN_groceries__preferences_PT_new2",
+      "context": "preferences",
+      "prompt": "Which gesture would make you feel more loved?",
+      "eligibility": {
+        "classic5": false,
+        "modern7": true,
+        "research10": false
+      },
+      "options": [
+        {
+          "id": "a",
+          "gestureId": "preferences_FIN_groceries",
+          "text": "They offer to cover your share of the groceries while you wait for a late paycheck.",
+          "strength": 1,
+          "categories": {
+            "classic5": null,
+            "modern7": "FIN",
+            "research10": null
+          }
+        },
+        {
+          "id": "b",
+          "gestureId": "preferences_PT_new2",
+          "text": "They share a long, comfortable cuddle with you.",
+          "strength": 1,
+          "categories": {
+            "classic5": "PT",
+            "modern7": "PHY",
+            "research10": "PI"
+          }
+        }
+      ],
+      "coverageGroup": "non_gift_financial"
+    },
+    {
+      "id": "preferences_FIN_groceries__preferences_SDT_new2",
+      "context": "preferences",
+      "prompt": "Which gesture would make you feel more loved?",
+      "eligibility": {
+        "classic5": false,
+        "modern7": true,
+        "research10": false
+      },
+      "options": [
+        {
+          "id": "a",
+          "gestureId": "preferences_FIN_groceries",
+          "text": "They offer to cover your share of the groceries while you wait for a late paycheck.",
+          "strength": 1,
+          "categories": {
+            "classic5": null,
+            "modern7": "FIN",
+            "research10": null
+          }
+        },
+        {
+          "id": "b",
+          "gestureId": "preferences_SDT_new2",
+          "text": "They offer sustained empathetic support when you go through a difficult period.",
+          "strength": 1,
+          "categories": {
+            "classic5": null,
+            "modern7": "EMO",
+            "research10": "SDT"
+          }
+        }
+      ],
+      "coverageGroup": "non_gift_financial"
+    },
+    {
+      "id": "preferences_FIN_groceries__preferences_WA_new2",
+      "context": "preferences",
+      "prompt": "Which gesture would make you feel more loved?",
+      "eligibility": {
+        "classic5": false,
+        "modern7": true,
+        "research10": false
+      },
+      "options": [
+        {
+          "id": "a",
+          "gestureId": "preferences_FIN_groceries",
+          "text": "They offer to cover your share of the groceries while you wait for a late paycheck.",
+          "strength": 1,
+          "categories": {
+            "classic5": null,
+            "modern7": "FIN",
+            "research10": null
+          }
+        },
+        {
+          "id": "b",
+          "gestureId": "preferences_WA_new2",
+          "text": "They explain in heartfelt detail what they value about you.",
+          "strength": 1,
+          "categories": {
+            "classic5": "WA",
+            "modern7": "APP",
+            "research10": "VA"
+          }
+        }
+      ],
+      "coverageGroup": "non_gift_financial"
     }
   ]
 }
