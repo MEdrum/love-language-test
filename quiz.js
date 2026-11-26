@@ -1,5 +1,6 @@
 import { Assessment, isAnswered } from './engine.js?v=11';
 import { deleteRecord, downloadRecord, exportRecord, rememberServerCopy, saveBank, savedBank, saveRecord, savedRecord, savedRecords, serverOrigin, serverResult, slugPattern } from './records.js?v=11';
+import { resultCharts } from './result-charts.js';
 import { addSavedScoreRanges, reasons, summarize } from './quiz-run.js?v=11';
 
 const app = document.querySelector('#app');
@@ -428,55 +429,8 @@ function conflictFollowUp() {
 function resultContent(summary) {
     const answered = answeredCount(summary);
     const status = element('p', `${reasons[summary.reason] ?? reasons.early} ${answered} answered, ${summary.asked - answered} skipped.`, 'quiz-copy');
-    const explanation = element('p', 'Scores show relative preferences within each framework. Certainty estimates how likely the leading category is to outrank the runner-up under the scoring model. The quiz is unvalidated.', 'quiz-copy');
-    const content = [status, explanation];
-    if (summary.models.some(model => model.categories.some(category => category.range))) {
-        content.push(element('p', 'The filled bar shows the score. The line with end marks shows its approximate 90% range under the model.', 'quiz-copy'));
-    }
-    for (const model of summary.models) {
-        const section = element('section', '', 'result-model');
-        section.append(element('h3', modelNames[model.id]));
-        const coverage = `${model.covered} of ${model.categories.length} categories compared`;
-        const precision = model.targetMet ? 'Full-profile precision target reached' : 'Full profile remains uncertain';
-        section.append(element('p', `${coverage} · ${precision}`, 'quiz-copy'));
-        if (model.certainty) {
-            const { leading, runnerUp, probability } = model.certainty;
-            const percentage = probability >= .995 ? 'over 99%' : `${Math.round(probability * 100)}%`;
-            section.append(element('p', `Top-two certainty: ${percentage} chance that ${leading} outranks ${runnerUp}.`, 'quiz-copy'));
-        } else {
-            section.append(element('p', 'Top-two certainty needs answers covering both leading categories.', 'quiz-copy'));
-        }
-        if (model.covered) {
-            const list = element('ul', '', 'result-scores');
-            for (const { label, score, range } of model.categories) {
-                const item = document.createElement('li');
-                const resultLabel = element('div', '', 'result-label');
-                const values = element('div', `${score.toFixed(1)}%`, 'result-values');
-                resultLabel.append(element('span', label), values);
-                const validRange = Array.isArray(range) && range.length === 2 && range.every(Number.isFinite) &&
-                    range[0] >= 0 && range[0] <= range[1] && range[1] <= 100;
-                const bar = element('div', '', validRange ? 'result-bar has-range' : 'result-bar');
-                bar.setAttribute('aria-hidden', 'true');
-                const fill = element('span', '', 'score-fill');
-                fill.style.width = `${score}%`;
-                bar.append(fill);
-                if (validRange) {
-                    const [low, high] = range;
-                    const endpoints = element('span', `90% range ${low.toFixed(1)}–${high.toFixed(1)}%`, 'score-range-label');
-                    const whisker = element('span', '', 'score-range');
-                    whisker.style.left = `${low}%`;
-                    whisker.style.right = `${100 - high}%`;
-                    values.append(endpoints);
-                    bar.append(whisker);
-                }
-                item.append(resultLabel, bar);
-                list.append(item);
-            }
-            section.append(list);
-        }
-        content.push(section);
-    }
-    return content;
+    const explanation = element('p', 'Each chart shows relative preferences within one framework. The quiz is unvalidated.', 'quiz-copy');
+    return [status, explanation, resultCharts(summary.models, modelNames)];
 }
 
 function finish(reason) {
