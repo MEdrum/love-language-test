@@ -45,9 +45,18 @@ export class Assessment {
  refresh(){this.states=this.models.map(m=>fitModel(this.bank,m,this.answers,this.config));}
  next(){if(this.pending)return this.pending;const active=this.states.filter(s=>!s.complete);if(!active.length)return {done:true,reason:'precision_reached'};if(this.answers.length>=this.config.maxQuestions)return {done:true,reason:'question_limit'};
   const asked=new Set(this.answers.map(a=>a.questionId)),uses=new Map(),byId=new Map(this.bank.questions.map(q=>[q.id,q]));for(const a of this.answers)for(const o of byId.get(a.questionId).options)uses.set(o.gestureId,(uses.get(o.gestureId)||0)+1);
-  const candidates=[];for(const q of this.bank.questions){if(asked.has(q.id))continue;const relevant=active.filter(s=>q.eligibility[s.model]);if(!relevant.length)continue;let raw=0,needed=0;for(const s of relevant){raw+=informationGain(q,s,this.config);const {i,j}=item(q,s.model,s.categories,this.config.strengthCoefficient);needed+=+(s.exposure[i]<this.config.minComparisonsPerCategory)+ +(s.exposure[j]<this.config.minComparisonsPerCategory);}
-   const repeats=q.options.reduce((sum,o)=>sum+(uses.get(o.gestureId)||0),0),score=(raw+.05*needed)/(1+this.config.diversityPenalty*repeats);candidates.push({q,raw,score,shared:relevant.length===active.length,needed});}
-  const sort=(a,b)=>b.score-a.score||a.q.id.localeCompare(b.q.id);candidates.sort(sort);const best=candidates[0],shared=candidates.find(c=>c.shared);let pick;
+  const {initialMatchedQuestions = 0, unequalStrengthWeight = 1} = this.config;
+  const openingComparisons = this.answers.filter(answer => answer.optionId !== 'skip').length < initialMatchedQuestions;
+  const candidates=[];for(const q of this.bank.questions){if(asked.has(q.id))continue;
+   const strengthGap = Math.abs(q.options[0].strength - q.options[1].strength);
+   const relevant=active.filter(s=>q.eligibility[s.model]);if(!relevant.length)continue;let raw=0,needed=0;for(const s of relevant){raw+=informationGain(q,s,this.config);const {i,j}=item(q,s.model,s.categories,this.config.strengthCoefficient);needed+=+(s.exposure[i]<this.config.minComparisonsPerCategory)+ +(s.exposure[j]<this.config.minComparisonsPerCategory);}
+   const repeats=q.options.reduce((sum,o)=>sum+(uses.get(o.gestureId)||0),0);
+   // A slightly uneven comparison must offer more information to justify the mismatch.
+   const balanceWeight = strengthGap === 0 ? 1 : unequalStrengthWeight;
+   const score=balanceWeight*(raw+.05*needed)/(1+this.config.diversityPenalty*repeats);candidates.push({q,raw,score,shared:relevant.length===active.length,needed,strengthGap});}
+  const matched = openingComparisons ? candidates.filter(c => c.strengthGap === 0 && (this.config.eligibility !== 'strict' || c.shared)) : [];
+  const pool = matched.length ? matched : candidates;
+  const sort=(a,b)=>b.score-a.score||a.q.id.localeCompare(b.q.id);pool.sort(sort);const best=pool[0],shared=pool.find(c=>c.shared);let pick;
   if(this.config.eligibility==='strict')pick=shared;
   else if(this.config.eligibility==='strict-first')pick=shared&&shared.score>=this.config.sharedGainRatio*(best?.score??0)?shared:best;
   else pick=best;
