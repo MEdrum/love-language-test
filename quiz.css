@@ -118,11 +118,12 @@
 
 @media (max-width: 35rem) {
     .scale-options {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: .25rem;
     }
 
-    .scale-options button:nth-child(3) {
-        grid-column: 1 / -1;
+    .scale-options button {
+        padding-inline: .15rem;
+        font-size: .75rem;
     }
 }
 

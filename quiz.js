@@ -374,10 +374,17 @@ function showQuestion(focusFormat = false) {
         const scale = element('div', '', 'scale-options');
         scale.setAttribute('role', 'group');
         scale.setAttribute('aria-label', 'Which gesture do you prefer?');
-        for (const [text, id, preference] of [
-            ['Strongly prefer A', a.id, 'strong'], ['Slightly prefer A', a.id, 'slight'], ['Equally appealing', 'skip', 'equal'],
-            ['Slightly prefer B', b.id, 'slight'], ['Strongly prefer B', b.id, 'strong']
-        ]) scale.append(button(text, () => respond(id, preference)));
+        for (const [text, label, id, preference] of [
+            ['Strong A', 'Strongly prefer A', a.id, 'strong'],
+            ['Slight A', 'Slightly prefer A', a.id, 'slight'],
+            ['Equal', 'Equally appealing', 'skip', 'equal'],
+            ['Slight B', 'Slightly prefer B', b.id, 'slight'],
+            ['Strong B', 'Strongly prefer B', b.id, 'strong']
+        ]) {
+            const choice = button(text, () => respond(id, preference));
+            choice.setAttribute('aria-label', label);
+            scale.append(choice);
+        }
         options.append(scale);
     } else {
         for (const option of next.options) options.append(button(option.text, () => respond(option.id)));
