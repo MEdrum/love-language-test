@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 6,
+  "schemaVersion": 7,
   "locale": "en",
   "calibrationStatus": "uncalibrated_author_estimates",
   "instructions": "Imagine a caring partner. Assume each gesture is welcome and possible. Choose what would make you feel more loved. Skip if neither option fits.",
@@ -86,6 +86,15 @@
       ]
     }
   ],
+  "conflictFollowUp": {
+    "id": "conflict_followup",
+    "prompt": "Which of these gestures would help you most when you and your partner disagree?",
+    "options": [
+      "When you want different plans, they ask what matters most to you.",
+      "After a disagreement, they name something they wish they’d handled differently.",
+      "When the same disagreement keeps coming up, they work out a fair change with you and follow through."
+    ]
+  },
   "questions": [
     {
       "id": "everyday_WA_1__everyday_QT_1",
@@ -111,7 +120,7 @@
         {
           "id": "b",
           "gestureId": "everyday_QT_1",
-          "text": "They set aside half an hour just to enjoy your company.",
+          "text": "They set aside half an hour to catch up with you.",
           "strength": 0,
           "categories": {
             "classic5": "QT",
@@ -145,7 +154,7 @@
         {
           "id": "b",
           "gestureId": "everyday_QT_2",
-          "text": "They reserve an entire evening for uninterrupted time with you.",
+          "text": "They keep an evening free so you can spend it together at your own pace.",
           "strength": 1,
           "categories": {
             "classic5": "QT",
@@ -179,7 +188,7 @@
         {
           "id": "b",
           "gestureId": "everyday_QT_0",
-          "text": "They spend a few minutes chatting with you without distractions.",
+          "text": "They put their phone away and sit with you for a few minutes.",
           "strength": -1,
           "categories": {
             "classic5": "QT",
@@ -315,7 +324,7 @@
         {
           "id": "b",
           "gestureId": "everyday_AS_1",
-          "text": "They fold the laundry so you have a little more time to yourself.",
+          "text": "They fold the laundry so you have some time to yourself.",
           "strength": 0,
           "categories": {
             "classic5": "AS",
@@ -383,7 +392,7 @@
         {
           "id": "b",
           "gestureId": "everyday_AS_0",
-          "text": "They take the recycling out for you.",
+          "text": "They take out the recycling so you can sit down for a minute.",
           "strength": -1,
           "categories": {
             "classic5": "AS",
@@ -417,7 +426,7 @@
         {
           "id": "b",
           "gestureId": "everyday_PT_1",
-          "text": "They give you a warm hug.",
+          "text": "They sit beside you with an arm around your shoulders.",
           "strength": 0,
           "categories": {
             "classic5": "PT",
@@ -451,7 +460,7 @@
         {
           "id": "b",
           "gestureId": "everyday_PT_2",
-          "text": "They hold you close for a long, relaxed cuddle.",
+          "text": "They hold you close while you settle into a long, comfortable cuddle.",
           "strength": 1,
           "categories": {
             "classic5": "PT",
@@ -1120,7 +1129,7 @@
         {
           "id": "a",
           "gestureId": "everyday_QT_1",
-          "text": "They set aside half an hour just to enjoy your company.",
+          "text": "They set aside half an hour to catch up with you.",
           "strength": 0,
           "categories": {
             "classic5": "QT",
@@ -1154,7 +1163,7 @@
         {
           "id": "a",
           "gestureId": "everyday_QT_1",
-          "text": "They set aside half an hour just to enjoy your company.",
+          "text": "They set aside half an hour to catch up with you.",
           "strength": 0,
           "categories": {
             "classic5": "QT",
@@ -1165,7 +1174,7 @@
         {
           "id": "b",
           "gestureId": "everyday_WA_2",
-          "text": "They tell you about a moment when they felt lucky to know you.",
+          "text": "They tell you about a moment that made them realize how much you mean to them.",
           "strength": 1,
           "categories": {
             "classic5": "WA",
@@ -1188,7 +1197,7 @@
         {
           "id": "a",
           "gestureId": "everyday_QT_1",
-          "text": "They set aside half an hour just to enjoy your company.",
+          "text": "They set aside half an hour to catch up with you.",
           "strength": 0,
           "categories": {
             "classic5": "QT",
@@ -1222,7 +1231,7 @@
         {
           "id": "a",
           "gestureId": "everyday_QT_1",
-          "text": "They set aside half an hour just to enjoy your company.",
+          "text": "They set aside half an hour to catch up with you.",
           "strength": 0,
           "categories": {
             "classic5": "QT",
@@ -1256,7 +1265,7 @@
         {
           "id": "a",
           "gestureId": "everyday_QT_1",
-          "text": "They set aside half an hour just to enjoy your company.",
+          "text": "They set aside half an hour to catch up with you.",
           "strength": 0,
           "categories": {
             "classic5": "QT",
@@ -1290,7 +1299,7 @@
         {
           "id": "a",
           "gestureId": "everyday_QT_1",
-          "text": "They set aside half an hour just to enjoy your company.",
+          "text": "They set aside half an hour to catch up with you.",
           "strength": 0,
           "categories": {
             "classic5": "QT",
@@ -1301,7 +1310,7 @@
         {
           "id": "b",
           "gestureId": "everyday_AS_1",
-          "text": "They fold the laundry so you have a little more time to yourself.",
+          "text": "They fold the laundry so you have some time to yourself.",
           "strength": 0,
           "categories": {
             "classic5": "AS",
@@ -1324,7 +1333,7 @@
         {
           "id": "a",
           "gestureId": "everyday_QT_1",
-          "text": "They set aside half an hour just to enjoy your company.",
+          "text": "They set aside half an hour to catch up with you.",
           "strength": 0,
           "categories": {
             "classic5": "QT",
@@ -1358,7 +1367,7 @@
         {
           "id": "a",
           "gestureId": "everyday_QT_1",
-          "text": "They set aside half an hour just to enjoy your company.",
+          "text": "They set aside half an hour to catch up with you.",
           "strength": 0,
           "categories": {
             "classic5": "QT",
@@ -1369,7 +1378,7 @@
         {
           "id": "b",
           "gestureId": "everyday_AS_0",
-          "text": "They take the recycling out for you.",
+          "text": "They take out the recycling so you can sit down for a minute.",
           "strength": -1,
           "categories": {
             "classic5": "AS",
@@ -1392,7 +1401,7 @@
         {
           "id": "a",
           "gestureId": "everyday_QT_1",
-          "text": "They set aside half an hour just to enjoy your company.",
+          "text": "They set aside half an hour to catch up with you.",
           "strength": 0,
           "categories": {
             "classic5": "QT",
@@ -1403,7 +1412,7 @@
         {
           "id": "b",
           "gestureId": "everyday_PT_1",
-          "text": "They give you a warm hug.",
+          "text": "They sit beside you with an arm around your shoulders.",
           "strength": 0,
           "categories": {
             "classic5": "PT",
@@ -1426,7 +1435,7 @@
         {
           "id": "a",
           "gestureId": "everyday_QT_1",
-          "text": "They set aside half an hour just to enjoy your company.",
+          "text": "They set aside half an hour to catch up with you.",
           "strength": 0,
           "categories": {
             "classic5": "QT",
@@ -1437,7 +1446,7 @@
         {
           "id": "b",
           "gestureId": "everyday_PT_2",
-          "text": "They hold you close for a long, relaxed cuddle.",
+          "text": "They hold you close while you settle into a long, comfortable cuddle.",
           "strength": 1,
           "categories": {
             "classic5": "PT",
@@ -1460,7 +1469,7 @@
         {
           "id": "a",
           "gestureId": "everyday_QT_1",
-          "text": "They set aside half an hour just to enjoy your company.",
+          "text": "They set aside half an hour to catch up with you.",
           "strength": 0,
           "categories": {
             "classic5": "QT",
@@ -1505,7 +1514,7 @@
         {
           "id": "b",
           "gestureId": "everyday_QT_0",
-          "text": "They spend a few minutes chatting with you without distractions.",
+          "text": "They put their phone away and sit with you for a few minutes.",
           "strength": -1,
           "categories": {
             "classic5": "QT",
@@ -1607,7 +1616,7 @@
         {
           "id": "b",
           "gestureId": "everyday_AS_1",
-          "text": "They fold the laundry so you have a little more time to yourself.",
+          "text": "They fold the laundry so you have some time to yourself.",
           "strength": 0,
           "categories": {
             "classic5": "AS",
@@ -1641,7 +1650,7 @@
         {
           "id": "b",
           "gestureId": "everyday_AS_0",
-          "text": "They take the recycling out for you.",
+          "text": "They take out the recycling so you can sit down for a minute.",
           "strength": -1,
           "categories": {
             "classic5": "AS",
@@ -1675,7 +1684,7 @@
         {
           "id": "b",
           "gestureId": "everyday_PT_1",
-          "text": "They give you a warm hug.",
+          "text": "They sit beside you with an arm around your shoulders.",
           "strength": 0,
           "categories": {
             "classic5": "PT",
@@ -2140,7 +2149,7 @@
         {
           "id": "a",
           "gestureId": "everyday_QT_2",
-          "text": "They reserve an entire evening for uninterrupted time with you.",
+          "text": "They keep an evening free so you can spend it together at your own pace.",
           "strength": 1,
           "categories": {
             "classic5": "QT",
@@ -2151,7 +2160,7 @@
         {
           "id": "b",
           "gestureId": "everyday_WA_2",
-          "text": "They tell you about a moment when they felt lucky to know you.",
+          "text": "They tell you about a moment that made them realize how much you mean to them.",
           "strength": 1,
           "categories": {
             "classic5": "WA",
@@ -2174,7 +2183,7 @@
         {
           "id": "a",
           "gestureId": "everyday_QT_2",
-          "text": "They reserve an entire evening for uninterrupted time with you.",
+          "text": "They keep an evening free so you can spend it together at your own pace.",
           "strength": 1,
           "categories": {
             "classic5": "QT",
@@ -2208,7 +2217,7 @@
         {
           "id": "a",
           "gestureId": "everyday_QT_2",
-          "text": "They reserve an entire evening for uninterrupted time with you.",
+          "text": "They keep an evening free so you can spend it together at your own pace.",
           "strength": 1,
           "categories": {
             "classic5": "QT",
@@ -2242,7 +2251,7 @@
         {
           "id": "a",
           "gestureId": "everyday_QT_2",
-          "text": "They reserve an entire evening for uninterrupted time with you.",
+          "text": "They keep an evening free so you can spend it together at your own pace.",
           "strength": 1,
           "categories": {
             "classic5": "QT",
@@ -2253,7 +2262,7 @@
         {
           "id": "b",
           "gestureId": "everyday_AS_1",
-          "text": "They fold the laundry so you have a little more time to yourself.",
+          "text": "They fold the laundry so you have some time to yourself.",
           "strength": 0,
           "categories": {
             "classic5": "AS",
@@ -2276,7 +2285,7 @@
         {
           "id": "a",
           "gestureId": "everyday_QT_2",
-          "text": "They reserve an entire evening for uninterrupted time with you.",
+          "text": "They keep an evening free so you can spend it together at your own pace.",
           "strength": 1,
           "categories": {
             "classic5": "QT",
@@ -2310,7 +2319,7 @@
         {
           "id": "a",
           "gestureId": "everyday_QT_2",
-          "text": "They reserve an entire evening for uninterrupted time with you.",
+          "text": "They keep an evening free so you can spend it together at your own pace.",
           "strength": 1,
           "categories": {
             "classic5": "QT",
@@ -2321,7 +2330,7 @@
         {
           "id": "b",
           "gestureId": "everyday_PT_1",
-          "text": "They give you a warm hug.",
+          "text": "They sit beside you with an arm around your shoulders.",
           "strength": 0,
           "categories": {
             "classic5": "PT",
@@ -2344,7 +2353,7 @@
         {
           "id": "a",
           "gestureId": "everyday_QT_2",
-          "text": "They reserve an entire evening for uninterrupted time with you.",
+          "text": "They keep an evening free so you can spend it together at your own pace.",
           "strength": 1,
           "categories": {
             "classic5": "QT",
@@ -2355,7 +2364,7 @@
         {
           "id": "b",
           "gestureId": "everyday_PT_2",
-          "text": "They hold you close for a long, relaxed cuddle.",
+          "text": "They hold you close while you settle into a long, comfortable cuddle.",
           "strength": 1,
           "categories": {
             "classic5": "PT",
@@ -2378,7 +2387,7 @@
         {
           "id": "a",
           "gestureId": "everyday_WA_2",
-          "text": "They tell you about a moment when they felt lucky to know you.",
+          "text": "They tell you about a moment that made them realize how much you mean to them.",
           "strength": 1,
           "categories": {
             "classic5": "WA",
@@ -2412,7 +2421,7 @@
         {
           "id": "a",
           "gestureId": "everyday_WA_2",
-          "text": "They tell you about a moment when they felt lucky to know you.",
+          "text": "They tell you about a moment that made them realize how much you mean to them.",
           "strength": 1,
           "categories": {
             "classic5": "WA",
@@ -2446,7 +2455,7 @@
         {
           "id": "a",
           "gestureId": "everyday_WA_2",
-          "text": "They tell you about a moment when they felt lucky to know you.",
+          "text": "They tell you about a moment that made them realize how much you mean to them.",
           "strength": 1,
           "categories": {
             "classic5": "WA",
@@ -2457,7 +2466,7 @@
         {
           "id": "b",
           "gestureId": "everyday_AS_1",
-          "text": "They fold the laundry so you have a little more time to yourself.",
+          "text": "They fold the laundry so you have some time to yourself.",
           "strength": 0,
           "categories": {
             "classic5": "AS",
@@ -2480,7 +2489,7 @@
         {
           "id": "a",
           "gestureId": "everyday_WA_2",
-          "text": "They tell you about a moment when they felt lucky to know you.",
+          "text": "They tell you about a moment that made them realize how much you mean to them.",
           "strength": 1,
           "categories": {
             "classic5": "WA",
@@ -2514,7 +2523,7 @@
         {
           "id": "a",
           "gestureId": "everyday_WA_2",
-          "text": "They tell you about a moment when they felt lucky to know you.",
+          "text": "They tell you about a moment that made them realize how much you mean to them.",
           "strength": 1,
           "categories": {
             "classic5": "WA",
@@ -2525,7 +2534,7 @@
         {
           "id": "b",
           "gestureId": "everyday_PT_1",
-          "text": "They give you a warm hug.",
+          "text": "They sit beside you with an arm around your shoulders.",
           "strength": 0,
           "categories": {
             "classic5": "PT",
@@ -2548,7 +2557,7 @@
         {
           "id": "a",
           "gestureId": "everyday_WA_2",
-          "text": "They tell you about a moment when they felt lucky to know you.",
+          "text": "They tell you about a moment that made them realize how much you mean to them.",
           "strength": 1,
           "categories": {
             "classic5": "WA",
@@ -2559,7 +2568,7 @@
         {
           "id": "b",
           "gestureId": "everyday_PT_2",
-          "text": "They hold you close for a long, relaxed cuddle.",
+          "text": "They hold you close while you settle into a long, comfortable cuddle.",
           "strength": 1,
           "categories": {
             "classic5": "PT",
@@ -2582,7 +2591,7 @@
         {
           "id": "a",
           "gestureId": "everyday_WA_2",
-          "text": "They tell you about a moment when they felt lucky to know you.",
+          "text": "They tell you about a moment that made them realize how much you mean to them.",
           "strength": 1,
           "categories": {
             "classic5": "WA",
@@ -2616,7 +2625,7 @@
         {
           "id": "a",
           "gestureId": "everyday_WA_2",
-          "text": "They tell you about a moment when they felt lucky to know you.",
+          "text": "They tell you about a moment that made them realize how much you mean to them.",
           "strength": 1,
           "categories": {
             "classic5": "WA",
@@ -2650,7 +2659,7 @@
         {
           "id": "a",
           "gestureId": "everyday_WA_2",
-          "text": "They tell you about a moment when they felt lucky to know you.",
+          "text": "They tell you about a moment that made them realize how much you mean to them.",
           "strength": 1,
           "categories": {
             "classic5": "WA",
@@ -2684,7 +2693,7 @@
         {
           "id": "a",
           "gestureId": "everyday_WA_2",
-          "text": "They tell you about a moment when they felt lucky to know you.",
+          "text": "They tell you about a moment that made them realize how much you mean to them.",
           "strength": 1,
           "categories": {
             "classic5": "WA",
@@ -2718,7 +2727,7 @@
         {
           "id": "a",
           "gestureId": "everyday_WA_2",
-          "text": "They tell you about a moment when they felt lucky to know you.",
+          "text": "They tell you about a moment that made them realize how much you mean to them.",
           "strength": 1,
           "categories": {
             "classic5": "WA",
@@ -2752,7 +2761,7 @@
         {
           "id": "a",
           "gestureId": "everyday_WA_2",
-          "text": "They tell you about a moment when they felt lucky to know you.",
+          "text": "They tell you about a moment that made them realize how much you mean to them.",
           "strength": 1,
           "categories": {
             "classic5": "WA",
@@ -2786,7 +2795,7 @@
         {
           "id": "a",
           "gestureId": "everyday_WA_2",
-          "text": "They tell you about a moment when they felt lucky to know you.",
+          "text": "They tell you about a moment that made them realize how much you mean to them.",
           "strength": 1,
           "categories": {
             "classic5": "WA",
@@ -2820,7 +2829,7 @@
         {
           "id": "a",
           "gestureId": "everyday_WA_2",
-          "text": "They tell you about a moment when they felt lucky to know you.",
+          "text": "They tell you about a moment that made them realize how much you mean to them.",
           "strength": 1,
           "categories": {
             "classic5": "WA",
@@ -2854,7 +2863,7 @@
         {
           "id": "a",
           "gestureId": "everyday_WA_2",
-          "text": "They tell you about a moment when they felt lucky to know you.",
+          "text": "They tell you about a moment that made them realize how much you mean to them.",
           "strength": 1,
           "categories": {
             "classic5": "WA",
@@ -2888,7 +2897,7 @@
         {
           "id": "a",
           "gestureId": "everyday_WA_2",
-          "text": "They tell you about a moment when they felt lucky to know you.",
+          "text": "They tell you about a moment that made them realize how much you mean to them.",
           "strength": 1,
           "categories": {
             "classic5": "WA",
@@ -2922,7 +2931,7 @@
         {
           "id": "a",
           "gestureId": "everyday_WA_2",
-          "text": "They tell you about a moment when they felt lucky to know you.",
+          "text": "They tell you about a moment that made them realize how much you mean to them.",
           "strength": 1,
           "categories": {
             "classic5": "WA",
@@ -2956,7 +2965,7 @@
         {
           "id": "a",
           "gestureId": "everyday_WA_2",
-          "text": "They tell you about a moment when they felt lucky to know you.",
+          "text": "They tell you about a moment that made them realize how much you mean to them.",
           "strength": 1,
           "categories": {
             "classic5": "WA",
@@ -2990,7 +2999,7 @@
         {
           "id": "a",
           "gestureId": "everyday_QT_0",
-          "text": "They spend a few minutes chatting with you without distractions.",
+          "text": "They put their phone away and sit with you for a few minutes.",
           "strength": -1,
           "categories": {
             "classic5": "QT",
@@ -3024,7 +3033,7 @@
         {
           "id": "a",
           "gestureId": "everyday_QT_0",
-          "text": "They spend a few minutes chatting with you without distractions.",
+          "text": "They put their phone away and sit with you for a few minutes.",
           "strength": -1,
           "categories": {
             "classic5": "QT",
@@ -3058,7 +3067,7 @@
         {
           "id": "a",
           "gestureId": "everyday_QT_0",
-          "text": "They spend a few minutes chatting with you without distractions.",
+          "text": "They put their phone away and sit with you for a few minutes.",
           "strength": -1,
           "categories": {
             "classic5": "QT",
@@ -3069,7 +3078,7 @@
         {
           "id": "b",
           "gestureId": "everyday_AS_1",
-          "text": "They fold the laundry so you have a little more time to yourself.",
+          "text": "They fold the laundry so you have some time to yourself.",
           "strength": 0,
           "categories": {
             "classic5": "AS",
@@ -3092,7 +3101,7 @@
         {
           "id": "a",
           "gestureId": "everyday_QT_0",
-          "text": "They spend a few minutes chatting with you without distractions.",
+          "text": "They put their phone away and sit with you for a few minutes.",
           "strength": -1,
           "categories": {
             "classic5": "QT",
@@ -3103,7 +3112,7 @@
         {
           "id": "b",
           "gestureId": "everyday_AS_0",
-          "text": "They take the recycling out for you.",
+          "text": "They take out the recycling so you can sit down for a minute.",
           "strength": -1,
           "categories": {
             "classic5": "AS",
@@ -3126,7 +3135,7 @@
         {
           "id": "a",
           "gestureId": "everyday_QT_0",
-          "text": "They spend a few minutes chatting with you without distractions.",
+          "text": "They put their phone away and sit with you for a few minutes.",
           "strength": -1,
           "categories": {
             "classic5": "QT",
@@ -3137,7 +3146,7 @@
         {
           "id": "b",
           "gestureId": "everyday_PT_1",
-          "text": "They give you a warm hug.",
+          "text": "They sit beside you with an arm around your shoulders.",
           "strength": 0,
           "categories": {
             "classic5": "PT",
@@ -3160,7 +3169,7 @@
         {
           "id": "a",
           "gestureId": "everyday_QT_0",
-          "text": "They spend a few minutes chatting with you without distractions.",
+          "text": "They put their phone away and sit with you for a few minutes.",
           "strength": -1,
           "categories": {
             "classic5": "QT",
@@ -3205,7 +3214,7 @@
         {
           "id": "b",
           "gestureId": "everyday_AS_1",
-          "text": "They fold the laundry so you have a little more time to yourself.",
+          "text": "They fold the laundry so you have some time to yourself.",
           "strength": 0,
           "categories": {
             "classic5": "AS",
@@ -3273,7 +3282,7 @@
         {
           "id": "b",
           "gestureId": "everyday_AS_0",
-          "text": "They take the recycling out for you.",
+          "text": "They take out the recycling so you can sit down for a minute.",
           "strength": -1,
           "categories": {
             "classic5": "AS",
@@ -3307,7 +3316,7 @@
         {
           "id": "b",
           "gestureId": "everyday_PT_1",
-          "text": "They give you a warm hug.",
+          "text": "They sit beside you with an arm around your shoulders.",
           "strength": 0,
           "categories": {
             "classic5": "PT",
@@ -3341,7 +3350,7 @@
         {
           "id": "b",
           "gestureId": "everyday_PT_2",
-          "text": "They hold you close for a long, relaxed cuddle.",
+          "text": "They hold you close while you settle into a long, comfortable cuddle.",
           "strength": 1,
           "categories": {
             "classic5": "PT",
@@ -4021,7 +4030,7 @@
         {
           "id": "b",
           "gestureId": "everyday_AS_1",
-          "text": "They fold the laundry so you have a little more time to yourself.",
+          "text": "They fold the laundry so you have some time to yourself.",
           "strength": 0,
           "categories": {
             "classic5": "AS",
@@ -4089,7 +4098,7 @@
         {
           "id": "b",
           "gestureId": "everyday_PT_1",
-          "text": "They give you a warm hug.",
+          "text": "They sit beside you with an arm around your shoulders.",
           "strength": 0,
           "categories": {
             "classic5": "PT",
@@ -4123,7 +4132,7 @@
         {
           "id": "b",
           "gestureId": "everyday_PT_2",
-          "text": "They hold you close for a long, relaxed cuddle.",
+          "text": "They hold you close while you settle into a long, comfortable cuddle.",
           "strength": 1,
           "categories": {
             "classic5": "PT",
@@ -4565,7 +4574,7 @@
         {
           "id": "b",
           "gestureId": "everyday_AS_1",
-          "text": "They fold the laundry so you have a little more time to yourself.",
+          "text": "They fold the laundry so you have some time to yourself.",
           "strength": 0,
           "categories": {
             "classic5": "AS",
@@ -4599,7 +4608,7 @@
         {
           "id": "b",
           "gestureId": "everyday_AS_0",
-          "text": "They take the recycling out for you.",
+          "text": "They take out the recycling so you can sit down for a minute.",
           "strength": -1,
           "categories": {
             "classic5": "AS",
@@ -4633,7 +4642,7 @@
         {
           "id": "b",
           "gestureId": "everyday_PT_1",
-          "text": "They give you a warm hug.",
+          "text": "They sit beside you with an arm around your shoulders.",
           "strength": 0,
           "categories": {
             "classic5": "PT",
@@ -5098,7 +5107,7 @@
         {
           "id": "a",
           "gestureId": "everyday_AS_1",
-          "text": "They fold the laundry so you have a little more time to yourself.",
+          "text": "They fold the laundry so you have some time to yourself.",
           "strength": 0,
           "categories": {
             "classic5": "AS",
@@ -5109,7 +5118,7 @@
         {
           "id": "b",
           "gestureId": "everyday_PT_1",
-          "text": "They give you a warm hug.",
+          "text": "They sit beside you with an arm around your shoulders.",
           "strength": 0,
           "categories": {
             "classic5": "PT",
@@ -5132,7 +5141,7 @@
         {
           "id": "a",
           "gestureId": "everyday_AS_1",
-          "text": "They fold the laundry so you have a little more time to yourself.",
+          "text": "They fold the laundry so you have some time to yourself.",
           "strength": 0,
           "categories": {
             "classic5": "AS",
@@ -5143,7 +5152,7 @@
         {
           "id": "b",
           "gestureId": "everyday_PT_2",
-          "text": "They hold you close for a long, relaxed cuddle.",
+          "text": "They hold you close while you settle into a long, comfortable cuddle.",
           "strength": 1,
           "categories": {
             "classic5": "PT",
@@ -5166,7 +5175,7 @@
         {
           "id": "a",
           "gestureId": "everyday_AS_1",
-          "text": "They fold the laundry so you have a little more time to yourself.",
+          "text": "They fold the laundry so you have some time to yourself.",
           "strength": 0,
           "categories": {
             "classic5": "AS",
@@ -5200,7 +5209,7 @@
         {
           "id": "a",
           "gestureId": "everyday_AS_1",
-          "text": "They fold the laundry so you have a little more time to yourself.",
+          "text": "They fold the laundry so you have some time to yourself.",
           "strength": 0,
           "categories": {
             "classic5": "AS",
@@ -5234,7 +5243,7 @@
         {
           "id": "a",
           "gestureId": "everyday_AS_1",
-          "text": "They fold the laundry so you have a little more time to yourself.",
+          "text": "They fold the laundry so you have some time to yourself.",
           "strength": 0,
           "categories": {
             "classic5": "AS",
@@ -5268,7 +5277,7 @@
         {
           "id": "a",
           "gestureId": "everyday_AS_1",
-          "text": "They fold the laundry so you have a little more time to yourself.",
+          "text": "They fold the laundry so you have some time to yourself.",
           "strength": 0,
           "categories": {
             "classic5": "AS",
@@ -5302,7 +5311,7 @@
         {
           "id": "a",
           "gestureId": "everyday_AS_1",
-          "text": "They fold the laundry so you have a little more time to yourself.",
+          "text": "They fold the laundry so you have some time to yourself.",
           "strength": 0,
           "categories": {
             "classic5": "AS",
@@ -5336,7 +5345,7 @@
         {
           "id": "a",
           "gestureId": "everyday_AS_1",
-          "text": "They fold the laundry so you have a little more time to yourself.",
+          "text": "They fold the laundry so you have some time to yourself.",
           "strength": 0,
           "categories": {
             "classic5": "AS",
@@ -5370,7 +5379,7 @@
         {
           "id": "a",
           "gestureId": "everyday_AS_1",
-          "text": "They fold the laundry so you have a little more time to yourself.",
+          "text": "They fold the laundry so you have some time to yourself.",
           "strength": 0,
           "categories": {
             "classic5": "AS",
@@ -5404,7 +5413,7 @@
         {
           "id": "a",
           "gestureId": "everyday_AS_1",
-          "text": "They fold the laundry so you have a little more time to yourself.",
+          "text": "They fold the laundry so you have some time to yourself.",
           "strength": 0,
           "categories": {
             "classic5": "AS",
@@ -5438,7 +5447,7 @@
         {
           "id": "a",
           "gestureId": "everyday_AS_1",
-          "text": "They fold the laundry so you have a little more time to yourself.",
+          "text": "They fold the laundry so you have some time to yourself.",
           "strength": 0,
           "categories": {
             "classic5": "AS",
@@ -5472,7 +5481,7 @@
         {
           "id": "a",
           "gestureId": "everyday_AS_1",
-          "text": "They fold the laundry so you have a little more time to yourself.",
+          "text": "They fold the laundry so you have some time to yourself.",
           "strength": 0,
           "categories": {
             "classic5": "AS",
@@ -5506,7 +5515,7 @@
         {
           "id": "a",
           "gestureId": "everyday_AS_1",
-          "text": "They fold the laundry so you have a little more time to yourself.",
+          "text": "They fold the laundry so you have some time to yourself.",
           "strength": 0,
           "categories": {
             "classic5": "AS",
@@ -5540,7 +5549,7 @@
         {
           "id": "a",
           "gestureId": "everyday_AS_1",
-          "text": "They fold the laundry so you have a little more time to yourself.",
+          "text": "They fold the laundry so you have some time to yourself.",
           "strength": 0,
           "categories": {
             "classic5": "AS",
@@ -5574,7 +5583,7 @@
         {
           "id": "a",
           "gestureId": "everyday_AS_1",
-          "text": "They fold the laundry so you have a little more time to yourself.",
+          "text": "They fold the laundry so you have some time to yourself.",
           "strength": 0,
           "categories": {
             "classic5": "AS",
@@ -5608,7 +5617,7 @@
         {
           "id": "a",
           "gestureId": "everyday_AS_1",
-          "text": "They fold the laundry so you have a little more time to yourself.",
+          "text": "They fold the laundry so you have some time to yourself.",
           "strength": 0,
           "categories": {
             "classic5": "AS",
@@ -5642,7 +5651,7 @@
         {
           "id": "a",
           "gestureId": "everyday_AS_1",
-          "text": "They fold the laundry so you have a little more time to yourself.",
+          "text": "They fold the laundry so you have some time to yourself.",
           "strength": 0,
           "categories": {
             "classic5": "AS",
@@ -5676,7 +5685,7 @@
         {
           "id": "a",
           "gestureId": "everyday_AS_1",
-          "text": "They fold the laundry so you have a little more time to yourself.",
+          "text": "They fold the laundry so you have some time to yourself.",
           "strength": 0,
           "categories": {
             "classic5": "AS",
@@ -5710,7 +5719,7 @@
         {
           "id": "a",
           "gestureId": "everyday_AS_1",
-          "text": "They fold the laundry so you have a little more time to yourself.",
+          "text": "They fold the laundry so you have some time to yourself.",
           "strength": 0,
           "categories": {
             "classic5": "AS",
@@ -5744,7 +5753,7 @@
         {
           "id": "a",
           "gestureId": "everyday_AS_1",
-          "text": "They fold the laundry so you have a little more time to yourself.",
+          "text": "They fold the laundry so you have some time to yourself.",
           "strength": 0,
           "categories": {
             "classic5": "AS",
@@ -5778,7 +5787,7 @@
         {
           "id": "a",
           "gestureId": "everyday_AS_1",
-          "text": "They fold the laundry so you have a little more time to yourself.",
+          "text": "They fold the laundry so you have some time to yourself.",
           "strength": 0,
           "categories": {
             "classic5": "AS",
@@ -5823,7 +5832,7 @@
         {
           "id": "b",
           "gestureId": "everyday_PT_1",
-          "text": "They give you a warm hug.",
+          "text": "They sit beside you with an arm around your shoulders.",
           "strength": 0,
           "categories": {
             "classic5": "PT",
@@ -5857,7 +5866,7 @@
         {
           "id": "b",
           "gestureId": "everyday_PT_2",
-          "text": "They hold you close for a long, relaxed cuddle.",
+          "text": "They hold you close while you settle into a long, comfortable cuddle.",
           "strength": 1,
           "categories": {
             "classic5": "PT",
@@ -6288,7 +6297,7 @@
         {
           "id": "a",
           "gestureId": "everyday_AS_0",
-          "text": "They take the recycling out for you.",
+          "text": "They take out the recycling so you can sit down for a minute.",
           "strength": -1,
           "categories": {
             "classic5": "AS",
@@ -6299,7 +6308,7 @@
         {
           "id": "b",
           "gestureId": "everyday_PT_1",
-          "text": "They give you a warm hug.",
+          "text": "They sit beside you with an arm around your shoulders.",
           "strength": 0,
           "categories": {
             "classic5": "PT",
@@ -6322,7 +6331,7 @@
         {
           "id": "a",
           "gestureId": "everyday_AS_0",
-          "text": "They take the recycling out for you.",
+          "text": "They take out the recycling so you can sit down for a minute.",
           "strength": -1,
           "categories": {
             "classic5": "AS",
@@ -6356,7 +6365,7 @@
         {
           "id": "a",
           "gestureId": "everyday_AS_0",
-          "text": "They take the recycling out for you.",
+          "text": "They take out the recycling so you can sit down for a minute.",
           "strength": -1,
           "categories": {
             "classic5": "AS",
@@ -6390,7 +6399,7 @@
         {
           "id": "a",
           "gestureId": "everyday_AS_0",
-          "text": "They take the recycling out for you.",
+          "text": "They take out the recycling so you can sit down for a minute.",
           "strength": -1,
           "categories": {
             "classic5": "AS",
@@ -6424,7 +6433,7 @@
         {
           "id": "a",
           "gestureId": "everyday_AS_0",
-          "text": "They take the recycling out for you.",
+          "text": "They take out the recycling so you can sit down for a minute.",
           "strength": -1,
           "categories": {
             "classic5": "AS",
@@ -6458,7 +6467,7 @@
         {
           "id": "a",
           "gestureId": "everyday_AS_0",
-          "text": "They take the recycling out for you.",
+          "text": "They take out the recycling so you can sit down for a minute.",
           "strength": -1,
           "categories": {
             "classic5": "AS",
@@ -6492,7 +6501,7 @@
         {
           "id": "a",
           "gestureId": "everyday_AS_0",
-          "text": "They take the recycling out for you.",
+          "text": "They take out the recycling so you can sit down for a minute.",
           "strength": -1,
           "categories": {
             "classic5": "AS",
@@ -6526,7 +6535,7 @@
         {
           "id": "a",
           "gestureId": "everyday_AS_0",
-          "text": "They take the recycling out for you.",
+          "text": "They take out the recycling so you can sit down for a minute.",
           "strength": -1,
           "categories": {
             "classic5": "AS",
@@ -6560,7 +6569,7 @@
         {
           "id": "a",
           "gestureId": "everyday_AS_0",
-          "text": "They take the recycling out for you.",
+          "text": "They take out the recycling so you can sit down for a minute.",
           "strength": -1,
           "categories": {
             "classic5": "AS",
@@ -6594,7 +6603,7 @@
         {
           "id": "a",
           "gestureId": "everyday_AS_0",
-          "text": "They take the recycling out for you.",
+          "text": "They take out the recycling so you can sit down for a minute.",
           "strength": -1,
           "categories": {
             "classic5": "AS",
@@ -6628,7 +6637,7 @@
         {
           "id": "a",
           "gestureId": "everyday_AS_0",
-          "text": "They take the recycling out for you.",
+          "text": "They take out the recycling so you can sit down for a minute.",
           "strength": -1,
           "categories": {
             "classic5": "AS",
@@ -6662,7 +6671,7 @@
         {
           "id": "a",
           "gestureId": "everyday_AS_0",
-          "text": "They take the recycling out for you.",
+          "text": "They take out the recycling so you can sit down for a minute.",
           "strength": -1,
           "categories": {
             "classic5": "AS",
@@ -6696,7 +6705,7 @@
         {
           "id": "a",
           "gestureId": "everyday_AS_0",
-          "text": "They take the recycling out for you.",
+          "text": "They take out the recycling so you can sit down for a minute.",
           "strength": -1,
           "categories": {
             "classic5": "AS",
@@ -6730,7 +6739,7 @@
         {
           "id": "a",
           "gestureId": "everyday_AS_0",
-          "text": "They take the recycling out for you.",
+          "text": "They take out the recycling so you can sit down for a minute.",
           "strength": -1,
           "categories": {
             "classic5": "AS",
@@ -6764,7 +6773,7 @@
         {
           "id": "a",
           "gestureId": "everyday_PT_1",
-          "text": "They give you a warm hug.",
+          "text": "They sit beside you with an arm around your shoulders.",
           "strength": 0,
           "categories": {
             "classic5": "PT",
@@ -6798,7 +6807,7 @@
         {
           "id": "a",
           "gestureId": "everyday_PT_1",
-          "text": "They give you a warm hug.",
+          "text": "They sit beside you with an arm around your shoulders.",
           "strength": 0,
           "categories": {
             "classic5": "PT",
@@ -6832,7 +6841,7 @@
         {
           "id": "a",
           "gestureId": "everyday_PT_1",
-          "text": "They give you a warm hug.",
+          "text": "They sit beside you with an arm around your shoulders.",
           "strength": 0,
           "categories": {
             "classic5": "PT",
@@ -6866,7 +6875,7 @@
         {
           "id": "a",
           "gestureId": "everyday_PT_1",
-          "text": "They give you a warm hug.",
+          "text": "They sit beside you with an arm around your shoulders.",
           "strength": 0,
           "categories": {
             "classic5": "PT",
@@ -6900,7 +6909,7 @@
         {
           "id": "a",
           "gestureId": "everyday_PT_1",
-          "text": "They give you a warm hug.",
+          "text": "They sit beside you with an arm around your shoulders.",
           "strength": 0,
           "categories": {
             "classic5": "PT",
@@ -6934,7 +6943,7 @@
         {
           "id": "a",
           "gestureId": "everyday_PT_1",
-          "text": "They give you a warm hug.",
+          "text": "They sit beside you with an arm around your shoulders.",
           "strength": 0,
           "categories": {
             "classic5": "PT",
@@ -6968,7 +6977,7 @@
         {
           "id": "a",
           "gestureId": "everyday_PT_1",
-          "text": "They give you a warm hug.",
+          "text": "They sit beside you with an arm around your shoulders.",
           "strength": 0,
           "categories": {
             "classic5": "PT",
@@ -7002,7 +7011,7 @@
         {
           "id": "a",
           "gestureId": "everyday_PT_1",
-          "text": "They give you a warm hug.",
+          "text": "They sit beside you with an arm around your shoulders.",
           "strength": 0,
           "categories": {
             "classic5": "PT",
@@ -7036,7 +7045,7 @@
         {
           "id": "a",
           "gestureId": "everyday_PT_1",
-          "text": "They give you a warm hug.",
+          "text": "They sit beside you with an arm around your shoulders.",
           "strength": 0,
           "categories": {
             "classic5": "PT",
@@ -7070,7 +7079,7 @@
         {
           "id": "a",
           "gestureId": "everyday_PT_1",
-          "text": "They give you a warm hug.",
+          "text": "They sit beside you with an arm around your shoulders.",
           "strength": 0,
           "categories": {
             "classic5": "PT",
@@ -7104,7 +7113,7 @@
         {
           "id": "a",
           "gestureId": "everyday_PT_1",
-          "text": "They give you a warm hug.",
+          "text": "They sit beside you with an arm around your shoulders.",
           "strength": 0,
           "categories": {
             "classic5": "PT",
@@ -7138,7 +7147,7 @@
         {
           "id": "a",
           "gestureId": "everyday_PT_1",
-          "text": "They give you a warm hug.",
+          "text": "They sit beside you with an arm around your shoulders.",
           "strength": 0,
           "categories": {
             "classic5": "PT",
@@ -7172,7 +7181,7 @@
         {
           "id": "a",
           "gestureId": "everyday_PT_1",
-          "text": "They give you a warm hug.",
+          "text": "They sit beside you with an arm around your shoulders.",
           "strength": 0,
           "categories": {
             "classic5": "PT",
@@ -7206,7 +7215,7 @@
         {
           "id": "a",
           "gestureId": "everyday_PT_1",
-          "text": "They give you a warm hug.",
+          "text": "They sit beside you with an arm around your shoulders.",
           "strength": 0,
           "categories": {
             "classic5": "PT",
@@ -7240,7 +7249,7 @@
         {
           "id": "a",
           "gestureId": "everyday_PT_1",
-          "text": "They give you a warm hug.",
+          "text": "They sit beside you with an arm around your shoulders.",
           "strength": 0,
           "categories": {
             "classic5": "PT",
@@ -7274,7 +7283,7 @@
         {
           "id": "a",
           "gestureId": "everyday_PT_1",
-          "text": "They give you a warm hug.",
+          "text": "They sit beside you with an arm around your shoulders.",
           "strength": 0,
           "categories": {
             "classic5": "PT",
@@ -7308,7 +7317,7 @@
         {
           "id": "a",
           "gestureId": "everyday_PT_1",
-          "text": "They give you a warm hug.",
+          "text": "They sit beside you with an arm around your shoulders.",
           "strength": 0,
           "categories": {
             "classic5": "PT",
@@ -7342,7 +7351,7 @@
         {
           "id": "a",
           "gestureId": "everyday_PT_1",
-          "text": "They give you a warm hug.",
+          "text": "They sit beside you with an arm around your shoulders.",
           "strength": 0,
           "categories": {
             "classic5": "PT",
@@ -7376,7 +7385,7 @@
         {
           "id": "a",
           "gestureId": "everyday_PT_2",
-          "text": "They hold you close for a long, relaxed cuddle.",
+          "text": "They hold you close while you settle into a long, comfortable cuddle.",
           "strength": 1,
           "categories": {
             "classic5": "PT",
@@ -7410,7 +7419,7 @@
         {
           "id": "a",
           "gestureId": "everyday_PT_2",
-          "text": "They hold you close for a long, relaxed cuddle.",
+          "text": "They hold you close while you settle into a long, comfortable cuddle.",
           "strength": 1,
           "categories": {
             "classic5": "PT",
@@ -7444,7 +7453,7 @@
         {
           "id": "a",
           "gestureId": "everyday_PT_2",
-          "text": "They hold you close for a long, relaxed cuddle.",
+          "text": "They hold you close while you settle into a long, comfortable cuddle.",
           "strength": 1,
           "categories": {
             "classic5": "PT",
@@ -7478,7 +7487,7 @@
         {
           "id": "a",
           "gestureId": "everyday_PT_2",
-          "text": "They hold you close for a long, relaxed cuddle.",
+          "text": "They hold you close while you settle into a long, comfortable cuddle.",
           "strength": 1,
           "categories": {
             "classic5": "PT",
@@ -7512,7 +7521,7 @@
         {
           "id": "a",
           "gestureId": "everyday_PT_2",
-          "text": "They hold you close for a long, relaxed cuddle.",
+          "text": "They hold you close while you settle into a long, comfortable cuddle.",
           "strength": 1,
           "categories": {
             "classic5": "PT",
@@ -7546,7 +7555,7 @@
         {
           "id": "a",
           "gestureId": "everyday_PT_2",
-          "text": "They hold you close for a long, relaxed cuddle.",
+          "text": "They hold you close while you settle into a long, comfortable cuddle.",
           "strength": 1,
           "categories": {
             "classic5": "PT",
@@ -7580,7 +7589,7 @@
         {
           "id": "a",
           "gestureId": "everyday_PT_2",
-          "text": "They hold you close for a long, relaxed cuddle.",
+          "text": "They hold you close while you settle into a long, comfortable cuddle.",
           "strength": 1,
           "categories": {
             "classic5": "PT",
@@ -7614,7 +7623,7 @@
         {
           "id": "a",
           "gestureId": "everyday_PT_2",
-          "text": "They hold you close for a long, relaxed cuddle.",
+          "text": "They hold you close while you settle into a long, comfortable cuddle.",
           "strength": 1,
           "categories": {
             "classic5": "PT",
@@ -7648,7 +7657,7 @@
         {
           "id": "a",
           "gestureId": "everyday_PT_2",
-          "text": "They hold you close for a long, relaxed cuddle.",
+          "text": "They hold you close while you settle into a long, comfortable cuddle.",
           "strength": 1,
           "categories": {
             "classic5": "PT",
@@ -7682,7 +7691,7 @@
         {
           "id": "a",
           "gestureId": "everyday_PT_2",
-          "text": "They hold you close for a long, relaxed cuddle.",
+          "text": "They hold you close while you settle into a long, comfortable cuddle.",
           "strength": 1,
           "categories": {
             "classic5": "PT",
@@ -7716,7 +7725,7 @@
         {
           "id": "a",
           "gestureId": "everyday_PT_2",
-          "text": "They hold you close for a long, relaxed cuddle.",
+          "text": "They hold you close while you settle into a long, comfortable cuddle.",
           "strength": 1,
           "categories": {
             "classic5": "PT",
@@ -7750,7 +7759,7 @@
         {
           "id": "a",
           "gestureId": "everyday_PT_2",
-          "text": "They hold you close for a long, relaxed cuddle.",
+          "text": "They hold you close while you settle into a long, comfortable cuddle.",
           "strength": 1,
           "categories": {
             "classic5": "PT",
@@ -26937,7 +26946,7 @@
         {
           "id": "b",
           "gestureId": "quiet_day_PAM_new0",
-          "text": "They bring you a warm blanket as a little luxury.",
+          "text": "They tuck a warm blanket around you while you read.",
           "strength": -1,
           "categories": {
             "classic5": null,
@@ -28059,7 +28068,7 @@
         {
           "id": "b",
           "gestureId": "quiet_day_PAM_new0",
-          "text": "They bring you a warm blanket as a little luxury.",
+          "text": "They tuck a warm blanket around you while you read.",
           "strength": -1,
           "categories": {
             "classic5": null,
@@ -29759,7 +29768,7 @@
         {
           "id": "b",
           "gestureId": "quiet_day_PAM_new0",
-          "text": "They bring you a warm blanket as a little luxury.",
+          "text": "They tuck a warm blanket around you while you read.",
           "strength": -1,
           "categories": {
             "classic5": null,
@@ -30779,7 +30788,7 @@
         {
           "id": "b",
           "gestureId": "quiet_day_PAM_new0",
-          "text": "They bring you a warm blanket as a little luxury.",
+          "text": "They tuck a warm blanket around you while you read.",
           "strength": -1,
           "categories": {
             "classic5": null,
@@ -31323,7 +31332,7 @@
         {
           "id": "b",
           "gestureId": "quiet_day_PAM_new0",
-          "text": "They bring you a warm blanket as a little luxury.",
+          "text": "They tuck a warm blanket around you while you read.",
           "strength": -1,
           "categories": {
             "classic5": null,
@@ -32377,7 +32386,7 @@
         {
           "id": "b",
           "gestureId": "quiet_day_PAM_new0",
-          "text": "They bring you a warm blanket as a little luxury.",
+          "text": "They tuck a warm blanket around you while you read.",
           "strength": -1,
           "categories": {
             "classic5": null,
@@ -33125,7 +33134,7 @@
         {
           "id": "b",
           "gestureId": "quiet_day_PAM_new0",
-          "text": "They bring you a warm blanket as a little luxury.",
+          "text": "They tuck a warm blanket around you while you read.",
           "strength": -1,
           "categories": {
             "classic5": null,
@@ -33329,7 +33338,7 @@
         {
           "id": "b",
           "gestureId": "quiet_day_PAM_new0",
-          "text": "They bring you a warm blanket as a little luxury.",
+          "text": "They tuck a warm blanket around you while you read.",
           "strength": -1,
           "categories": {
             "classic5": null,
@@ -33567,7 +33576,7 @@
         {
           "id": "b",
           "gestureId": "quiet_day_PAM_new0",
-          "text": "They bring you a warm blanket as a little luxury.",
+          "text": "They tuck a warm blanket around you while you read.",
           "strength": -1,
           "categories": {
             "classic5": null,
@@ -33975,7 +33984,7 @@
         {
           "id": "b",
           "gestureId": "quiet_day_PAM_new0",
-          "text": "They bring you a warm blanket as a little luxury.",
+          "text": "They tuck a warm blanket around you while you read.",
           "strength": -1,
           "categories": {
             "classic5": null,
@@ -34111,7 +34120,7 @@
         {
           "id": "b",
           "gestureId": "quiet_day_PAM_new0",
-          "text": "They bring you a warm blanket as a little luxury.",
+          "text": "They tuck a warm blanket around you while you read.",
           "strength": -1,
           "categories": {
             "classic5": null,
@@ -34440,7 +34449,7 @@
         {
           "id": "a",
           "gestureId": "quiet_day_PAM_new0",
-          "text": "They bring you a warm blanket as a little luxury.",
+          "text": "They tuck a warm blanket around you while you read.",
           "strength": -1,
           "categories": {
             "classic5": null,
@@ -34474,7 +34483,7 @@
         {
           "id": "a",
           "gestureId": "quiet_day_PAM_new0",
-          "text": "They bring you a warm blanket as a little luxury.",
+          "text": "They tuck a warm blanket around you while you read.",
           "strength": -1,
           "categories": {
             "classic5": null,
@@ -34961,7 +34970,7 @@
         {
           "id": "b",
           "gestureId": "low_stress_AS_2",
-          "text": "They cook dinner so you can take the rest of the evening slowly.",
+          "text": "They take care of dinner so you can switch off for the evening.",
           "strength": 1,
           "categories": {
             "classic5": "AS",
@@ -35709,7 +35718,7 @@
         {
           "id": "b",
           "gestureId": "low_stress_AS_2",
-          "text": "They cook dinner so you can take the rest of the evening slowly.",
+          "text": "They take care of dinner so you can switch off for the evening.",
           "strength": 1,
           "categories": {
             "classic5": "AS",
@@ -36423,7 +36432,7 @@
         {
           "id": "b",
           "gestureId": "low_stress_AS_2",
-          "text": "They cook dinner so you can take the rest of the evening slowly.",
+          "text": "They take care of dinner so you can switch off for the evening.",
           "strength": 1,
           "categories": {
             "classic5": "AS",
@@ -36627,7 +36636,7 @@
         {
           "id": "b",
           "gestureId": "low_stress_AS_2",
-          "text": "They cook dinner so you can take the rest of the evening slowly.",
+          "text": "They take care of dinner so you can switch off for the evening.",
           "strength": 1,
           "categories": {
             "classic5": "AS",
@@ -37103,7 +37112,7 @@
         {
           "id": "b",
           "gestureId": "low_stress_AS_2",
-          "text": "They cook dinner so you can take the rest of the evening slowly.",
+          "text": "They take care of dinner so you can switch off for the evening.",
           "strength": 1,
           "categories": {
             "classic5": "AS",
@@ -37715,7 +37724,7 @@
         {
           "id": "b",
           "gestureId": "low_stress_AS_2",
-          "text": "They cook dinner so you can take the rest of the evening slowly.",
+          "text": "They take care of dinner so you can switch off for the evening.",
           "strength": 1,
           "categories": {
             "classic5": "AS",
@@ -38996,7 +39005,7 @@
         {
           "id": "a",
           "gestureId": "low_stress_AS_2",
-          "text": "They cook dinner so you can take the rest of the evening slowly.",
+          "text": "They take care of dinner so you can switch off for the evening.",
           "strength": 1,
           "categories": {
             "classic5": "AS",
@@ -39030,7 +39039,7 @@
         {
           "id": "a",
           "gestureId": "low_stress_AS_2",
-          "text": "They cook dinner so you can take the rest of the evening slowly.",
+          "text": "They take care of dinner so you can switch off for the evening.",
           "strength": 1,
           "categories": {
             "classic5": "AS",
@@ -39064,7 +39073,7 @@
         {
           "id": "a",
           "gestureId": "low_stress_AS_2",
-          "text": "They cook dinner so you can take the rest of the evening slowly.",
+          "text": "They take care of dinner so you can switch off for the evening.",
           "strength": 1,
           "categories": {
             "classic5": "AS",
@@ -39098,7 +39107,7 @@
         {
           "id": "a",
           "gestureId": "low_stress_AS_2",
-          "text": "They cook dinner so you can take the rest of the evening slowly.",
+          "text": "They take care of dinner so you can switch off for the evening.",
           "strength": 1,
           "categories": {
             "classic5": "AS",
@@ -39132,7 +39141,7 @@
         {
           "id": "a",
           "gestureId": "low_stress_AS_2",
-          "text": "They cook dinner so you can take the rest of the evening slowly.",
+          "text": "They take care of dinner so you can switch off for the evening.",
           "strength": 1,
           "categories": {
             "classic5": "AS",
@@ -39166,7 +39175,7 @@
         {
           "id": "a",
           "gestureId": "low_stress_AS_2",
-          "text": "They cook dinner so you can take the rest of the evening slowly.",
+          "text": "They take care of dinner so you can switch off for the evening.",
           "strength": 1,
           "categories": {
             "classic5": "AS",
@@ -39200,7 +39209,7 @@
         {
           "id": "a",
           "gestureId": "low_stress_AS_2",
-          "text": "They cook dinner so you can take the rest of the evening slowly.",
+          "text": "They take care of dinner so you can switch off for the evening.",
           "strength": 1,
           "categories": {
             "classic5": "AS",
@@ -39234,7 +39243,7 @@
         {
           "id": "a",
           "gestureId": "low_stress_AS_2",
-          "text": "They cook dinner so you can take the rest of the evening slowly.",
+          "text": "They take care of dinner so you can switch off for the evening.",
           "strength": 1,
           "categories": {
             "classic5": "AS",
@@ -39268,7 +39277,7 @@
         {
           "id": "a",
           "gestureId": "low_stress_AS_2",
-          "text": "They cook dinner so you can take the rest of the evening slowly.",
+          "text": "They take care of dinner so you can switch off for the evening.",
           "strength": 1,
           "categories": {
             "classic5": "AS",
@@ -39302,7 +39311,7 @@
         {
           "id": "a",
           "gestureId": "low_stress_AS_2",
-          "text": "They cook dinner so you can take the rest of the evening slowly.",
+          "text": "They take care of dinner so you can switch off for the evening.",
           "strength": 1,
           "categories": {
             "classic5": "AS",
@@ -41591,7 +41600,7 @@
         {
           "id": "b",
           "gestureId": "preferences_WA_new0",
-          "text": "They say something appreciative about you.",
+          "text": "They tell you something they appreciate about you.",
           "strength": -1,
           "categories": {
             "classic5": "WA",
@@ -41761,7 +41770,7 @@
         {
           "id": "b",
           "gestureId": "preferences_EIP_new0",
-          "text": "They ask about one of your personal interests.",
+          "text": "They ask how your personal project is going.",
           "strength": -1,
           "categories": {
             "classic5": null,
@@ -41795,7 +41804,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SNI_new0",
-          "text": "They include you in a casual social invitation.",
+          "text": "When a friend joins you, they bring you into the conversation.",
           "strength": -1,
           "categories": {
             "classic5": null,
@@ -41863,7 +41872,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SDT_new0",
-          "text": "They let you know they are available to listen when life gets difficult.",
+          "text": "When plans fall through, they tell you they can see why you’re disappointed.",
           "strength": -1,
           "categories": {
             "classic5": null,
@@ -42067,7 +42076,7 @@
         {
           "id": "b",
           "gestureId": "preferences_EIP_new1",
-          "text": "They encourage you to pursue a goal of your own.",
+          "text": "They encourage you to sign up for something you’ve wanted to try.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -42101,7 +42110,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SNI_new1",
-          "text": "They invite you to spend time with their friends.",
+          "text": "They invite you to a small gathering with people they’re close to.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -42135,7 +42144,7 @@
         {
           "id": "b",
           "gestureId": "preferences_PAM_new1",
-          "text": "They prepare a cozy break for you.",
+          "text": "They warm a towel and set it out for you after a cold walk home.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -42169,7 +42178,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SDT_new1",
-          "text": "They make time to understand your feelings when you have a difficult day.",
+          "text": "After a difficult day, they listen while you tell them what happened.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -42373,7 +42382,7 @@
         {
           "id": "b",
           "gestureId": "preferences_EIP_new2",
-          "text": "They show wholehearted support for a long-term personal ambition.",
+          "text": "When you’re discouraged about a goal that matters to you, they remind you what you’ve accomplished and offer to help you make time for it.",
           "strength": 1,
           "categories": {
             "classic5": null,
@@ -42407,7 +42416,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SNI_new2",
-          "text": "They help you feel genuinely included in their close social circle.",
+          "text": "They plan a get-together with a close friend they think you’d enjoy getting to know.",
           "strength": 1,
           "categories": {
             "classic5": null,
@@ -42441,7 +42450,7 @@
         {
           "id": "b",
           "gestureId": "preferences_PAM_new2",
-          "text": "They arrange a special relaxation experience for you.",
+          "text": "They set up a quiet evening with your favorite comforts after a draining week.",
           "strength": 1,
           "categories": {
             "classic5": null,
@@ -42475,7 +42484,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SDT_new2",
-          "text": "They offer sustained empathetic support when you go through a difficult period.",
+          "text": "When something’s weighing on you, they make time to talk when you’re ready and check in the next day.",
           "strength": 1,
           "categories": {
             "classic5": null,
@@ -42498,7 +42507,7 @@
         {
           "id": "a",
           "gestureId": "preferences_WA_new0",
-          "text": "They say something appreciative about you.",
+          "text": "They tell you something they appreciate about you.",
           "strength": -1,
           "categories": {
             "classic5": "WA",
@@ -42532,7 +42541,7 @@
         {
           "id": "a",
           "gestureId": "preferences_WA_new0",
-          "text": "They say something appreciative about you.",
+          "text": "They tell you something they appreciate about you.",
           "strength": -1,
           "categories": {
             "classic5": "WA",
@@ -42566,7 +42575,7 @@
         {
           "id": "a",
           "gestureId": "preferences_WA_new0",
-          "text": "They say something appreciative about you.",
+          "text": "They tell you something they appreciate about you.",
           "strength": -1,
           "categories": {
             "classic5": "WA",
@@ -42600,7 +42609,7 @@
         {
           "id": "a",
           "gestureId": "preferences_WA_new0",
-          "text": "They say something appreciative about you.",
+          "text": "They tell you something they appreciate about you.",
           "strength": -1,
           "categories": {
             "classic5": "WA",
@@ -42634,7 +42643,7 @@
         {
           "id": "a",
           "gestureId": "preferences_WA_new0",
-          "text": "They say something appreciative about you.",
+          "text": "They tell you something they appreciate about you.",
           "strength": -1,
           "categories": {
             "classic5": "WA",
@@ -42668,7 +42677,7 @@
         {
           "id": "a",
           "gestureId": "preferences_WA_new0",
-          "text": "They say something appreciative about you.",
+          "text": "They tell you something they appreciate about you.",
           "strength": -1,
           "categories": {
             "classic5": "WA",
@@ -42702,7 +42711,7 @@
         {
           "id": "a",
           "gestureId": "preferences_WA_new0",
-          "text": "They say something appreciative about you.",
+          "text": "They tell you something they appreciate about you.",
           "strength": -1,
           "categories": {
             "classic5": "WA",
@@ -42736,7 +42745,7 @@
         {
           "id": "a",
           "gestureId": "preferences_WA_new0",
-          "text": "They say something appreciative about you.",
+          "text": "They tell you something they appreciate about you.",
           "strength": -1,
           "categories": {
             "classic5": "WA",
@@ -42747,7 +42756,7 @@
         {
           "id": "b",
           "gestureId": "preferences_ACT_new1",
-          "text": "They make time for an activity you both enjoy.",
+          "text": "They spend an hour baking something you’ve wanted to try together.",
           "strength": 0,
           "categories": {
             "classic5": "QT",
@@ -42770,7 +42779,7 @@
         {
           "id": "a",
           "gestureId": "preferences_WA_new0",
-          "text": "They say something appreciative about you.",
+          "text": "They tell you something they appreciate about you.",
           "strength": -1,
           "categories": {
             "classic5": "WA",
@@ -42804,7 +42813,7 @@
         {
           "id": "a",
           "gestureId": "preferences_WA_new0",
-          "text": "They say something appreciative about you.",
+          "text": "They tell you something they appreciate about you.",
           "strength": -1,
           "categories": {
             "classic5": "WA",
@@ -42838,7 +42847,7 @@
         {
           "id": "a",
           "gestureId": "preferences_WA_new0",
-          "text": "They say something appreciative about you.",
+          "text": "They tell you something they appreciate about you.",
           "strength": -1,
           "categories": {
             "classic5": "WA",
@@ -42849,7 +42858,7 @@
         {
           "id": "b",
           "gestureId": "preferences_INT_new0",
-          "text": "They ask what you think about something they’ve just read.",
+          "text": "They ask what you thought of something you just read.",
           "strength": -1,
           "categories": {
             "classic5": "QT",
@@ -42872,7 +42881,7 @@
         {
           "id": "a",
           "gestureId": "preferences_WA_new0",
-          "text": "They say something appreciative about you.",
+          "text": "They tell you something they appreciate about you.",
           "strength": -1,
           "categories": {
             "classic5": "WA",
@@ -42883,7 +42892,7 @@
         {
           "id": "b",
           "gestureId": "preferences_INT_new1",
-          "text": "They exchange ideas with you about a fascinating topic.",
+          "text": "They talk through a question you’ve been puzzling over together.",
           "strength": 0,
           "categories": {
             "classic5": "QT",
@@ -42906,7 +42915,7 @@
         {
           "id": "a",
           "gestureId": "preferences_WA_new0",
-          "text": "They say something appreciative about you.",
+          "text": "They tell you something they appreciate about you.",
           "strength": -1,
           "categories": {
             "classic5": "WA",
@@ -42917,7 +42926,7 @@
         {
           "id": "b",
           "gestureId": "preferences_EIP_new0",
-          "text": "They ask about one of your personal interests.",
+          "text": "They ask how your personal project is going.",
           "strength": -1,
           "categories": {
             "classic5": null,
@@ -42940,7 +42949,7 @@
         {
           "id": "a",
           "gestureId": "preferences_WA_new0",
-          "text": "They say something appreciative about you.",
+          "text": "They tell you something they appreciate about you.",
           "strength": -1,
           "categories": {
             "classic5": "WA",
@@ -42951,7 +42960,7 @@
         {
           "id": "b",
           "gestureId": "preferences_EIP_new1",
-          "text": "They encourage you to pursue a goal of your own.",
+          "text": "They encourage you to sign up for something you’ve wanted to try.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -42974,7 +42983,7 @@
         {
           "id": "a",
           "gestureId": "preferences_WA_new0",
-          "text": "They say something appreciative about you.",
+          "text": "They tell you something they appreciate about you.",
           "strength": -1,
           "categories": {
             "classic5": "WA",
@@ -42985,7 +42994,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SNI_new0",
-          "text": "They include you in a casual social invitation.",
+          "text": "When a friend joins you, they bring you into the conversation.",
           "strength": -1,
           "categories": {
             "classic5": null,
@@ -43008,7 +43017,7 @@
         {
           "id": "a",
           "gestureId": "preferences_WA_new0",
-          "text": "They say something appreciative about you.",
+          "text": "They tell you something they appreciate about you.",
           "strength": -1,
           "categories": {
             "classic5": "WA",
@@ -43019,7 +43028,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SNI_new1",
-          "text": "They invite you to spend time with their friends.",
+          "text": "They invite you to a small gathering with people they’re close to.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -43042,7 +43051,7 @@
         {
           "id": "a",
           "gestureId": "preferences_WA_new0",
-          "text": "They say something appreciative about you.",
+          "text": "They tell you something they appreciate about you.",
           "strength": -1,
           "categories": {
             "classic5": "WA",
@@ -43076,7 +43085,7 @@
         {
           "id": "a",
           "gestureId": "preferences_WA_new0",
-          "text": "They say something appreciative about you.",
+          "text": "They tell you something they appreciate about you.",
           "strength": -1,
           "categories": {
             "classic5": "WA",
@@ -43087,7 +43096,7 @@
         {
           "id": "b",
           "gestureId": "preferences_PAM_new1",
-          "text": "They prepare a cozy break for you.",
+          "text": "They warm a towel and set it out for you after a cold walk home.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -43110,7 +43119,7 @@
         {
           "id": "a",
           "gestureId": "preferences_WA_new0",
-          "text": "They say something appreciative about you.",
+          "text": "They tell you something they appreciate about you.",
           "strength": -1,
           "categories": {
             "classic5": "WA",
@@ -43121,7 +43130,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SDT_new0",
-          "text": "They let you know they are available to listen when life gets difficult.",
+          "text": "When plans fall through, they tell you they can see why you’re disappointed.",
           "strength": -1,
           "categories": {
             "classic5": null,
@@ -43144,7 +43153,7 @@
         {
           "id": "a",
           "gestureId": "preferences_WA_new0",
-          "text": "They say something appreciative about you.",
+          "text": "They tell you something they appreciate about you.",
           "strength": -1,
           "categories": {
             "classic5": "WA",
@@ -43155,7 +43164,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SDT_new1",
-          "text": "They make time to understand your feelings when you have a difficult day.",
+          "text": "After a difficult day, they listen while you tell them what happened.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -43529,7 +43538,7 @@
         {
           "id": "b",
           "gestureId": "preferences_ACT_new1",
-          "text": "They make time for an activity you both enjoy.",
+          "text": "They spend an hour baking something you’ve wanted to try together.",
           "strength": 0,
           "categories": {
             "classic5": "QT",
@@ -43563,7 +43572,7 @@
         {
           "id": "b",
           "gestureId": "preferences_ACT_new2",
-          "text": "They arrange an afternoon of shared activities.",
+          "text": "They plan an afternoon around a hobby you love doing together.",
           "strength": 1,
           "categories": {
             "classic5": "QT",
@@ -43699,7 +43708,7 @@
         {
           "id": "b",
           "gestureId": "preferences_INT_new0",
-          "text": "They ask what you think about something they’ve just read.",
+          "text": "They ask what you thought of something you just read.",
           "strength": -1,
           "categories": {
             "classic5": "QT",
@@ -43733,7 +43742,7 @@
         {
           "id": "b",
           "gestureId": "preferences_INT_new1",
-          "text": "They exchange ideas with you about a fascinating topic.",
+          "text": "They talk through a question you’ve been puzzling over together.",
           "strength": 0,
           "categories": {
             "classic5": "QT",
@@ -43767,7 +43776,7 @@
         {
           "id": "b",
           "gestureId": "preferences_INT_new2",
-          "text": "They explore a complex idea with you in depth.",
+          "text": "They read a piece that fascinated you so you can spend an evening exploring its ideas together.",
           "strength": 1,
           "categories": {
             "classic5": "QT",
@@ -43801,7 +43810,7 @@
         {
           "id": "b",
           "gestureId": "preferences_EIP_new0",
-          "text": "They ask about one of your personal interests.",
+          "text": "They ask how your personal project is going.",
           "strength": -1,
           "categories": {
             "classic5": null,
@@ -43835,7 +43844,7 @@
         {
           "id": "b",
           "gestureId": "preferences_EIP_new1",
-          "text": "They encourage you to pursue a goal of your own.",
+          "text": "They encourage you to sign up for something you’ve wanted to try.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -43869,7 +43878,7 @@
         {
           "id": "b",
           "gestureId": "preferences_EIP_new2",
-          "text": "They show wholehearted support for a long-term personal ambition.",
+          "text": "When you’re discouraged about a goal that matters to you, they remind you what you’ve accomplished and offer to help you make time for it.",
           "strength": 1,
           "categories": {
             "classic5": null,
@@ -43903,7 +43912,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SNI_new0",
-          "text": "They include you in a casual social invitation.",
+          "text": "When a friend joins you, they bring you into the conversation.",
           "strength": -1,
           "categories": {
             "classic5": null,
@@ -43937,7 +43946,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SNI_new1",
-          "text": "They invite you to spend time with their friends.",
+          "text": "They invite you to a small gathering with people they’re close to.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -43971,7 +43980,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SNI_new2",
-          "text": "They help you feel genuinely included in their close social circle.",
+          "text": "They plan a get-together with a close friend they think you’d enjoy getting to know.",
           "strength": 1,
           "categories": {
             "classic5": null,
@@ -44039,7 +44048,7 @@
         {
           "id": "b",
           "gestureId": "preferences_PAM_new1",
-          "text": "They prepare a cozy break for you.",
+          "text": "They warm a towel and set it out for you after a cold walk home.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -44073,7 +44082,7 @@
         {
           "id": "b",
           "gestureId": "preferences_PAM_new2",
-          "text": "They arrange a special relaxation experience for you.",
+          "text": "They set up a quiet evening with your favorite comforts after a draining week.",
           "strength": 1,
           "categories": {
             "classic5": null,
@@ -44107,7 +44116,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SDT_new0",
-          "text": "They let you know they are available to listen when life gets difficult.",
+          "text": "When plans fall through, they tell you they can see why you’re disappointed.",
           "strength": -1,
           "categories": {
             "classic5": null,
@@ -44141,7 +44150,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SDT_new1",
-          "text": "They make time to understand your feelings when you have a difficult day.",
+          "text": "After a difficult day, they listen while you tell them what happened.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -44175,7 +44184,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SDT_new2",
-          "text": "They offer sustained empathetic support when you go through a difficult period.",
+          "text": "When something’s weighing on you, they make time to talk when you’re ready and check in the next day.",
           "strength": 1,
           "categories": {
             "classic5": null,
@@ -44413,7 +44422,7 @@
         {
           "id": "b",
           "gestureId": "preferences_ACT_new1",
-          "text": "They make time for an activity you both enjoy.",
+          "text": "They spend an hour baking something you’ve wanted to try together.",
           "strength": 0,
           "categories": {
             "classic5": "QT",
@@ -44447,7 +44456,7 @@
         {
           "id": "b",
           "gestureId": "preferences_ACT_new2",
-          "text": "They arrange an afternoon of shared activities.",
+          "text": "They plan an afternoon around a hobby you love doing together.",
           "strength": 1,
           "categories": {
             "classic5": "QT",
@@ -44549,7 +44558,7 @@
         {
           "id": "b",
           "gestureId": "preferences_INT_new1",
-          "text": "They exchange ideas with you about a fascinating topic.",
+          "text": "They talk through a question you’ve been puzzling over together.",
           "strength": 0,
           "categories": {
             "classic5": "QT",
@@ -44583,7 +44592,7 @@
         {
           "id": "b",
           "gestureId": "preferences_INT_new2",
-          "text": "They explore a complex idea with you in depth.",
+          "text": "They read a piece that fascinated you so you can spend an evening exploring its ideas together.",
           "strength": 1,
           "categories": {
             "classic5": "QT",
@@ -44617,7 +44626,7 @@
         {
           "id": "b",
           "gestureId": "preferences_EIP_new1",
-          "text": "They encourage you to pursue a goal of your own.",
+          "text": "They encourage you to sign up for something you’ve wanted to try.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -44651,7 +44660,7 @@
         {
           "id": "b",
           "gestureId": "preferences_EIP_new2",
-          "text": "They show wholehearted support for a long-term personal ambition.",
+          "text": "When you’re discouraged about a goal that matters to you, they remind you what you’ve accomplished and offer to help you make time for it.",
           "strength": 1,
           "categories": {
             "classic5": null,
@@ -44685,7 +44694,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SNI_new1",
-          "text": "They invite you to spend time with their friends.",
+          "text": "They invite you to a small gathering with people they’re close to.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -44719,7 +44728,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SNI_new2",
-          "text": "They help you feel genuinely included in their close social circle.",
+          "text": "They plan a get-together with a close friend they think you’d enjoy getting to know.",
           "strength": 1,
           "categories": {
             "classic5": null,
@@ -44753,7 +44762,7 @@
         {
           "id": "b",
           "gestureId": "preferences_PAM_new1",
-          "text": "They prepare a cozy break for you.",
+          "text": "They warm a towel and set it out for you after a cold walk home.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -44787,7 +44796,7 @@
         {
           "id": "b",
           "gestureId": "preferences_PAM_new2",
-          "text": "They arrange a special relaxation experience for you.",
+          "text": "They set up a quiet evening with your favorite comforts after a draining week.",
           "strength": 1,
           "categories": {
             "classic5": null,
@@ -44821,7 +44830,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SDT_new1",
-          "text": "They make time to understand your feelings when you have a difficult day.",
+          "text": "After a difficult day, they listen while you tell them what happened.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -44855,7 +44864,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SDT_new2",
-          "text": "They offer sustained empathetic support when you go through a difficult period.",
+          "text": "When something’s weighing on you, they make time to talk when you’re ready and check in the next day.",
           "strength": 1,
           "categories": {
             "classic5": null,
@@ -45059,7 +45068,7 @@
         {
           "id": "b",
           "gestureId": "preferences_ACT_new1",
-          "text": "They make time for an activity you both enjoy.",
+          "text": "They spend an hour baking something you’ve wanted to try together.",
           "strength": 0,
           "categories": {
             "classic5": "QT",
@@ -45161,7 +45170,7 @@
         {
           "id": "b",
           "gestureId": "preferences_INT_new0",
-          "text": "They ask what you think about something they’ve just read.",
+          "text": "They ask what you thought of something you just read.",
           "strength": -1,
           "categories": {
             "classic5": "QT",
@@ -45195,7 +45204,7 @@
         {
           "id": "b",
           "gestureId": "preferences_INT_new1",
-          "text": "They exchange ideas with you about a fascinating topic.",
+          "text": "They talk through a question you’ve been puzzling over together.",
           "strength": 0,
           "categories": {
             "classic5": "QT",
@@ -45229,7 +45238,7 @@
         {
           "id": "b",
           "gestureId": "preferences_EIP_new0",
-          "text": "They ask about one of your personal interests.",
+          "text": "They ask how your personal project is going.",
           "strength": -1,
           "categories": {
             "classic5": null,
@@ -45263,7 +45272,7 @@
         {
           "id": "b",
           "gestureId": "preferences_EIP_new1",
-          "text": "They encourage you to pursue a goal of your own.",
+          "text": "They encourage you to sign up for something you’ve wanted to try.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -45297,7 +45306,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SNI_new0",
-          "text": "They include you in a casual social invitation.",
+          "text": "When a friend joins you, they bring you into the conversation.",
           "strength": -1,
           "categories": {
             "classic5": null,
@@ -45331,7 +45340,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SNI_new1",
-          "text": "They invite you to spend time with their friends.",
+          "text": "They invite you to a small gathering with people they’re close to.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -45399,7 +45408,7 @@
         {
           "id": "b",
           "gestureId": "preferences_PAM_new1",
-          "text": "They prepare a cozy break for you.",
+          "text": "They warm a towel and set it out for you after a cold walk home.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -45433,7 +45442,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SDT_new0",
-          "text": "They let you know they are available to listen when life gets difficult.",
+          "text": "When plans fall through, they tell you they can see why you’re disappointed.",
           "strength": -1,
           "categories": {
             "classic5": null,
@@ -45467,7 +45476,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SDT_new1",
-          "text": "They make time to understand your feelings when you have a difficult day.",
+          "text": "After a difficult day, they listen while you tell them what happened.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -45739,7 +45748,7 @@
         {
           "id": "b",
           "gestureId": "preferences_ACT_new1",
-          "text": "They make time for an activity you both enjoy.",
+          "text": "They spend an hour baking something you’ve wanted to try together.",
           "strength": 0,
           "categories": {
             "classic5": "QT",
@@ -45773,7 +45782,7 @@
         {
           "id": "b",
           "gestureId": "preferences_ACT_new2",
-          "text": "They arrange an afternoon of shared activities.",
+          "text": "They plan an afternoon around a hobby you love doing together.",
           "strength": 1,
           "categories": {
             "classic5": "QT",
@@ -45909,7 +45918,7 @@
         {
           "id": "b",
           "gestureId": "preferences_INT_new0",
-          "text": "They ask what you think about something they’ve just read.",
+          "text": "They ask what you thought of something you just read.",
           "strength": -1,
           "categories": {
             "classic5": "QT",
@@ -45943,7 +45952,7 @@
         {
           "id": "b",
           "gestureId": "preferences_INT_new1",
-          "text": "They exchange ideas with you about a fascinating topic.",
+          "text": "They talk through a question you’ve been puzzling over together.",
           "strength": 0,
           "categories": {
             "classic5": "QT",
@@ -45977,7 +45986,7 @@
         {
           "id": "b",
           "gestureId": "preferences_INT_new2",
-          "text": "They explore a complex idea with you in depth.",
+          "text": "They read a piece that fascinated you so you can spend an evening exploring its ideas together.",
           "strength": 1,
           "categories": {
             "classic5": "QT",
@@ -46011,7 +46020,7 @@
         {
           "id": "b",
           "gestureId": "preferences_EIP_new0",
-          "text": "They ask about one of your personal interests.",
+          "text": "They ask how your personal project is going.",
           "strength": -1,
           "categories": {
             "classic5": null,
@@ -46045,7 +46054,7 @@
         {
           "id": "b",
           "gestureId": "preferences_EIP_new1",
-          "text": "They encourage you to pursue a goal of your own.",
+          "text": "They encourage you to sign up for something you’ve wanted to try.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -46079,7 +46088,7 @@
         {
           "id": "b",
           "gestureId": "preferences_EIP_new2",
-          "text": "They show wholehearted support for a long-term personal ambition.",
+          "text": "When you’re discouraged about a goal that matters to you, they remind you what you’ve accomplished and offer to help you make time for it.",
           "strength": 1,
           "categories": {
             "classic5": null,
@@ -46113,7 +46122,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SNI_new0",
-          "text": "They include you in a casual social invitation.",
+          "text": "When a friend joins you, they bring you into the conversation.",
           "strength": -1,
           "categories": {
             "classic5": null,
@@ -46147,7 +46156,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SNI_new1",
-          "text": "They invite you to spend time with their friends.",
+          "text": "They invite you to a small gathering with people they’re close to.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -46181,7 +46190,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SNI_new2",
-          "text": "They help you feel genuinely included in their close social circle.",
+          "text": "They plan a get-together with a close friend they think you’d enjoy getting to know.",
           "strength": 1,
           "categories": {
             "classic5": null,
@@ -46249,7 +46258,7 @@
         {
           "id": "b",
           "gestureId": "preferences_PAM_new1",
-          "text": "They prepare a cozy break for you.",
+          "text": "They warm a towel and set it out for you after a cold walk home.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -46283,7 +46292,7 @@
         {
           "id": "b",
           "gestureId": "preferences_PAM_new2",
-          "text": "They arrange a special relaxation experience for you.",
+          "text": "They set up a quiet evening with your favorite comforts after a draining week.",
           "strength": 1,
           "categories": {
             "classic5": null,
@@ -46317,7 +46326,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SDT_new0",
-          "text": "They let you know they are available to listen when life gets difficult.",
+          "text": "When plans fall through, they tell you they can see why you’re disappointed.",
           "strength": -1,
           "categories": {
             "classic5": null,
@@ -46351,7 +46360,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SDT_new1",
-          "text": "They make time to understand your feelings when you have a difficult day.",
+          "text": "After a difficult day, they listen while you tell them what happened.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -46385,7 +46394,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SDT_new2",
-          "text": "They offer sustained empathetic support when you go through a difficult period.",
+          "text": "When something’s weighing on you, they make time to talk when you’re ready and check in the next day.",
           "strength": 1,
           "categories": {
             "classic5": null,
@@ -46555,7 +46564,7 @@
         {
           "id": "b",
           "gestureId": "preferences_ACT_new1",
-          "text": "They make time for an activity you both enjoy.",
+          "text": "They spend an hour baking something you’ve wanted to try together.",
           "strength": 0,
           "categories": {
             "classic5": "QT",
@@ -46589,7 +46598,7 @@
         {
           "id": "b",
           "gestureId": "preferences_ACT_new2",
-          "text": "They arrange an afternoon of shared activities.",
+          "text": "They plan an afternoon around a hobby you love doing together.",
           "strength": 1,
           "categories": {
             "classic5": "QT",
@@ -46691,7 +46700,7 @@
         {
           "id": "b",
           "gestureId": "preferences_INT_new1",
-          "text": "They exchange ideas with you about a fascinating topic.",
+          "text": "They talk through a question you’ve been puzzling over together.",
           "strength": 0,
           "categories": {
             "classic5": "QT",
@@ -46725,7 +46734,7 @@
         {
           "id": "b",
           "gestureId": "preferences_INT_new2",
-          "text": "They explore a complex idea with you in depth.",
+          "text": "They read a piece that fascinated you so you can spend an evening exploring its ideas together.",
           "strength": 1,
           "categories": {
             "classic5": "QT",
@@ -46759,7 +46768,7 @@
         {
           "id": "b",
           "gestureId": "preferences_EIP_new1",
-          "text": "They encourage you to pursue a goal of your own.",
+          "text": "They encourage you to sign up for something you’ve wanted to try.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -46793,7 +46802,7 @@
         {
           "id": "b",
           "gestureId": "preferences_EIP_new2",
-          "text": "They show wholehearted support for a long-term personal ambition.",
+          "text": "When you’re discouraged about a goal that matters to you, they remind you what you’ve accomplished and offer to help you make time for it.",
           "strength": 1,
           "categories": {
             "classic5": null,
@@ -46827,7 +46836,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SNI_new1",
-          "text": "They invite you to spend time with their friends.",
+          "text": "They invite you to a small gathering with people they’re close to.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -46861,7 +46870,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SNI_new2",
-          "text": "They help you feel genuinely included in their close social circle.",
+          "text": "They plan a get-together with a close friend they think you’d enjoy getting to know.",
           "strength": 1,
           "categories": {
             "classic5": null,
@@ -46895,7 +46904,7 @@
         {
           "id": "b",
           "gestureId": "preferences_PAM_new1",
-          "text": "They prepare a cozy break for you.",
+          "text": "They warm a towel and set it out for you after a cold walk home.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -46929,7 +46938,7 @@
         {
           "id": "b",
           "gestureId": "preferences_PAM_new2",
-          "text": "They arrange a special relaxation experience for you.",
+          "text": "They set up a quiet evening with your favorite comforts after a draining week.",
           "strength": 1,
           "categories": {
             "classic5": null,
@@ -46963,7 +46972,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SDT_new1",
-          "text": "They make time to understand your feelings when you have a difficult day.",
+          "text": "After a difficult day, they listen while you tell them what happened.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -46997,7 +47006,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SDT_new2",
-          "text": "They offer sustained empathetic support when you go through a difficult period.",
+          "text": "When something’s weighing on you, they make time to talk when you’re ready and check in the next day.",
           "strength": 1,
           "categories": {
             "classic5": null,
@@ -47133,7 +47142,7 @@
         {
           "id": "b",
           "gestureId": "preferences_ACT_new1",
-          "text": "They make time for an activity you both enjoy.",
+          "text": "They spend an hour baking something you’ve wanted to try together.",
           "strength": 0,
           "categories": {
             "classic5": "QT",
@@ -47235,7 +47244,7 @@
         {
           "id": "b",
           "gestureId": "preferences_INT_new0",
-          "text": "They ask what you think about something they’ve just read.",
+          "text": "They ask what you thought of something you just read.",
           "strength": -1,
           "categories": {
             "classic5": "QT",
@@ -47269,7 +47278,7 @@
         {
           "id": "b",
           "gestureId": "preferences_INT_new1",
-          "text": "They exchange ideas with you about a fascinating topic.",
+          "text": "They talk through a question you’ve been puzzling over together.",
           "strength": 0,
           "categories": {
             "classic5": "QT",
@@ -47303,7 +47312,7 @@
         {
           "id": "b",
           "gestureId": "preferences_EIP_new0",
-          "text": "They ask about one of your personal interests.",
+          "text": "They ask how your personal project is going.",
           "strength": -1,
           "categories": {
             "classic5": null,
@@ -47337,7 +47346,7 @@
         {
           "id": "b",
           "gestureId": "preferences_EIP_new1",
-          "text": "They encourage you to pursue a goal of your own.",
+          "text": "They encourage you to sign up for something you’ve wanted to try.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -47371,7 +47380,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SNI_new0",
-          "text": "They include you in a casual social invitation.",
+          "text": "When a friend joins you, they bring you into the conversation.",
           "strength": -1,
           "categories": {
             "classic5": null,
@@ -47405,7 +47414,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SNI_new1",
-          "text": "They invite you to spend time with their friends.",
+          "text": "They invite you to a small gathering with people they’re close to.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -47473,7 +47482,7 @@
         {
           "id": "b",
           "gestureId": "preferences_PAM_new1",
-          "text": "They prepare a cozy break for you.",
+          "text": "They warm a towel and set it out for you after a cold walk home.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -47507,7 +47516,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SDT_new0",
-          "text": "They let you know they are available to listen when life gets difficult.",
+          "text": "When plans fall through, they tell you they can see why you’re disappointed.",
           "strength": -1,
           "categories": {
             "classic5": null,
@@ -47541,7 +47550,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SDT_new1",
-          "text": "They make time to understand your feelings when you have a difficult day.",
+          "text": "After a difficult day, they listen while you tell them what happened.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -47711,7 +47720,7 @@
         {
           "id": "b",
           "gestureId": "preferences_ACT_new1",
-          "text": "They make time for an activity you both enjoy.",
+          "text": "They spend an hour baking something you’ve wanted to try together.",
           "strength": 0,
           "categories": {
             "classic5": "QT",
@@ -47745,7 +47754,7 @@
         {
           "id": "b",
           "gestureId": "preferences_ACT_new2",
-          "text": "They arrange an afternoon of shared activities.",
+          "text": "They plan an afternoon around a hobby you love doing together.",
           "strength": 1,
           "categories": {
             "classic5": "QT",
@@ -47881,7 +47890,7 @@
         {
           "id": "b",
           "gestureId": "preferences_INT_new0",
-          "text": "They ask what you think about something they’ve just read.",
+          "text": "They ask what you thought of something you just read.",
           "strength": -1,
           "categories": {
             "classic5": "QT",
@@ -47915,7 +47924,7 @@
         {
           "id": "b",
           "gestureId": "preferences_INT_new1",
-          "text": "They exchange ideas with you about a fascinating topic.",
+          "text": "They talk through a question you’ve been puzzling over together.",
           "strength": 0,
           "categories": {
             "classic5": "QT",
@@ -47949,7 +47958,7 @@
         {
           "id": "b",
           "gestureId": "preferences_INT_new2",
-          "text": "They explore a complex idea with you in depth.",
+          "text": "They read a piece that fascinated you so you can spend an evening exploring its ideas together.",
           "strength": 1,
           "categories": {
             "classic5": "QT",
@@ -47983,7 +47992,7 @@
         {
           "id": "b",
           "gestureId": "preferences_EIP_new0",
-          "text": "They ask about one of your personal interests.",
+          "text": "They ask how your personal project is going.",
           "strength": -1,
           "categories": {
             "classic5": null,
@@ -48017,7 +48026,7 @@
         {
           "id": "b",
           "gestureId": "preferences_EIP_new1",
-          "text": "They encourage you to pursue a goal of your own.",
+          "text": "They encourage you to sign up for something you’ve wanted to try.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -48051,7 +48060,7 @@
         {
           "id": "b",
           "gestureId": "preferences_EIP_new2",
-          "text": "They show wholehearted support for a long-term personal ambition.",
+          "text": "When you’re discouraged about a goal that matters to you, they remind you what you’ve accomplished and offer to help you make time for it.",
           "strength": 1,
           "categories": {
             "classic5": null,
@@ -48085,7 +48094,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SNI_new0",
-          "text": "They include you in a casual social invitation.",
+          "text": "When a friend joins you, they bring you into the conversation.",
           "strength": -1,
           "categories": {
             "classic5": null,
@@ -48119,7 +48128,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SNI_new1",
-          "text": "They invite you to spend time with their friends.",
+          "text": "They invite you to a small gathering with people they’re close to.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -48153,7 +48162,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SNI_new2",
-          "text": "They help you feel genuinely included in their close social circle.",
+          "text": "They plan a get-together with a close friend they think you’d enjoy getting to know.",
           "strength": 1,
           "categories": {
             "classic5": null,
@@ -48221,7 +48230,7 @@
         {
           "id": "b",
           "gestureId": "preferences_PAM_new1",
-          "text": "They prepare a cozy break for you.",
+          "text": "They warm a towel and set it out for you after a cold walk home.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -48255,7 +48264,7 @@
         {
           "id": "b",
           "gestureId": "preferences_PAM_new2",
-          "text": "They arrange a special relaxation experience for you.",
+          "text": "They set up a quiet evening with your favorite comforts after a draining week.",
           "strength": 1,
           "categories": {
             "classic5": null,
@@ -48289,7 +48298,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SDT_new0",
-          "text": "They let you know they are available to listen when life gets difficult.",
+          "text": "When plans fall through, they tell you they can see why you’re disappointed.",
           "strength": -1,
           "categories": {
             "classic5": null,
@@ -48323,7 +48332,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SDT_new1",
-          "text": "They make time to understand your feelings when you have a difficult day.",
+          "text": "After a difficult day, they listen while you tell them what happened.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -48357,7 +48366,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SDT_new2",
-          "text": "They offer sustained empathetic support when you go through a difficult period.",
+          "text": "When something’s weighing on you, they make time to talk when you’re ready and check in the next day.",
           "strength": 1,
           "categories": {
             "classic5": null,
@@ -48459,7 +48468,7 @@
         {
           "id": "b",
           "gestureId": "preferences_ACT_new1",
-          "text": "They make time for an activity you both enjoy.",
+          "text": "They spend an hour baking something you’ve wanted to try together.",
           "strength": 0,
           "categories": {
             "classic5": "QT",
@@ -48493,7 +48502,7 @@
         {
           "id": "b",
           "gestureId": "preferences_ACT_new2",
-          "text": "They arrange an afternoon of shared activities.",
+          "text": "They plan an afternoon around a hobby you love doing together.",
           "strength": 1,
           "categories": {
             "classic5": "QT",
@@ -48595,7 +48604,7 @@
         {
           "id": "b",
           "gestureId": "preferences_INT_new1",
-          "text": "They exchange ideas with you about a fascinating topic.",
+          "text": "They talk through a question you’ve been puzzling over together.",
           "strength": 0,
           "categories": {
             "classic5": "QT",
@@ -48629,7 +48638,7 @@
         {
           "id": "b",
           "gestureId": "preferences_INT_new2",
-          "text": "They explore a complex idea with you in depth.",
+          "text": "They read a piece that fascinated you so you can spend an evening exploring its ideas together.",
           "strength": 1,
           "categories": {
             "classic5": "QT",
@@ -48663,7 +48672,7 @@
         {
           "id": "b",
           "gestureId": "preferences_EIP_new1",
-          "text": "They encourage you to pursue a goal of your own.",
+          "text": "They encourage you to sign up for something you’ve wanted to try.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -48697,7 +48706,7 @@
         {
           "id": "b",
           "gestureId": "preferences_EIP_new2",
-          "text": "They show wholehearted support for a long-term personal ambition.",
+          "text": "When you’re discouraged about a goal that matters to you, they remind you what you’ve accomplished and offer to help you make time for it.",
           "strength": 1,
           "categories": {
             "classic5": null,
@@ -48731,7 +48740,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SNI_new1",
-          "text": "They invite you to spend time with their friends.",
+          "text": "They invite you to a small gathering with people they’re close to.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -48765,7 +48774,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SNI_new2",
-          "text": "They help you feel genuinely included in their close social circle.",
+          "text": "They plan a get-together with a close friend they think you’d enjoy getting to know.",
           "strength": 1,
           "categories": {
             "classic5": null,
@@ -48799,7 +48808,7 @@
         {
           "id": "b",
           "gestureId": "preferences_PAM_new1",
-          "text": "They prepare a cozy break for you.",
+          "text": "They warm a towel and set it out for you after a cold walk home.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -48833,7 +48842,7 @@
         {
           "id": "b",
           "gestureId": "preferences_PAM_new2",
-          "text": "They arrange a special relaxation experience for you.",
+          "text": "They set up a quiet evening with your favorite comforts after a draining week.",
           "strength": 1,
           "categories": {
             "classic5": null,
@@ -48867,7 +48876,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SDT_new1",
-          "text": "They make time to understand your feelings when you have a difficult day.",
+          "text": "After a difficult day, they listen while you tell them what happened.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -48901,7 +48910,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SDT_new2",
-          "text": "They offer sustained empathetic support when you go through a difficult period.",
+          "text": "When something’s weighing on you, they make time to talk when you’re ready and check in the next day.",
           "strength": 1,
           "categories": {
             "classic5": null,
@@ -48969,7 +48978,7 @@
         {
           "id": "b",
           "gestureId": "preferences_ACT_new1",
-          "text": "They make time for an activity you both enjoy.",
+          "text": "They spend an hour baking something you’ve wanted to try together.",
           "strength": 0,
           "categories": {
             "classic5": "QT",
@@ -49071,7 +49080,7 @@
         {
           "id": "b",
           "gestureId": "preferences_INT_new0",
-          "text": "They ask what you think about something they’ve just read.",
+          "text": "They ask what you thought of something you just read.",
           "strength": -1,
           "categories": {
             "classic5": "QT",
@@ -49105,7 +49114,7 @@
         {
           "id": "b",
           "gestureId": "preferences_INT_new1",
-          "text": "They exchange ideas with you about a fascinating topic.",
+          "text": "They talk through a question you’ve been puzzling over together.",
           "strength": 0,
           "categories": {
             "classic5": "QT",
@@ -49139,7 +49148,7 @@
         {
           "id": "b",
           "gestureId": "preferences_EIP_new0",
-          "text": "They ask about one of your personal interests.",
+          "text": "They ask how your personal project is going.",
           "strength": -1,
           "categories": {
             "classic5": null,
@@ -49173,7 +49182,7 @@
         {
           "id": "b",
           "gestureId": "preferences_EIP_new1",
-          "text": "They encourage you to pursue a goal of your own.",
+          "text": "They encourage you to sign up for something you’ve wanted to try.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -49207,7 +49216,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SNI_new0",
-          "text": "They include you in a casual social invitation.",
+          "text": "When a friend joins you, they bring you into the conversation.",
           "strength": -1,
           "categories": {
             "classic5": null,
@@ -49241,7 +49250,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SNI_new1",
-          "text": "They invite you to spend time with their friends.",
+          "text": "They invite you to a small gathering with people they’re close to.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -49309,7 +49318,7 @@
         {
           "id": "b",
           "gestureId": "preferences_PAM_new1",
-          "text": "They prepare a cozy break for you.",
+          "text": "They warm a towel and set it out for you after a cold walk home.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -49343,7 +49352,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SDT_new0",
-          "text": "They let you know they are available to listen when life gets difficult.",
+          "text": "When plans fall through, they tell you they can see why you’re disappointed.",
           "strength": -1,
           "categories": {
             "classic5": null,
@@ -49377,7 +49386,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SDT_new1",
-          "text": "They make time to understand your feelings when you have a difficult day.",
+          "text": "After a difficult day, they listen while you tell them what happened.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -49445,7 +49454,7 @@
         {
           "id": "b",
           "gestureId": "preferences_ACT_new1",
-          "text": "They make time for an activity you both enjoy.",
+          "text": "They spend an hour baking something you’ve wanted to try together.",
           "strength": 0,
           "categories": {
             "classic5": "QT",
@@ -49479,7 +49488,7 @@
         {
           "id": "b",
           "gestureId": "preferences_ACT_new2",
-          "text": "They arrange an afternoon of shared activities.",
+          "text": "They plan an afternoon around a hobby you love doing together.",
           "strength": 1,
           "categories": {
             "classic5": "QT",
@@ -49615,7 +49624,7 @@
         {
           "id": "b",
           "gestureId": "preferences_INT_new0",
-          "text": "They ask what you think about something they’ve just read.",
+          "text": "They ask what you thought of something you just read.",
           "strength": -1,
           "categories": {
             "classic5": "QT",
@@ -49649,7 +49658,7 @@
         {
           "id": "b",
           "gestureId": "preferences_INT_new1",
-          "text": "They exchange ideas with you about a fascinating topic.",
+          "text": "They talk through a question you’ve been puzzling over together.",
           "strength": 0,
           "categories": {
             "classic5": "QT",
@@ -49683,7 +49692,7 @@
         {
           "id": "b",
           "gestureId": "preferences_INT_new2",
-          "text": "They explore a complex idea with you in depth.",
+          "text": "They read a piece that fascinated you so you can spend an evening exploring its ideas together.",
           "strength": 1,
           "categories": {
             "classic5": "QT",
@@ -49717,7 +49726,7 @@
         {
           "id": "b",
           "gestureId": "preferences_EIP_new0",
-          "text": "They ask about one of your personal interests.",
+          "text": "They ask how your personal project is going.",
           "strength": -1,
           "categories": {
             "classic5": null,
@@ -49751,7 +49760,7 @@
         {
           "id": "b",
           "gestureId": "preferences_EIP_new1",
-          "text": "They encourage you to pursue a goal of your own.",
+          "text": "They encourage you to sign up for something you’ve wanted to try.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -49785,7 +49794,7 @@
         {
           "id": "b",
           "gestureId": "preferences_EIP_new2",
-          "text": "They show wholehearted support for a long-term personal ambition.",
+          "text": "When you’re discouraged about a goal that matters to you, they remind you what you’ve accomplished and offer to help you make time for it.",
           "strength": 1,
           "categories": {
             "classic5": null,
@@ -49819,7 +49828,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SNI_new0",
-          "text": "They include you in a casual social invitation.",
+          "text": "When a friend joins you, they bring you into the conversation.",
           "strength": -1,
           "categories": {
             "classic5": null,
@@ -49853,7 +49862,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SNI_new1",
-          "text": "They invite you to spend time with their friends.",
+          "text": "They invite you to a small gathering with people they’re close to.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -49887,7 +49896,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SNI_new2",
-          "text": "They help you feel genuinely included in their close social circle.",
+          "text": "They plan a get-together with a close friend they think you’d enjoy getting to know.",
           "strength": 1,
           "categories": {
             "classic5": null,
@@ -49955,7 +49964,7 @@
         {
           "id": "b",
           "gestureId": "preferences_PAM_new1",
-          "text": "They prepare a cozy break for you.",
+          "text": "They warm a towel and set it out for you after a cold walk home.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -49989,7 +49998,7 @@
         {
           "id": "b",
           "gestureId": "preferences_PAM_new2",
-          "text": "They arrange a special relaxation experience for you.",
+          "text": "They set up a quiet evening with your favorite comforts after a draining week.",
           "strength": 1,
           "categories": {
             "classic5": null,
@@ -50023,7 +50032,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SDT_new0",
-          "text": "They let you know they are available to listen when life gets difficult.",
+          "text": "When plans fall through, they tell you they can see why you’re disappointed.",
           "strength": -1,
           "categories": {
             "classic5": null,
@@ -50057,7 +50066,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SDT_new1",
-          "text": "They make time to understand your feelings when you have a difficult day.",
+          "text": "After a difficult day, they listen while you tell them what happened.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -50091,7 +50100,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SDT_new2",
-          "text": "They offer sustained empathetic support when you go through a difficult period.",
+          "text": "When something’s weighing on you, they make time to talk when you’re ready and check in the next day.",
           "strength": 1,
           "categories": {
             "classic5": null,
@@ -50125,7 +50134,7 @@
         {
           "id": "b",
           "gestureId": "preferences_ACT_new1",
-          "text": "They make time for an activity you both enjoy.",
+          "text": "They spend an hour baking something you’ve wanted to try together.",
           "strength": 0,
           "categories": {
             "classic5": "QT",
@@ -50159,7 +50168,7 @@
         {
           "id": "b",
           "gestureId": "preferences_ACT_new2",
-          "text": "They arrange an afternoon of shared activities.",
+          "text": "They plan an afternoon around a hobby you love doing together.",
           "strength": 1,
           "categories": {
             "classic5": "QT",
@@ -50261,7 +50270,7 @@
         {
           "id": "b",
           "gestureId": "preferences_INT_new1",
-          "text": "They exchange ideas with you about a fascinating topic.",
+          "text": "They talk through a question you’ve been puzzling over together.",
           "strength": 0,
           "categories": {
             "classic5": "QT",
@@ -50295,7 +50304,7 @@
         {
           "id": "b",
           "gestureId": "preferences_INT_new2",
-          "text": "They explore a complex idea with you in depth.",
+          "text": "They read a piece that fascinated you so you can spend an evening exploring its ideas together.",
           "strength": 1,
           "categories": {
             "classic5": "QT",
@@ -50329,7 +50338,7 @@
         {
           "id": "b",
           "gestureId": "preferences_EIP_new1",
-          "text": "They encourage you to pursue a goal of your own.",
+          "text": "They encourage you to sign up for something you’ve wanted to try.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -50363,7 +50372,7 @@
         {
           "id": "b",
           "gestureId": "preferences_EIP_new2",
-          "text": "They show wholehearted support for a long-term personal ambition.",
+          "text": "When you’re discouraged about a goal that matters to you, they remind you what you’ve accomplished and offer to help you make time for it.",
           "strength": 1,
           "categories": {
             "classic5": null,
@@ -50397,7 +50406,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SNI_new1",
-          "text": "They invite you to spend time with their friends.",
+          "text": "They invite you to a small gathering with people they’re close to.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -50431,7 +50440,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SNI_new2",
-          "text": "They help you feel genuinely included in their close social circle.",
+          "text": "They plan a get-together with a close friend they think you’d enjoy getting to know.",
           "strength": 1,
           "categories": {
             "classic5": null,
@@ -50465,7 +50474,7 @@
         {
           "id": "b",
           "gestureId": "preferences_PAM_new1",
-          "text": "They prepare a cozy break for you.",
+          "text": "They warm a towel and set it out for you after a cold walk home.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -50499,7 +50508,7 @@
         {
           "id": "b",
           "gestureId": "preferences_PAM_new2",
-          "text": "They arrange a special relaxation experience for you.",
+          "text": "They set up a quiet evening with your favorite comforts after a draining week.",
           "strength": 1,
           "categories": {
             "classic5": null,
@@ -50533,7 +50542,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SDT_new1",
-          "text": "They make time to understand your feelings when you have a difficult day.",
+          "text": "After a difficult day, they listen while you tell them what happened.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -50567,7 +50576,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SDT_new2",
-          "text": "They offer sustained empathetic support when you go through a difficult period.",
+          "text": "When something’s weighing on you, they make time to talk when you’re ready and check in the next day.",
           "strength": 1,
           "categories": {
             "classic5": null,
@@ -50601,7 +50610,7 @@
         {
           "id": "b",
           "gestureId": "preferences_INT_new0",
-          "text": "They ask what you think about something they’ve just read.",
+          "text": "They ask what you thought of something you just read.",
           "strength": -1,
           "categories": {
             "classic5": "QT",
@@ -50635,7 +50644,7 @@
         {
           "id": "b",
           "gestureId": "preferences_INT_new1",
-          "text": "They exchange ideas with you about a fascinating topic.",
+          "text": "They talk through a question you’ve been puzzling over together.",
           "strength": 0,
           "categories": {
             "classic5": "QT",
@@ -50669,7 +50678,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SDT_new0",
-          "text": "They let you know they are available to listen when life gets difficult.",
+          "text": "When plans fall through, they tell you they can see why you’re disappointed.",
           "strength": -1,
           "categories": {
             "classic5": null,
@@ -50703,7 +50712,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SDT_new1",
-          "text": "They make time to understand your feelings when you have a difficult day.",
+          "text": "After a difficult day, they listen while you tell them what happened.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -50726,7 +50735,7 @@
         {
           "id": "a",
           "gestureId": "preferences_ACT_new1",
-          "text": "They make time for an activity you both enjoy.",
+          "text": "They spend an hour baking something you’ve wanted to try together.",
           "strength": 0,
           "categories": {
             "classic5": "QT",
@@ -50737,7 +50746,7 @@
         {
           "id": "b",
           "gestureId": "preferences_INT_new0",
-          "text": "They ask what you think about something they’ve just read.",
+          "text": "They ask what you thought of something you just read.",
           "strength": -1,
           "categories": {
             "classic5": "QT",
@@ -50760,7 +50769,7 @@
         {
           "id": "a",
           "gestureId": "preferences_ACT_new1",
-          "text": "They make time for an activity you both enjoy.",
+          "text": "They spend an hour baking something you’ve wanted to try together.",
           "strength": 0,
           "categories": {
             "classic5": "QT",
@@ -50771,7 +50780,7 @@
         {
           "id": "b",
           "gestureId": "preferences_INT_new1",
-          "text": "They exchange ideas with you about a fascinating topic.",
+          "text": "They talk through a question you’ve been puzzling over together.",
           "strength": 0,
           "categories": {
             "classic5": "QT",
@@ -50794,7 +50803,7 @@
         {
           "id": "a",
           "gestureId": "preferences_ACT_new1",
-          "text": "They make time for an activity you both enjoy.",
+          "text": "They spend an hour baking something you’ve wanted to try together.",
           "strength": 0,
           "categories": {
             "classic5": "QT",
@@ -50805,7 +50814,7 @@
         {
           "id": "b",
           "gestureId": "preferences_INT_new2",
-          "text": "They explore a complex idea with you in depth.",
+          "text": "They read a piece that fascinated you so you can spend an evening exploring its ideas together.",
           "strength": 1,
           "categories": {
             "classic5": "QT",
@@ -50828,7 +50837,7 @@
         {
           "id": "a",
           "gestureId": "preferences_ACT_new1",
-          "text": "They make time for an activity you both enjoy.",
+          "text": "They spend an hour baking something you’ve wanted to try together.",
           "strength": 0,
           "categories": {
             "classic5": "QT",
@@ -50839,7 +50848,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SDT_new0",
-          "text": "They let you know they are available to listen when life gets difficult.",
+          "text": "When plans fall through, they tell you they can see why you’re disappointed.",
           "strength": -1,
           "categories": {
             "classic5": null,
@@ -50862,7 +50871,7 @@
         {
           "id": "a",
           "gestureId": "preferences_ACT_new1",
-          "text": "They make time for an activity you both enjoy.",
+          "text": "They spend an hour baking something you’ve wanted to try together.",
           "strength": 0,
           "categories": {
             "classic5": "QT",
@@ -50873,7 +50882,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SDT_new1",
-          "text": "They make time to understand your feelings when you have a difficult day.",
+          "text": "After a difficult day, they listen while you tell them what happened.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -50896,7 +50905,7 @@
         {
           "id": "a",
           "gestureId": "preferences_ACT_new1",
-          "text": "They make time for an activity you both enjoy.",
+          "text": "They spend an hour baking something you’ve wanted to try together.",
           "strength": 0,
           "categories": {
             "classic5": "QT",
@@ -50907,7 +50916,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SDT_new2",
-          "text": "They offer sustained empathetic support when you go through a difficult period.",
+          "text": "When something’s weighing on you, they make time to talk when you’re ready and check in the next day.",
           "strength": 1,
           "categories": {
             "classic5": null,
@@ -50930,7 +50939,7 @@
         {
           "id": "a",
           "gestureId": "preferences_ACT_new2",
-          "text": "They arrange an afternoon of shared activities.",
+          "text": "They plan an afternoon around a hobby you love doing together.",
           "strength": 1,
           "categories": {
             "classic5": "QT",
@@ -50941,7 +50950,7 @@
         {
           "id": "b",
           "gestureId": "preferences_INT_new1",
-          "text": "They exchange ideas with you about a fascinating topic.",
+          "text": "They talk through a question you’ve been puzzling over together.",
           "strength": 0,
           "categories": {
             "classic5": "QT",
@@ -50964,7 +50973,7 @@
         {
           "id": "a",
           "gestureId": "preferences_ACT_new2",
-          "text": "They arrange an afternoon of shared activities.",
+          "text": "They plan an afternoon around a hobby you love doing together.",
           "strength": 1,
           "categories": {
             "classic5": "QT",
@@ -50975,7 +50984,7 @@
         {
           "id": "b",
           "gestureId": "preferences_INT_new2",
-          "text": "They explore a complex idea with you in depth.",
+          "text": "They read a piece that fascinated you so you can spend an evening exploring its ideas together.",
           "strength": 1,
           "categories": {
             "classic5": "QT",
@@ -50998,7 +51007,7 @@
         {
           "id": "a",
           "gestureId": "preferences_ACT_new2",
-          "text": "They arrange an afternoon of shared activities.",
+          "text": "They plan an afternoon around a hobby you love doing together.",
           "strength": 1,
           "categories": {
             "classic5": "QT",
@@ -51009,7 +51018,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SDT_new1",
-          "text": "They make time to understand your feelings when you have a difficult day.",
+          "text": "After a difficult day, they listen while you tell them what happened.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -51032,7 +51041,7 @@
         {
           "id": "a",
           "gestureId": "preferences_ACT_new2",
-          "text": "They arrange an afternoon of shared activities.",
+          "text": "They plan an afternoon around a hobby you love doing together.",
           "strength": 1,
           "categories": {
             "classic5": "QT",
@@ -51043,7 +51052,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SDT_new2",
-          "text": "They offer sustained empathetic support when you go through a difficult period.",
+          "text": "When something’s weighing on you, they make time to talk when you’re ready and check in the next day.",
           "strength": 1,
           "categories": {
             "classic5": null,
@@ -51077,7 +51086,7 @@
         {
           "id": "b",
           "gestureId": "preferences_EIP_new0",
-          "text": "They ask about one of your personal interests.",
+          "text": "They ask how your personal project is going.",
           "strength": -1,
           "categories": {
             "classic5": null,
@@ -51111,7 +51120,7 @@
         {
           "id": "b",
           "gestureId": "preferences_EIP_new1",
-          "text": "They encourage you to pursue a goal of your own.",
+          "text": "They encourage you to sign up for something you’ve wanted to try.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -51145,7 +51154,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SNI_new0",
-          "text": "They include you in a casual social invitation.",
+          "text": "When a friend joins you, they bring you into the conversation.",
           "strength": -1,
           "categories": {
             "classic5": null,
@@ -51179,7 +51188,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SNI_new1",
-          "text": "They invite you to spend time with their friends.",
+          "text": "They invite you to a small gathering with people they’re close to.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -51247,7 +51256,7 @@
         {
           "id": "b",
           "gestureId": "preferences_PAM_new1",
-          "text": "They prepare a cozy break for you.",
+          "text": "They warm a towel and set it out for you after a cold walk home.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -51281,7 +51290,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SDT_new0",
-          "text": "They let you know they are available to listen when life gets difficult.",
+          "text": "When plans fall through, they tell you they can see why you’re disappointed.",
           "strength": -1,
           "categories": {
             "classic5": null,
@@ -51315,7 +51324,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SDT_new1",
-          "text": "They make time to understand your feelings when you have a difficult day.",
+          "text": "After a difficult day, they listen while you tell them what happened.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -51349,7 +51358,7 @@
         {
           "id": "b",
           "gestureId": "preferences_EIP_new0",
-          "text": "They ask about one of your personal interests.",
+          "text": "They ask how your personal project is going.",
           "strength": -1,
           "categories": {
             "classic5": null,
@@ -51383,7 +51392,7 @@
         {
           "id": "b",
           "gestureId": "preferences_EIP_new1",
-          "text": "They encourage you to pursue a goal of your own.",
+          "text": "They encourage you to sign up for something you’ve wanted to try.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -51417,7 +51426,7 @@
         {
           "id": "b",
           "gestureId": "preferences_EIP_new2",
-          "text": "They show wholehearted support for a long-term personal ambition.",
+          "text": "When you’re discouraged about a goal that matters to you, they remind you what you’ve accomplished and offer to help you make time for it.",
           "strength": 1,
           "categories": {
             "classic5": null,
@@ -51451,7 +51460,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SNI_new0",
-          "text": "They include you in a casual social invitation.",
+          "text": "When a friend joins you, they bring you into the conversation.",
           "strength": -1,
           "categories": {
             "classic5": null,
@@ -51485,7 +51494,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SNI_new1",
-          "text": "They invite you to spend time with their friends.",
+          "text": "They invite you to a small gathering with people they’re close to.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -51519,7 +51528,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SNI_new2",
-          "text": "They help you feel genuinely included in their close social circle.",
+          "text": "They plan a get-together with a close friend they think you’d enjoy getting to know.",
           "strength": 1,
           "categories": {
             "classic5": null,
@@ -51587,7 +51596,7 @@
         {
           "id": "b",
           "gestureId": "preferences_PAM_new1",
-          "text": "They prepare a cozy break for you.",
+          "text": "They warm a towel and set it out for you after a cold walk home.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -51621,7 +51630,7 @@
         {
           "id": "b",
           "gestureId": "preferences_PAM_new2",
-          "text": "They arrange a special relaxation experience for you.",
+          "text": "They set up a quiet evening with your favorite comforts after a draining week.",
           "strength": 1,
           "categories": {
             "classic5": null,
@@ -51655,7 +51664,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SDT_new0",
-          "text": "They let you know they are available to listen when life gets difficult.",
+          "text": "When plans fall through, they tell you they can see why you’re disappointed.",
           "strength": -1,
           "categories": {
             "classic5": null,
@@ -51689,7 +51698,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SDT_new1",
-          "text": "They make time to understand your feelings when you have a difficult day.",
+          "text": "After a difficult day, they listen while you tell them what happened.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -51723,7 +51732,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SDT_new2",
-          "text": "They offer sustained empathetic support when you go through a difficult period.",
+          "text": "When something’s weighing on you, they make time to talk when you’re ready and check in the next day.",
           "strength": 1,
           "categories": {
             "classic5": null,
@@ -51757,7 +51766,7 @@
         {
           "id": "b",
           "gestureId": "preferences_EIP_new1",
-          "text": "They encourage you to pursue a goal of your own.",
+          "text": "They encourage you to sign up for something you’ve wanted to try.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -51791,7 +51800,7 @@
         {
           "id": "b",
           "gestureId": "preferences_EIP_new2",
-          "text": "They show wholehearted support for a long-term personal ambition.",
+          "text": "When you’re discouraged about a goal that matters to you, they remind you what you’ve accomplished and offer to help you make time for it.",
           "strength": 1,
           "categories": {
             "classic5": null,
@@ -51825,7 +51834,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SNI_new1",
-          "text": "They invite you to spend time with their friends.",
+          "text": "They invite you to a small gathering with people they’re close to.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -51859,7 +51868,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SNI_new2",
-          "text": "They help you feel genuinely included in their close social circle.",
+          "text": "They plan a get-together with a close friend they think you’d enjoy getting to know.",
           "strength": 1,
           "categories": {
             "classic5": null,
@@ -51893,7 +51902,7 @@
         {
           "id": "b",
           "gestureId": "preferences_PAM_new1",
-          "text": "They prepare a cozy break for you.",
+          "text": "They warm a towel and set it out for you after a cold walk home.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -51927,7 +51936,7 @@
         {
           "id": "b",
           "gestureId": "preferences_PAM_new2",
-          "text": "They arrange a special relaxation experience for you.",
+          "text": "They set up a quiet evening with your favorite comforts after a draining week.",
           "strength": 1,
           "categories": {
             "classic5": null,
@@ -51961,7 +51970,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SDT_new1",
-          "text": "They make time to understand your feelings when you have a difficult day.",
+          "text": "After a difficult day, they listen while you tell them what happened.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -51995,7 +52004,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SDT_new2",
-          "text": "They offer sustained empathetic support when you go through a difficult period.",
+          "text": "When something’s weighing on you, they make time to talk when you’re ready and check in the next day.",
           "strength": 1,
           "categories": {
             "classic5": null,
@@ -52018,7 +52027,7 @@
         {
           "id": "a",
           "gestureId": "preferences_INT_new0",
-          "text": "They ask what you think about something they’ve just read.",
+          "text": "They ask what you thought of something you just read.",
           "strength": -1,
           "categories": {
             "classic5": "QT",
@@ -52029,7 +52038,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SDT_new0",
-          "text": "They let you know they are available to listen when life gets difficult.",
+          "text": "When plans fall through, they tell you they can see why you’re disappointed.",
           "strength": -1,
           "categories": {
             "classic5": null,
@@ -52052,7 +52061,7 @@
         {
           "id": "a",
           "gestureId": "preferences_INT_new0",
-          "text": "They ask what you think about something they’ve just read.",
+          "text": "They ask what you thought of something you just read.",
           "strength": -1,
           "categories": {
             "classic5": "QT",
@@ -52063,7 +52072,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SDT_new1",
-          "text": "They make time to understand your feelings when you have a difficult day.",
+          "text": "After a difficult day, they listen while you tell them what happened.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -52086,7 +52095,7 @@
         {
           "id": "a",
           "gestureId": "preferences_INT_new1",
-          "text": "They exchange ideas with you about a fascinating topic.",
+          "text": "They talk through a question you’ve been puzzling over together.",
           "strength": 0,
           "categories": {
             "classic5": "QT",
@@ -52097,7 +52106,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SDT_new0",
-          "text": "They let you know they are available to listen when life gets difficult.",
+          "text": "When plans fall through, they tell you they can see why you’re disappointed.",
           "strength": -1,
           "categories": {
             "classic5": null,
@@ -52120,7 +52129,7 @@
         {
           "id": "a",
           "gestureId": "preferences_INT_new1",
-          "text": "They exchange ideas with you about a fascinating topic.",
+          "text": "They talk through a question you’ve been puzzling over together.",
           "strength": 0,
           "categories": {
             "classic5": "QT",
@@ -52131,7 +52140,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SDT_new1",
-          "text": "They make time to understand your feelings when you have a difficult day.",
+          "text": "After a difficult day, they listen while you tell them what happened.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -52154,7 +52163,7 @@
         {
           "id": "a",
           "gestureId": "preferences_INT_new1",
-          "text": "They exchange ideas with you about a fascinating topic.",
+          "text": "They talk through a question you’ve been puzzling over together.",
           "strength": 0,
           "categories": {
             "classic5": "QT",
@@ -52165,7 +52174,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SDT_new2",
-          "text": "They offer sustained empathetic support when you go through a difficult period.",
+          "text": "When something’s weighing on you, they make time to talk when you’re ready and check in the next day.",
           "strength": 1,
           "categories": {
             "classic5": null,
@@ -52188,7 +52197,7 @@
         {
           "id": "a",
           "gestureId": "preferences_INT_new2",
-          "text": "They explore a complex idea with you in depth.",
+          "text": "They read a piece that fascinated you so you can spend an evening exploring its ideas together.",
           "strength": 1,
           "categories": {
             "classic5": "QT",
@@ -52199,7 +52208,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SDT_new1",
-          "text": "They make time to understand your feelings when you have a difficult day.",
+          "text": "After a difficult day, they listen while you tell them what happened.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -52222,7 +52231,7 @@
         {
           "id": "a",
           "gestureId": "preferences_INT_new2",
-          "text": "They explore a complex idea with you in depth.",
+          "text": "They read a piece that fascinated you so you can spend an evening exploring its ideas together.",
           "strength": 1,
           "categories": {
             "classic5": "QT",
@@ -52233,7 +52242,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SDT_new2",
-          "text": "They offer sustained empathetic support when you go through a difficult period.",
+          "text": "When something’s weighing on you, they make time to talk when you’re ready and check in the next day.",
           "strength": 1,
           "categories": {
             "classic5": null,
@@ -52256,7 +52265,7 @@
         {
           "id": "a",
           "gestureId": "preferences_EIP_new0",
-          "text": "They ask about one of your personal interests.",
+          "text": "They ask how your personal project is going.",
           "strength": -1,
           "categories": {
             "classic5": null,
@@ -52267,7 +52276,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SNI_new0",
-          "text": "They include you in a casual social invitation.",
+          "text": "When a friend joins you, they bring you into the conversation.",
           "strength": -1,
           "categories": {
             "classic5": null,
@@ -52290,7 +52299,7 @@
         {
           "id": "a",
           "gestureId": "preferences_EIP_new0",
-          "text": "They ask about one of your personal interests.",
+          "text": "They ask how your personal project is going.",
           "strength": -1,
           "categories": {
             "classic5": null,
@@ -52301,7 +52310,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SNI_new1",
-          "text": "They invite you to spend time with their friends.",
+          "text": "They invite you to a small gathering with people they’re close to.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -52324,7 +52333,7 @@
         {
           "id": "a",
           "gestureId": "preferences_EIP_new0",
-          "text": "They ask about one of your personal interests.",
+          "text": "They ask how your personal project is going.",
           "strength": -1,
           "categories": {
             "classic5": null,
@@ -52358,7 +52367,7 @@
         {
           "id": "a",
           "gestureId": "preferences_EIP_new0",
-          "text": "They ask about one of your personal interests.",
+          "text": "They ask how your personal project is going.",
           "strength": -1,
           "categories": {
             "classic5": null,
@@ -52369,7 +52378,7 @@
         {
           "id": "b",
           "gestureId": "preferences_PAM_new1",
-          "text": "They prepare a cozy break for you.",
+          "text": "They warm a towel and set it out for you after a cold walk home.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -52392,7 +52401,7 @@
         {
           "id": "a",
           "gestureId": "preferences_EIP_new0",
-          "text": "They ask about one of your personal interests.",
+          "text": "They ask how your personal project is going.",
           "strength": -1,
           "categories": {
             "classic5": null,
@@ -52403,7 +52412,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SDT_new0",
-          "text": "They let you know they are available to listen when life gets difficult.",
+          "text": "When plans fall through, they tell you they can see why you’re disappointed.",
           "strength": -1,
           "categories": {
             "classic5": null,
@@ -52426,7 +52435,7 @@
         {
           "id": "a",
           "gestureId": "preferences_EIP_new0",
-          "text": "They ask about one of your personal interests.",
+          "text": "They ask how your personal project is going.",
           "strength": -1,
           "categories": {
             "classic5": null,
@@ -52437,7 +52446,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SDT_new1",
-          "text": "They make time to understand your feelings when you have a difficult day.",
+          "text": "After a difficult day, they listen while you tell them what happened.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -52460,7 +52469,7 @@
         {
           "id": "a",
           "gestureId": "preferences_EIP_new1",
-          "text": "They encourage you to pursue a goal of your own.",
+          "text": "They encourage you to sign up for something you’ve wanted to try.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -52471,7 +52480,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SNI_new0",
-          "text": "They include you in a casual social invitation.",
+          "text": "When a friend joins you, they bring you into the conversation.",
           "strength": -1,
           "categories": {
             "classic5": null,
@@ -52494,7 +52503,7 @@
         {
           "id": "a",
           "gestureId": "preferences_EIP_new1",
-          "text": "They encourage you to pursue a goal of your own.",
+          "text": "They encourage you to sign up for something you’ve wanted to try.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -52505,7 +52514,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SNI_new1",
-          "text": "They invite you to spend time with their friends.",
+          "text": "They invite you to a small gathering with people they’re close to.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -52528,7 +52537,7 @@
         {
           "id": "a",
           "gestureId": "preferences_EIP_new1",
-          "text": "They encourage you to pursue a goal of your own.",
+          "text": "They encourage you to sign up for something you’ve wanted to try.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -52539,7 +52548,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SNI_new2",
-          "text": "They help you feel genuinely included in their close social circle.",
+          "text": "They plan a get-together with a close friend they think you’d enjoy getting to know.",
           "strength": 1,
           "categories": {
             "classic5": null,
@@ -52562,7 +52571,7 @@
         {
           "id": "a",
           "gestureId": "preferences_EIP_new1",
-          "text": "They encourage you to pursue a goal of your own.",
+          "text": "They encourage you to sign up for something you’ve wanted to try.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -52596,7 +52605,7 @@
         {
           "id": "a",
           "gestureId": "preferences_EIP_new1",
-          "text": "They encourage you to pursue a goal of your own.",
+          "text": "They encourage you to sign up for something you’ve wanted to try.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -52607,7 +52616,7 @@
         {
           "id": "b",
           "gestureId": "preferences_PAM_new1",
-          "text": "They prepare a cozy break for you.",
+          "text": "They warm a towel and set it out for you after a cold walk home.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -52630,7 +52639,7 @@
         {
           "id": "a",
           "gestureId": "preferences_EIP_new1",
-          "text": "They encourage you to pursue a goal of your own.",
+          "text": "They encourage you to sign up for something you’ve wanted to try.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -52641,7 +52650,7 @@
         {
           "id": "b",
           "gestureId": "preferences_PAM_new2",
-          "text": "They arrange a special relaxation experience for you.",
+          "text": "They set up a quiet evening with your favorite comforts after a draining week.",
           "strength": 1,
           "categories": {
             "classic5": null,
@@ -52664,7 +52673,7 @@
         {
           "id": "a",
           "gestureId": "preferences_EIP_new1",
-          "text": "They encourage you to pursue a goal of your own.",
+          "text": "They encourage you to sign up for something you’ve wanted to try.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -52675,7 +52684,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SDT_new0",
-          "text": "They let you know they are available to listen when life gets difficult.",
+          "text": "When plans fall through, they tell you they can see why you’re disappointed.",
           "strength": -1,
           "categories": {
             "classic5": null,
@@ -52698,7 +52707,7 @@
         {
           "id": "a",
           "gestureId": "preferences_EIP_new1",
-          "text": "They encourage you to pursue a goal of your own.",
+          "text": "They encourage you to sign up for something you’ve wanted to try.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -52709,7 +52718,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SDT_new1",
-          "text": "They make time to understand your feelings when you have a difficult day.",
+          "text": "After a difficult day, they listen while you tell them what happened.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -52732,7 +52741,7 @@
         {
           "id": "a",
           "gestureId": "preferences_EIP_new1",
-          "text": "They encourage you to pursue a goal of your own.",
+          "text": "They encourage you to sign up for something you’ve wanted to try.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -52743,7 +52752,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SDT_new2",
-          "text": "They offer sustained empathetic support when you go through a difficult period.",
+          "text": "When something’s weighing on you, they make time to talk when you’re ready and check in the next day.",
           "strength": 1,
           "categories": {
             "classic5": null,
@@ -52766,7 +52775,7 @@
         {
           "id": "a",
           "gestureId": "preferences_EIP_new2",
-          "text": "They show wholehearted support for a long-term personal ambition.",
+          "text": "When you’re discouraged about a goal that matters to you, they remind you what you’ve accomplished and offer to help you make time for it.",
           "strength": 1,
           "categories": {
             "classic5": null,
@@ -52777,7 +52786,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SNI_new1",
-          "text": "They invite you to spend time with their friends.",
+          "text": "They invite you to a small gathering with people they’re close to.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -52800,7 +52809,7 @@
         {
           "id": "a",
           "gestureId": "preferences_EIP_new2",
-          "text": "They show wholehearted support for a long-term personal ambition.",
+          "text": "When you’re discouraged about a goal that matters to you, they remind you what you’ve accomplished and offer to help you make time for it.",
           "strength": 1,
           "categories": {
             "classic5": null,
@@ -52811,7 +52820,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SNI_new2",
-          "text": "They help you feel genuinely included in their close social circle.",
+          "text": "They plan a get-together with a close friend they think you’d enjoy getting to know.",
           "strength": 1,
           "categories": {
             "classic5": null,
@@ -52834,7 +52843,7 @@
         {
           "id": "a",
           "gestureId": "preferences_EIP_new2",
-          "text": "They show wholehearted support for a long-term personal ambition.",
+          "text": "When you’re discouraged about a goal that matters to you, they remind you what you’ve accomplished and offer to help you make time for it.",
           "strength": 1,
           "categories": {
             "classic5": null,
@@ -52845,7 +52854,7 @@
         {
           "id": "b",
           "gestureId": "preferences_PAM_new1",
-          "text": "They prepare a cozy break for you.",
+          "text": "They warm a towel and set it out for you after a cold walk home.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -52868,7 +52877,7 @@
         {
           "id": "a",
           "gestureId": "preferences_EIP_new2",
-          "text": "They show wholehearted support for a long-term personal ambition.",
+          "text": "When you’re discouraged about a goal that matters to you, they remind you what you’ve accomplished and offer to help you make time for it.",
           "strength": 1,
           "categories": {
             "classic5": null,
@@ -52879,7 +52888,7 @@
         {
           "id": "b",
           "gestureId": "preferences_PAM_new2",
-          "text": "They arrange a special relaxation experience for you.",
+          "text": "They set up a quiet evening with your favorite comforts after a draining week.",
           "strength": 1,
           "categories": {
             "classic5": null,
@@ -52902,7 +52911,7 @@
         {
           "id": "a",
           "gestureId": "preferences_EIP_new2",
-          "text": "They show wholehearted support for a long-term personal ambition.",
+          "text": "When you’re discouraged about a goal that matters to you, they remind you what you’ve accomplished and offer to help you make time for it.",
           "strength": 1,
           "categories": {
             "classic5": null,
@@ -52913,7 +52922,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SDT_new1",
-          "text": "They make time to understand your feelings when you have a difficult day.",
+          "text": "After a difficult day, they listen while you tell them what happened.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -52936,7 +52945,7 @@
         {
           "id": "a",
           "gestureId": "preferences_EIP_new2",
-          "text": "They show wholehearted support for a long-term personal ambition.",
+          "text": "When you’re discouraged about a goal that matters to you, they remind you what you’ve accomplished and offer to help you make time for it.",
           "strength": 1,
           "categories": {
             "classic5": null,
@@ -52947,7 +52956,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SDT_new2",
-          "text": "They offer sustained empathetic support when you go through a difficult period.",
+          "text": "When something’s weighing on you, they make time to talk when you’re ready and check in the next day.",
           "strength": 1,
           "categories": {
             "classic5": null,
@@ -52970,7 +52979,7 @@
         {
           "id": "a",
           "gestureId": "preferences_SNI_new0",
-          "text": "They include you in a casual social invitation.",
+          "text": "When a friend joins you, they bring you into the conversation.",
           "strength": -1,
           "categories": {
             "classic5": null,
@@ -53004,7 +53013,7 @@
         {
           "id": "a",
           "gestureId": "preferences_SNI_new0",
-          "text": "They include you in a casual social invitation.",
+          "text": "When a friend joins you, they bring you into the conversation.",
           "strength": -1,
           "categories": {
             "classic5": null,
@@ -53015,7 +53024,7 @@
         {
           "id": "b",
           "gestureId": "preferences_PAM_new1",
-          "text": "They prepare a cozy break for you.",
+          "text": "They warm a towel and set it out for you after a cold walk home.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -53038,7 +53047,7 @@
         {
           "id": "a",
           "gestureId": "preferences_SNI_new0",
-          "text": "They include you in a casual social invitation.",
+          "text": "When a friend joins you, they bring you into the conversation.",
           "strength": -1,
           "categories": {
             "classic5": null,
@@ -53049,7 +53058,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SDT_new0",
-          "text": "They let you know they are available to listen when life gets difficult.",
+          "text": "When plans fall through, they tell you they can see why you’re disappointed.",
           "strength": -1,
           "categories": {
             "classic5": null,
@@ -53072,7 +53081,7 @@
         {
           "id": "a",
           "gestureId": "preferences_SNI_new0",
-          "text": "They include you in a casual social invitation.",
+          "text": "When a friend joins you, they bring you into the conversation.",
           "strength": -1,
           "categories": {
             "classic5": null,
@@ -53083,7 +53092,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SDT_new1",
-          "text": "They make time to understand your feelings when you have a difficult day.",
+          "text": "After a difficult day, they listen while you tell them what happened.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -53106,7 +53115,7 @@
         {
           "id": "a",
           "gestureId": "preferences_SNI_new1",
-          "text": "They invite you to spend time with their friends.",
+          "text": "They invite you to a small gathering with people they’re close to.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -53140,7 +53149,7 @@
         {
           "id": "a",
           "gestureId": "preferences_SNI_new1",
-          "text": "They invite you to spend time with their friends.",
+          "text": "They invite you to a small gathering with people they’re close to.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -53151,7 +53160,7 @@
         {
           "id": "b",
           "gestureId": "preferences_PAM_new1",
-          "text": "They prepare a cozy break for you.",
+          "text": "They warm a towel and set it out for you after a cold walk home.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -53174,7 +53183,7 @@
         {
           "id": "a",
           "gestureId": "preferences_SNI_new1",
-          "text": "They invite you to spend time with their friends.",
+          "text": "They invite you to a small gathering with people they’re close to.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -53185,7 +53194,7 @@
         {
           "id": "b",
           "gestureId": "preferences_PAM_new2",
-          "text": "They arrange a special relaxation experience for you.",
+          "text": "They set up a quiet evening with your favorite comforts after a draining week.",
           "strength": 1,
           "categories": {
             "classic5": null,
@@ -53208,7 +53217,7 @@
         {
           "id": "a",
           "gestureId": "preferences_SNI_new1",
-          "text": "They invite you to spend time with their friends.",
+          "text": "They invite you to a small gathering with people they’re close to.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -53219,7 +53228,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SDT_new0",
-          "text": "They let you know they are available to listen when life gets difficult.",
+          "text": "When plans fall through, they tell you they can see why you’re disappointed.",
           "strength": -1,
           "categories": {
             "classic5": null,
@@ -53242,7 +53251,7 @@
         {
           "id": "a",
           "gestureId": "preferences_SNI_new1",
-          "text": "They invite you to spend time with their friends.",
+          "text": "They invite you to a small gathering with people they’re close to.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -53253,7 +53262,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SDT_new1",
-          "text": "They make time to understand your feelings when you have a difficult day.",
+          "text": "After a difficult day, they listen while you tell them what happened.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -53276,7 +53285,7 @@
         {
           "id": "a",
           "gestureId": "preferences_SNI_new1",
-          "text": "They invite you to spend time with their friends.",
+          "text": "They invite you to a small gathering with people they’re close to.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -53287,7 +53296,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SDT_new2",
-          "text": "They offer sustained empathetic support when you go through a difficult period.",
+          "text": "When something’s weighing on you, they make time to talk when you’re ready and check in the next day.",
           "strength": 1,
           "categories": {
             "classic5": null,
@@ -53310,7 +53319,7 @@
         {
           "id": "a",
           "gestureId": "preferences_SNI_new2",
-          "text": "They help you feel genuinely included in their close social circle.",
+          "text": "They plan a get-together with a close friend they think you’d enjoy getting to know.",
           "strength": 1,
           "categories": {
             "classic5": null,
@@ -53321,7 +53330,7 @@
         {
           "id": "b",
           "gestureId": "preferences_PAM_new1",
-          "text": "They prepare a cozy break for you.",
+          "text": "They warm a towel and set it out for you after a cold walk home.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -53344,7 +53353,7 @@
         {
           "id": "a",
           "gestureId": "preferences_SNI_new2",
-          "text": "They help you feel genuinely included in their close social circle.",
+          "text": "They plan a get-together with a close friend they think you’d enjoy getting to know.",
           "strength": 1,
           "categories": {
             "classic5": null,
@@ -53355,7 +53364,7 @@
         {
           "id": "b",
           "gestureId": "preferences_PAM_new2",
-          "text": "They arrange a special relaxation experience for you.",
+          "text": "They set up a quiet evening with your favorite comforts after a draining week.",
           "strength": 1,
           "categories": {
             "classic5": null,
@@ -53378,7 +53387,7 @@
         {
           "id": "a",
           "gestureId": "preferences_SNI_new2",
-          "text": "They help you feel genuinely included in their close social circle.",
+          "text": "They plan a get-together with a close friend they think you’d enjoy getting to know.",
           "strength": 1,
           "categories": {
             "classic5": null,
@@ -53389,7 +53398,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SDT_new1",
-          "text": "They make time to understand your feelings when you have a difficult day.",
+          "text": "After a difficult day, they listen while you tell them what happened.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -53412,7 +53421,7 @@
         {
           "id": "a",
           "gestureId": "preferences_SNI_new2",
-          "text": "They help you feel genuinely included in their close social circle.",
+          "text": "They plan a get-together with a close friend they think you’d enjoy getting to know.",
           "strength": 1,
           "categories": {
             "classic5": null,
@@ -53423,7 +53432,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SDT_new2",
-          "text": "They offer sustained empathetic support when you go through a difficult period.",
+          "text": "When something’s weighing on you, they make time to talk when you’re ready and check in the next day.",
           "strength": 1,
           "categories": {
             "classic5": null,
@@ -53457,7 +53466,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SDT_new0",
-          "text": "They let you know they are available to listen when life gets difficult.",
+          "text": "When plans fall through, they tell you they can see why you’re disappointed.",
           "strength": -1,
           "categories": {
             "classic5": null,
@@ -53491,7 +53500,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SDT_new1",
-          "text": "They make time to understand your feelings when you have a difficult day.",
+          "text": "After a difficult day, they listen while you tell them what happened.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -53514,7 +53523,7 @@
         {
           "id": "a",
           "gestureId": "preferences_PAM_new1",
-          "text": "They prepare a cozy break for you.",
+          "text": "They warm a towel and set it out for you after a cold walk home.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -53525,7 +53534,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SDT_new0",
-          "text": "They let you know they are available to listen when life gets difficult.",
+          "text": "When plans fall through, they tell you they can see why you’re disappointed.",
           "strength": -1,
           "categories": {
             "classic5": null,
@@ -53548,7 +53557,7 @@
         {
           "id": "a",
           "gestureId": "preferences_PAM_new1",
-          "text": "They prepare a cozy break for you.",
+          "text": "They warm a towel and set it out for you after a cold walk home.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -53559,7 +53568,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SDT_new1",
-          "text": "They make time to understand your feelings when you have a difficult day.",
+          "text": "After a difficult day, they listen while you tell them what happened.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -53582,7 +53591,7 @@
         {
           "id": "a",
           "gestureId": "preferences_PAM_new1",
-          "text": "They prepare a cozy break for you.",
+          "text": "They warm a towel and set it out for you after a cold walk home.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -53593,7 +53602,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SDT_new2",
-          "text": "They offer sustained empathetic support when you go through a difficult period.",
+          "text": "When something’s weighing on you, they make time to talk when you’re ready and check in the next day.",
           "strength": 1,
           "categories": {
             "classic5": null,
@@ -53616,7 +53625,7 @@
         {
           "id": "a",
           "gestureId": "preferences_PAM_new2",
-          "text": "They arrange a special relaxation experience for you.",
+          "text": "They set up a quiet evening with your favorite comforts after a draining week.",
           "strength": 1,
           "categories": {
             "classic5": null,
@@ -53627,7 +53636,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SDT_new1",
-          "text": "They make time to understand your feelings when you have a difficult day.",
+          "text": "After a difficult day, they listen while you tell them what happened.",
           "strength": 0,
           "categories": {
             "classic5": null,
@@ -53650,7 +53659,7 @@
         {
           "id": "a",
           "gestureId": "preferences_PAM_new2",
-          "text": "They arrange a special relaxation experience for you.",
+          "text": "They set up a quiet evening with your favorite comforts after a draining week.",
           "strength": 1,
           "categories": {
             "classic5": null,
@@ -53661,7 +53670,7 @@
         {
           "id": "b",
           "gestureId": "preferences_SDT_new2",
-          "text": "They offer sustained empathetic support when you go through a difficult period.",
+          "text": "When something’s weighing on you, they make time to talk when you’re ready and check in the next day.",
           "strength": 1,
           "categories": {
             "classic5": null,
@@ -55131,7 +55140,7 @@
         {
           "id": "b",
           "gestureId": "joy_words",
-          "text": "They tell you what made them proud as they watched you work on it.",
+          "text": "They tell you what made them proud when you shared your good news.",
           "strength": 0,
           "categories": {
             "classic5": "WA",
@@ -55295,7 +55304,7 @@
         {
           "id": "a",
           "gestureId": "joy_words",
-          "text": "They tell you what made them proud as they watched you work on it.",
+          "text": "They tell you what made them proud when you shared your good news.",
           "strength": 0,
           "categories": {
             "classic5": "WA",
@@ -55330,7 +55339,7 @@
         {
           "id": "a",
           "gestureId": "joy_words",
-          "text": "They tell you what made them proud as they watched you work on it.",
+          "text": "They tell you what made them proud when you shared your good news.",
           "strength": 0,
           "categories": {
             "classic5": "WA",
@@ -55365,7 +55374,7 @@
         {
           "id": "a",
           "gestureId": "joy_words",
-          "text": "They tell you what made them proud as they watched you work on it.",
+          "text": "They tell you what made them proud when you shared your good news.",
           "strength": 0,
           "categories": {
             "classic5": "WA",
@@ -55400,7 +55409,7 @@
         {
           "id": "a",
           "gestureId": "joy_words",
-          "text": "They tell you what made them proud as they watched you work on it.",
+          "text": "They tell you what made them proud when you shared your good news.",
           "strength": 0,
           "categories": {
             "classic5": "WA",

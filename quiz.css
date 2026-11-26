@@ -25,6 +25,7 @@
 
 .model-choice input {
     accent-color: var(--wine);
+    flex-shrink: 0;
 }
 
 .model-choice span {
@@ -120,4 +121,15 @@
     display: block;
     height: 100%;
     background: var(--wine);
+}
+
+.conflict-follow-up {
+    margin-top: 2rem;
+}
+
+.conflict-follow-up summary {
+    padding-block: .35rem;
+    color: var(--wine);
+    font-weight: 650;
+    cursor: pointer;
 }

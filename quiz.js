@@ -75,6 +75,19 @@ function showIntro() {
     app.replaceChildren(intro);
 }
 
+function suggestionLink(questionId) {
+    const suggestionUrl = new URL('https://github.com/MEdrum/love-language-test/issues/new');
+    suggestionUrl.searchParams.set('title', `Question suggestion: ${questionId}`);
+    suggestionUrl.searchParams.set('body', `Question ID: ${questionId}\n\nWhat would you change about this question?\n\n`);
+    const suggest = element('a', 'Suggest a change', 'suggest-change');
+    suggest.href = suggestionUrl.href;
+    suggest.target = '_blank';
+    suggest.rel = 'noopener noreferrer';
+    suggest.setAttribute('aria-label', 'Suggest a change on GitHub (opens in a new tab)');
+    suggest.title = 'Opens a public GitHub issue draft';
+    return suggest;
+}
+
 function showQuestion() {
     const next = session.next();
     if (next.done) {
@@ -82,15 +95,6 @@ function showQuestion() {
         return;
     }
     const count = element('p', `Question ${session.answers.length + 1} · ${session.answers.filter(answer => answer.optionId !== 'skip').length} answered`, 'question-count');
-    const suggestionUrl = new URL('https://github.com/MEdrum/love-language-test/issues/new');
-    suggestionUrl.searchParams.set('title', `Question suggestion: ${next.questionId}`);
-    suggestionUrl.searchParams.set('body', `Question ID: ${next.questionId}\n\nWhat would you change about this question?\n\n`);
-    const suggest = element('a', 'Suggest a change', 'suggest-change');
-    suggest.href = suggestionUrl.href;
-    suggest.target = '_blank';
-    suggest.rel = 'noopener noreferrer';
-    suggest.setAttribute('aria-label', 'Suggest a change on GitHub (opens in a new tab)');
-    suggest.title = 'Opens a public GitHub issue draft';
     const title = heading(next.prompt);
     const options = element('div', '', 'question-options');
     for (const option of next.options) {
@@ -112,9 +116,31 @@ function showQuestion() {
     if (session.answers.some(answer => answer.optionId !== 'skip')) {
         actions.append(button('See results so far', () => showResults('early')));
     }
-    actions.append(suggest);
+    actions.append(suggestionLink(next.questionId));
     app.replaceChildren(count, title, options, actions);
     title.focus();
+}
+
+function conflictFollowUp() {
+    const { id, prompt, options } = bank.conflictFollowUp;
+    const details = element('details', '', 'conflict-follow-up');
+    const choices = document.createElement('fieldset');
+    choices.append(element('legend', prompt));
+    for (const option of options) {
+        const label = element('label', '', 'model-choice');
+        const input = document.createElement('input');
+        input.type = 'radio';
+        input.name = id;
+        label.append(input, document.createTextNode(option));
+        choices.append(label);
+    }
+    details.append(
+        element('summary', 'Reflect on disagreements'),
+        element('p', 'An optional question for personal reflection, separate from your quiz scores.', 'quiz-copy'),
+        choices,
+        suggestionLink(id)
+    );
+    return details;
 }
 
 function showResults(reason) {
@@ -163,6 +189,7 @@ function showResults(reason) {
         document.querySelector('h1').focus();
     }));
     content.push(actions);
+    if (bank.conflictFollowUp) content.push(conflictFollowUp());
     app.replaceChildren(...content);
     title.focus();
 }
