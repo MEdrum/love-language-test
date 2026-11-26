@@ -1,6 +1,6 @@
-import { Assessment } from './engine.js?v=10';
-import { deleteRecord, downloadRecord, exportRecord, rememberServerCopy, saveBank, savedBank, saveRecord, savedRecord, savedRecords, serverOrigin, serverResult, slugPattern } from './records.js?v=10';
-import { addSavedScoreRanges, reasons, summarize } from './quiz-run.js?v=10';
+import { Assessment, isAnswered } from './engine.js?v=11';
+import { deleteRecord, downloadRecord, exportRecord, rememberServerCopy, saveBank, savedBank, saveRecord, savedRecord, savedRecords, serverOrigin, serverResult, slugPattern } from './records.js?v=11';
+import { addSavedScoreRanges, reasons, summarize } from './quiz-run.js?v=11';
 
 const app = document.querySelector('#app');
 const modelNames = {
@@ -49,6 +49,31 @@ function field(labelText, type, value = '') {
     label.append(input);
     return { label, input };
 }
+
+function answerFormat(mode) {
+    const label = element('label', 'Answer format', 'answer-format');
+    const select = document.createElement('select');
+    for (const [value, text] of [['binary', 'A/B'], ['scale', 'Five-point scale']]) {
+        const option = element('option', text);
+        option.value = value;
+        select.append(option);
+    }
+    select.value = mode === 'scale' ? 'scale' : 'binary';
+    label.append(select);
+    return { label, select };
+}
+
+function sessionAnswerFormat(entry, onChange) {
+    const { label, select } = answerFormat(entry.answerMode);
+    select.addEventListener('change', () => {
+        entry.answerMode = select.value;
+        if (onChange) onChange();
+        else void saveRecord(structuredClone(entry)).catch(localError);
+    });
+    return label;
+}
+
+const answeredCount = summary => summary.answered + (summary.equal ?? 0);
 
 function localError() {
     storageStatus.textContent = 'Browser storage is unavailable. You can still export your answers as JSON.';
@@ -216,7 +241,7 @@ async function showSavedSessions(container) {
         const item = element('article', '', 'saved-session');
         item.append(element('h3', entry.name || 'Untitled session'));
         const date = entry.completedAt ? `Completed ${dateText(entry.completedAt)}` : `In progress · ${dateText(entry.updatedAt)}`;
-        item.append(element('p', `${date} · ${entry.summary.answered} answered`, 'quiz-copy'));
+        item.append(element('p', `${date} · ${answeredCount(entry.summary)} answered`, 'quiz-copy'));
         const actions = element('div', '', 'quiz-actions');
         actions.append(button(entry.completedAt ? 'View results' : 'Continue', async () => {
             if (entry.completedAt) {
@@ -288,9 +313,10 @@ function showIntro() {
         length.append(option);
     }
     lengthLabel.append(length);
+    const format = answerFormat('binary');
     const name = field('Session name (optional)', 'text');
     name.input.maxLength = 80;
-    form.append(fieldset, lengthLabel, name.label, error, submit);
+    form.append(fieldset, lengthLabel, format.label, name.label, error, submit);
     form.addEventListener('submit', event => {
         event.preventDefault();
         const selected = [...form.querySelectorAll('input:checked')].map(input => input.value);
@@ -300,7 +326,8 @@ function showIntro() {
         }
         const limits = bank.lengths[length.value];
         session = new Assessment(bank, selected, { maxQuestions: selected.length === 1 ? limits.single : limits.combined });
-        record = { id: crypto.randomUUID(), name: name.input.value.trim(), createdAt: new Date().toISOString(), completedAt: null };
+        record = { id: crypto.randomUUID(), name: name.input.value.trim(), createdAt: new Date().toISOString(), completedAt: null,
+            answerMode: format.select.value };
         void saveBank(bank).catch(localError);
         showQuestion();
     });
@@ -323,21 +350,37 @@ function suggestionLink(questionId) {
     return suggest;
 }
 
-function showQuestion() {
+function showQuestion(focusFormat = false) {
     const next = session.next();
     if (next.done) {
         finish(next.reason);
         return;
     }
     void persist('early');
-    const count = element('p', `Question ${session.answers.length + 1} · ${session.answers.filter(answer => answer.optionId !== 'skip').length} answered`, 'question-count');
+    const count = element('p', `Question ${session.answers.length + 1} · ${session.answers.filter(isAnswered).length} answered`, 'question-count');
     const title = heading(next.prompt);
     const options = element('div', '', 'question-options');
-    for (const option of next.options) {
-        options.append(button(option.text, () => {
-            session.answer(option.id);
-            showQuestion();
-        }));
+    const respond = (id, preference) => {
+        session.answer(id, preference);
+        showQuestion();
+    };
+    if (record.answerMode === 'scale') {
+        const [a, b] = next.options;
+        for (const [label, option] of [['A', a], ['B', b]]) {
+            const choice = element('p', '', 'scale-gesture');
+            choice.append(element('strong', `${label}. `), document.createTextNode(option.text));
+            options.append(choice);
+        }
+        const scale = element('div', '', 'scale-options');
+        scale.setAttribute('role', 'group');
+        scale.setAttribute('aria-label', 'Which gesture do you prefer?');
+        for (const [text, id, preference] of [
+            ['Strongly prefer A', a.id, 'strong'], ['Slightly prefer A', a.id, 'slight'], ['Equally appealing', 'skip', 'equal'],
+            ['Slightly prefer B', b.id, 'slight'], ['Strongly prefer B', b.id, 'strong']
+        ]) scale.append(button(text, () => respond(id, preference)));
+        options.append(scale);
+    } else {
+        for (const option of next.options) options.append(button(option.text, () => respond(option.id)));
     }
     const actions = element('div', '', 'quiz-actions');
     const back = button('Back', () => {
@@ -345,14 +388,12 @@ function showQuestion() {
         showQuestion();
     });
     back.disabled = !session.answers.length;
-    actions.append(back, button('Skip', () => {
-        session.answer('skip');
-        showQuestion();
-    }));
+    actions.append(back, button('Skip', () => respond('skip')));
     actions.append(button('See results so far', () => showResults('early')));
     actions.append(suggestionLink(next.questionId));
-    app.replaceChildren(count, title, options, actions, frameworkSettings(record, showQuestion));
-    title.focus();
+    const format = sessionAnswerFormat(record, () => showQuestion(true));
+    app.replaceChildren(count, title, format, options, actions, frameworkSettings(record, showQuestion));
+    (focusFormat ? format.querySelector('select') : title).focus();
 }
 
 function conflictFollowUp() {
@@ -378,7 +419,8 @@ function conflictFollowUp() {
 }
 
 function resultContent(summary) {
-    const status = element('p', `${reasons[summary.reason] ?? reasons.early} ${summary.answered} answered, ${summary.asked - summary.answered} skipped.`, 'quiz-copy');
+    const answered = answeredCount(summary);
+    const status = element('p', `${reasons[summary.reason] ?? reasons.early} ${answered} answered, ${summary.asked - answered} skipped.`, 'quiz-copy');
     const explanation = element('p', 'Scores show relative preferences within each framework. Certainty estimates how likely the leading category is to outrank the runner-up under the scoring model. The quiz is unvalidated.', 'quiz-copy');
     const content = [status, explanation];
     if (summary.models.some(model => model.categories.some(category => category.range))) {
@@ -623,7 +665,7 @@ function showResults(reason) {
             localError();
         }
     });
-    content.push(actions, frameworkSettings(entry, () => showResults(entry.summary.reason)), rename, serverSave(entry, title));
+    content.push(actions, sessionAnswerFormat(entry), frameworkSettings(entry, () => showResults(entry.summary.reason)), rename, serverSave(entry, title));
     if (bank?.conflictFollowUp) content.push(conflictFollowUp());
     app.replaceChildren(...content);
     title.focus();
@@ -638,6 +680,7 @@ async function rememberSharedResult(result, remote) {
         createdAt: result.createdAt,
         updatedAt: result.updatedAt,
         completedAt: result.completedAt,
+        answerMode: result.resume?.answerMode,
         summary: result.summary,
         snapshot: {
             schemaVersion: result.bankVersion,
@@ -646,7 +689,7 @@ async function rememberSharedResult(result, remote) {
                 maxQuestions: result.resume?.maxQuestions ?? Math.max(result.answers.length, models.length === 1 ? 24 : 30),
                 extend: result.resume?.extend ?? false
             },
-            answers: result.answers.map(({ questionId, answer, displayOrder }) => ({ questionId, optionId: answer, displayOrder })),
+            answers: result.answers.map(({ questionId, answer, displayOrder, preference }) => ({ questionId, optionId: answer, displayOrder, preference })),
             pending: result.resume?.pending ?? null
         }
     };
@@ -677,7 +720,7 @@ function showSharedResult(slug) {
         try {
             const { result, ...remote } = await serverResult('GET', slug, value);
             await supplementSavedRanges(result, result.bankVersion, result.answers.map(answer => ({
-                questionId: answer.questionId, optionId: answer.answer
+                questionId: answer.questionId, optionId: answer.answer, preference: answer.preference
             })));
             form.hidden = true;
             password.input.value = '';
@@ -712,7 +755,7 @@ function showSharedResult(slug) {
                 history.replaceState(null, '', location.pathname);
                 showResults(entry.summary.reason);
             });
-            content.replaceChildren(element('p', date, 'quiz-copy'), ...resultContent(result.summary), actions, copyLink, frameworks, settings);
+            content.replaceChildren(element('p', date, 'quiz-copy'), ...resultContent(result.summary), actions, sessionAnswerFormat(entry), copyLink, frameworks, settings);
             title.focus();
         } catch (error) {
             form.hidden = error.status !== 401;

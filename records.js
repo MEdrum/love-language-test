@@ -49,14 +49,15 @@ export function exportRecord(record) {
         resume: {
             maxQuestions: record.snapshot.config.maxQuestions,
             extend: Boolean(record.snapshot.config.extend),
+            answerMode: record.answerMode ?? 'binary',
             pending: record.snapshot.pending ? {
                 questionId: record.snapshot.pending.questionId,
                 displayOrder: record.snapshot.pending.displayOrder ?? record.snapshot.pending.options.map(option => option.id)
             } : null
         },
         summary: record.summary,
-        answers: record.snapshot.answers.map(({ questionId, optionId, displayOrder }) => ({
-            questionId, answer: optionId, displayOrder
+        answers: record.snapshot.answers.map(({ questionId, optionId, displayOrder, preference }) => ({
+            questionId, answer: optionId, displayOrder, preference
         }))
     };
 }

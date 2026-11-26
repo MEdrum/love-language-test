@@ -13,6 +13,20 @@ function inverse(a) {
 }
 const dot=(a,b)=>a.reduce((s,v,i)=>s+v*b[i],0);
 function item(q,m,cats,beta){const [a,b]=q.options;return {i:cats.indexOf(a.categories[m]),j:cats.indexOf(b.categories[m]),d:beta*(a.strength-b.strength)};}
+
+export const isAnswered = answer => answer.optionId !== 'skip' || answer.preference === 'equal';
+
+function validAnswer(optionId, preference) {
+  if (!['a', 'b', 'skip'].includes(optionId)) return false;
+  if (preference === undefined) return true;
+  return optionId === 'skip' ? preference === 'equal' : ['slight', 'strong'].includes(preference);
+}
+
+function answerOutcome(answer) {
+  if (answer.preference === 'equal') return 0.5;
+  const weight = answer.preference === 'slight' ? 0.25 : 0.5;
+  return 0.5 + (answer.optionId === 'a' ? weight : -weight);
+}
 export function validateBank(bank){
  const ids=new Set(); const gestures=new Map();
  for(const q of bank.questions){
@@ -26,8 +40,8 @@ export function validateBank(bank){
 export function fitModel(bank,model,answers,config=bank.config){
  const cats=Object.keys(bank.models[model].categories),n=cats.length,lambda=1/config.priorSD**2;
  const byId=new Map(bank.questions.map(q=>[q.id,q])), rows=[],exposure=Array(n).fill(0),edges=Array.from({length:n},()=>new Set());
- for(const a of answers){const q=byId.get(a.questionId);if(!q||!q.eligibility[model]||a.optionId==='skip')continue;
-  const r=item(q,model,cats,config.strengthCoefficient);r.y=a.optionId==='a'?1:0;rows.push(r);exposure[r.i]++;exposure[r.j]++;edges[r.i].add(r.j);edges[r.j].add(r.i);}
+ for(const a of answers){const q=byId.get(a.questionId);if(!q||!q.eligibility[model]||!isAnswered(a))continue;
+  const r=item(q,model,cats,config.strengthCoefficient);r.y=answerOutcome(a);rows.push(r);exposure[r.i]++;exposure[r.j]++;edges[r.i].add(r.j);edges[r.j].add(r.i);}
  const objective=t=>lambda*dot(t,t)/2+rows.reduce((s,r)=>{const z=t[r.i]-t[r.j]+r.d;return s+softplus(z)-r.y*z;},0);
  function derivatives(t){const g=t.map(v=>lambda*v),h=matrix(n,(i,j)=>i===j?lambda:0);for(const r of rows){const {i,j,d,y}=r,p=sigmoid(t[i]-t[j]+d),w=p*(1-p);g[i]+=p-y;g[j]-=p-y;h[i][i]+=w;h[j][j]+=w;h[i][j]-=w;h[j][i]-=w;}return {g,h};}
  let theta=Array(n).fill(0);
@@ -46,7 +60,7 @@ export class Assessment {
  next(){if(this.pending)return this.pending;const active=this.states.filter(s=>this.config.extend||!s.complete);if(!active.length)return {done:true,reason:'precision_reached'};if(this.answers.length>=this.config.maxQuestions)return {done:true,reason:'question_limit'};
   const asked=new Set(this.answers.map(a=>a.questionId)),uses=new Map(),byId=new Map(this.bank.questions.map(q=>[q.id,q]));for(const a of this.answers)for(const o of byId.get(a.questionId).options)uses.set(o.gestureId,(uses.get(o.gestureId)||0)+1);
   const {initialMatchedQuestions = 0, unequalStrengthWeight = 1} = this.config;
-  const openingComparisons = this.answers.filter(answer => answer.optionId !== 'skip').length < initialMatchedQuestions;
+  const openingComparisons = this.answers.filter(isAnswered).length < initialMatchedQuestions;
   const candidates=[];for(const q of this.bank.questions){if(asked.has(q.id))continue;
    const strengthGap = Math.abs(q.options[0].strength - q.options[1].strength);
    const relevant=active.filter(s=>q.eligibility[s.model]);if(!relevant.length)continue;let raw=0,needed=0,unseen=0;for(const s of relevant){raw+=informationGain(q,s,this.config);const {i,j}=item(q,s.model,s.categories,this.config.strengthCoefficient);needed+=+(s.exposure[i]<this.config.minComparisonsPerCategory)+ +(s.exposure[j]<this.config.minComparisonsPerCategory);unseen+=+(s.exposure[i]===0)+ +(s.exposure[j]===0);}
@@ -75,9 +89,16 @@ export class Assessment {
   if(!this.config.extend&&pick.raw<this.config.minInformationGainBits&&!pick.needed)return {done:true,reason:'low_information_gain'};
   const order=Math.random()<.5?['a','b']:['b','a'];this.pending={done:false,questionId:pick.q.id,prompt:pick.q.prompt,options:order.map(id=>{const o=pick.q.options.find(o=>o.id===id);return {id,text:o.text};}),selection:{shared:pick.shared,expectedInformationGain:pick.raw,activeModels:active.map(s=>s.model)}};return this.pending;
  }
- answer(optionId){if(!this.pending||!['a','b','skip'].includes(optionId))throw Error('No pending question or invalid option');this.answers.push({questionId:this.pending.questionId,optionId,displayOrder:this.pending.options.map(o=>o.id)});this.pending=null;this.refresh();}
+ answer(optionId, preference) {
+  if (!this.pending || !validAnswer(optionId, preference)) throw Error('No pending question or invalid option');
+  const answer = {questionId:this.pending.questionId, optionId, displayOrder:this.pending.options.map(o=>o.id)};
+  if (preference !== undefined) answer.preference = preference;
+  this.answers.push(answer);
+  this.pending = null;
+  this.refresh();
+ }
  undo(){this.pending=null;this.answers.pop();this.refresh();}
- results(){return {schemaVersion:this.bank.schemaVersion,answered:this.answers.filter(a=>a.optionId!=='skip').length,asked:this.answers.length,models:this.states.map(s=>({...s,status:s.complete?'precision_reached':'uncertain'}))};}
+ results(){return {schemaVersion:this.bank.schemaVersion,answered:this.answers.filter(isAnswered).length,equal:this.answers.filter(answer=>answer.preference==='equal').length,asked:this.answers.length,models:this.states.map(s=>({...s,status:s.complete?'precision_reached':'uncertain'}))};}
  snapshot(){return {schemaVersion:this.bank.schemaVersion,models:[...this.models],config:{...this.config},answers:structuredClone(this.answers),pending:structuredClone(this.pending)};}
- static restore(bank,s){if(s.schemaVersion!==bank.schemaVersion)throw Error('Bank version mismatch');const a=new Assessment(bank,s.models,s.config),seen=new Set();for(const r of s.answers){if(seen.has(r.questionId)||!bank.questions.some(q=>q.id===r.questionId)||!['a','b','skip'].includes(r.optionId))throw Error('Invalid saved answer');seen.add(r.questionId);}a.answers=structuredClone(s.answers);a.pending=structuredClone(s.pending);a.refresh();return a;}
+ static restore(bank,s){if(s.schemaVersion!==bank.schemaVersion)throw Error('Bank version mismatch');const a=new Assessment(bank,s.models,s.config),seen=new Set();for(const r of s.answers){if(seen.has(r.questionId)||!bank.questions.some(q=>q.id===r.questionId)||!validAnswer(r.optionId,r.preference))throw Error('Invalid saved answer');seen.add(r.questionId);}a.answers=structuredClone(s.answers);a.pending=structuredClone(s.pending);a.refresh();return a;}
 }

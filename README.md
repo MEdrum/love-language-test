@@ -4,6 +4,8 @@ This is an original, uncalibrated preference quiz, not a validated psychological
 
 The [quiz](https://medrum.github.io/love-language-test/) runs on GitHub Pages. Each question links to a public GitHub issue draft with its ID filled in. Sessions and their question bank revisions are stored in IndexedDB on this browser. The quiz sends a copy only when the visitor chooses **Save a server copy**. JSON exports include question IDs, canonical answers and the order in which the options appeared.
 
+The answer format can be changed throughout a session. A/B answers and strong preferences use the existing binary scoring. Slight preferences use a response of 0.75 or 0.25 in the existing likelihood, and equally appealing uses 0.5. Skip contributes no scoring evidence. JSON preserves the preference as `slight`, `strong`, or `equal` alongside the canonical answer ID and display order. For compatibility with the existing API, an equal response has an `answer` of `skip` plus `preference: "equal"`. The summary keeps directional responses in `answered` and equal responses in `equal`. The quiz combines them when displaying the answered count.
+
 Open a saved session from its link or paste its slug on the quiz homepage. An opened link is recorded in the browser's session list. A server save includes the current question and its display order so another browser can continue at the same point. Older copies can resume from their last saved answer when the original question bank is available. Changing frameworks reuses eligible answers. Choose **Answer 12 more questions** to continue beyond the previous stopping point.
 
 ## Files

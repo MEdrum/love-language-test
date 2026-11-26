@@ -1,4 +1,4 @@
-import { fitModel } from './engine.js';
+import { fitModel } from './engine.js?v=11';
 
 export const reasons = {
     precision_reached: 'Every selected framework reached the quiz’s internal precision target.',
@@ -78,5 +78,6 @@ export function summarize(session, reason) {
             categories: ranked.map(id => ({ label: labels[id], score: model.relativeScores[id], range: ranges[id] }))
         };
     });
-    return { reason, answered: results.answered, asked: results.asked, models };
+    // The server counts directional answers in this field for older clients.
+    return { reason, answered: results.answered - results.equal, equal: results.equal, asked: results.asked, models };
 }
