@@ -1,0 +1,123 @@
+.quiz {
+    max-width: 50rem;
+}
+
+.quiz-copy {
+    max-width: 65ch;
+    color: var(--quiet);
+}
+
+.quiz-copy + .quiz-copy {
+    margin-top: .75rem;
+}
+
+.quiz fieldset {
+    margin-top: 1.75rem;
+}
+
+.model-choice {
+    display: flex;
+    align-items: baseline;
+    gap: .65rem;
+    margin-block: .8rem;
+    cursor: pointer;
+}
+
+.model-choice input {
+    accent-color: var(--wine);
+}
+
+.model-choice span {
+    display: block;
+    color: var(--quiet);
+    font-size: .9rem;
+}
+
+.quiz form [role="alert"]:not(:empty) {
+    margin-bottom: .75rem;
+}
+
+.quiz h2 + .quiz-copy {
+    margin-top: .75rem;
+}
+
+.quiz-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .65rem;
+    margin-top: 1.5rem;
+}
+
+.question-count {
+    margin-bottom: 1rem;
+    color: var(--quiet);
+    font-size: .9rem;
+}
+
+.suggest-change {
+    display: inline-flex;
+    align-self: center;
+    align-items: center;
+    min-height: 2rem;
+    padding: .2rem .6rem;
+    border: 1px solid var(--line);
+    border-radius: .4375rem;
+    color: var(--wine);
+    font-size: .8125rem;
+    text-decoration: none;
+}
+
+.suggest-change:hover {
+    background: var(--surface);
+}
+
+.question-options {
+    display: grid;
+    gap: .75rem;
+    margin-top: 1.5rem;
+}
+
+.question-options button {
+    justify-content: flex-start;
+    width: 100%;
+    padding: 1rem 1.1rem;
+    background: var(--surface);
+    text-align: left;
+}
+
+.result-model {
+    margin-top: 2.5rem;
+}
+
+.result-model h3 {
+    margin-bottom: .5rem;
+    font-size: 1.2rem;
+}
+
+.result-scores {
+    display: grid;
+    gap: .65rem;
+    margin: 1rem 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.result-label {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.result-bar {
+    height: .4rem;
+    margin-top: .25rem;
+    overflow: hidden;
+    border-radius: 1rem;
+    background: var(--control);
+}
+
+.result-bar span {
+    display: block;
+    height: 100%;
+    background: var(--wine);
+}
